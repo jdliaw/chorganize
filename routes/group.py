@@ -1,5 +1,5 @@
 from . import routes
 
 @routes.route('/api/group')
-def index():
+def group():
     return "Hello World!"
