@@ -69,6 +69,7 @@ class User(db.Model):
 
     def addChore(self, chore):
         self.chores.append(chore)
+        db.session.commit()
 
     def getChores(self):
         return self.chores.all()
@@ -76,11 +77,16 @@ class User(db.Model):
     def getChoreByName(self, name):
         pass
 
+    def addGroup(self, group):
+        self.groups.append(group)
+        db.session.commit()
+
     @classmethod
     def createUser(cls, email, username, password, total=0, miss=0):
         user = User(email, username, password, total, miss)
         db.session.add(user)
         db.session.commit()
+        return user
 
     @classmethod
     def getUser(cls, email):
@@ -125,6 +131,7 @@ class Group(db.Model):
 
     def addChore(self, chore):
         self.chores.append(chore)
+        db.session.commit()
 
     def getChores(self):
         return self.chores.all()
@@ -134,6 +141,7 @@ class Group(db.Model):
         group = Group(name)
         db.session.add(group)
         db.session.commit()
+        return group
 
     @classmethod
     def getGroup(cls, id):
@@ -160,7 +168,7 @@ class Chore(db.Model):
     name = db.Column(db.String(80), nullable=False)
     description = db.Column(db.Text, default="")
     completed = db.Column(db.Boolean, default=False)
-    deadline = db.Column(db.DateTime, nullable=False, server_default=db.func.now())
+    deadline = db.Column(db.DateTime, nullable=False)
     group_id = db.Column(db.Integer, db.ForeignKey('group.id'))
     user_email = db.Column(db.String, db.ForeignKey('user.email'))
 
@@ -188,10 +196,11 @@ class Chore(db.Model):
         db.session.commit()
 
     @classmethod
-    def createChore(cls, name, deadline):
-        chore = Chore(name, deadline)
+    def createChore(cls, name, deadline, description="", completed=False):
+        chore = Chore(name, deadline, description, completed)
         db.session.add(chore)
         db.session.commit()
+        return chore
 
     @classmethod
     def getChore(cls, id):
