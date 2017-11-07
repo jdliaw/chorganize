@@ -158,15 +158,17 @@ class Chore(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
-    description = db.Column(db.Text, nullable=True)
-    deadline = db.Column(db.DateTime, nullable=False, server_default=db.func.now())
+    description = db.Column(db.Text, default="")
     completed = db.Column(db.Boolean, default=False)
+    deadline = db.Column(db.DateTime, nullable=False, server_default=db.func.now())
     group_id = db.Column(db.Integer, db.ForeignKey('group.id'))
     user_email = db.Column(db.String, db.ForeignKey('user.email'))
 
-    def __init__(self, name, deadline):
+    def __init__(self, name, deadline, description="", completed=False):
         self.name = name
         self.deadline = deadline
+        self.description = description
+        self.completed = completed
 
     def getId(self):
         return self.id
