@@ -84,7 +84,7 @@ class User(db.Model):
 
     @classmethod
     def createUser(cls, email, username, password, firstname, lastname):
-        user = User(email, username, password, total, miss)
+        user = User(email, username, password, firstname, lastname)
         db.session.add(user)
         db.session.commit()
         return user
@@ -105,8 +105,8 @@ class User(db.Model):
                 'email': self.email,
                 'username': self.username,
                 'password': self.password,
-                'total': self.firstname,
-                'misses': self.lastname
+                'firstname': self.firstname,
+                'lastname': self.lastname
                }
 
 
