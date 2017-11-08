@@ -20,17 +20,18 @@ class User(db.Model):
     email = db.Column(db.String(80), primary_key=True)
     username = db.Column(db.String(80), nullable=False)
     password = db.Column(db.String(80), nullable=False)
-    total = db.Column(db.Integer, default=0)
-    miss = db.Column(db.Integer, default=0)
+    firstname = db.Column(db.String(80), nullable=False)
+    lastname = db.Column(db.String(80), nullable=False)
     chores = db.relationship('Chore', backref='user', lazy='dynamic')
-    groups = db.relationship('Group', secondary=association_table, backref='users')
+    groups = db.relationship('Group', secondary=association_table, lazy='dynamic',
+                             backref=db.backref('users', lazy='dynamic'))
 
-    def __init__(self, email, username, password, total=0, miss=0):
+    def __init__(self, email, username, password, firstname, lastname):
         self.email = email
         self.username = username
         self.password = password
-        self.total = total
-        self.miss = miss
+        self.firstname = firstname
+        self.lastname = lastname
 
     def getEmail(self):
         return self.email
@@ -53,18 +54,18 @@ class User(db.Model):
         self.password = password
         db.session.commit()
 
-    def getTotal(self):
-        return self.total
+    def getFirstname(self):
+        return self.firstname
 
-    def setTotal(self, total):
-        self.total = total
+    def setFirstname(self, firstname):
+        self.firstname = firstname
         db.session.commit()
 
-    def getMiss(self):
-        return self.miss
+    def getLastname(self):
+        return self.lastname
 
-    def setMiss(self, miss):
-        self.miss = miss
+    def setLastname(self, lastname):
+        self.lastname = lastname
         db.session.commit()
 
     def addChore(self, chore):
@@ -74,12 +75,12 @@ class User(db.Model):
     def getChores(self):
         return self.chores.all()
 
-    def getChoreByName(self, name):
-        pass
-
     def addGroup(self, group):
         self.groups.append(group)
         db.session.commit()
+
+    def getGroups(self):
+        return self.groups.all()
 
     @classmethod
     def createUser(cls, email, username, password, total=0, miss=0):
@@ -136,6 +137,17 @@ class Group(db.Model):
     def getChores(self):
         return self.chores.all()
 
+    def addUser(self, user):
+        self.users.append(user)
+        db.session.commit()
+
+    def getUsers(self):
+        return self.users.all()
+
+    def removeUser(self, user):
+        self.users.remove(user)
+        db.session.commit()
+
     @classmethod
     def createGroup(cls, name):
         group = Group(name)
@@ -156,8 +168,8 @@ class Group(db.Model):
     @property
     def serialize(self):
         return {
-                'name': self.name,
-                'user_email': self.user_email
+                'id': self.id,
+                'name': self.name
                }
 
 
