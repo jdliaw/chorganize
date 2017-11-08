@@ -166,13 +166,13 @@ class Chore(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
-    description = db.Column(db.Text, default="")
+    description = db.Column(db.Text, default=None)
     completed = db.Column(db.Boolean, default=False)
-    deadline = db.Column(db.DateTime, nullable=False)
+    deadline = db.Column(db.DateTime)
     group_id = db.Column(db.Integer, db.ForeignKey('group.id'))
     user_email = db.Column(db.String, db.ForeignKey('user.email'))
 
-    def __init__(self, name, deadline, description="", completed=False):
+    def __init__(self, name, deadline=None, description=None, completed=False):
         self.name = name
         self.deadline = deadline
         self.description = description
@@ -196,7 +196,7 @@ class Chore(db.Model):
         db.session.commit()
 
     @classmethod
-    def createChore(cls, name, deadline, description="", completed=False):
+    def createChore(cls, name, deadline=None, description=None, completed=False):
         chore = Chore(name, deadline, description, completed)
         db.session.add(chore)
         db.session.commit()
