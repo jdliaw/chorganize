@@ -83,7 +83,7 @@ class User(db.Model):
         return self.groups.all()
 
     @classmethod
-    def createUser(cls, email, username, password, total=0, miss=0):
+    def createUser(cls, email, username, password, firstname, lastname):
         user = User(email, username, password, total, miss)
         db.session.add(user)
         db.session.commit()
@@ -105,8 +105,8 @@ class User(db.Model):
                 'email': self.email,
                 'username': self.username,
                 'password': self.password,
-                'total': self.total,
-                'misses': self.miss
+                'total': self.firstname,
+                'misses': self.lastname
                }
 
 
