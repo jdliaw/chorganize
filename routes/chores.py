@@ -68,7 +68,6 @@ def modifyChore():
     if 'completed' in dataDict:
         choreCompleted = dataDict['completed']
         chore.setCompleted(choreCompleted)
-    db.session.commit()
     
     return "Chore successfully modified"
     

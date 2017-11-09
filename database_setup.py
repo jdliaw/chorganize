@@ -210,7 +210,7 @@ class Chore(db.Model):
     def getDescription(self):
         return self.description
         
-    def setDescription(self, description)
+    def setDescription(self, description):
         self.description = description
         db.session.commit()
         
