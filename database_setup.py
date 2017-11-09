@@ -206,6 +206,20 @@ class Chore(db.Model):
     def setDeadline(self, deadline):
         self.deadline = deadline
         db.session.commit()
+        
+    def getDescription(self):
+        return self.description
+        
+    def setDescription(self, description)
+        self.description = description
+        db.session.commit()
+        
+    def getCompleted(self):
+        return self.completed
+        
+    def setCompleted(self, completed):
+        self.completed = completed
+        db.session.commit()
 
     @classmethod
     def createChore(cls, name, deadline=None, description=None, completed=False):

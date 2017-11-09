@@ -42,6 +42,35 @@ def getChoreByID():
         return error, 404
         
     return jsonify(chore.serialize)
+
+@routes.route('/api/chore', methods=['PUT'])    
+def modifyChore():
+    data = request.data
+    dataDict = loads(data)
+    
+    try:
+        choreID = dataDict['id']
+    except KeyError:
+        error = "No ID specified"
+        return error, 400
+    
+    chore = Chore.query.filter_by(id=choreID).one()
+    if 'name' in dataDict:
+        choreName = dataDict['name']
+        chore.setName(choreName)
+    if 'deadline' in dataDict:
+        choreDeadlineStr = dataDict['deadline']
+        choreDeadline = datetime.strptime(choreDeadlineStr, "%m/%d/%Y")
+        chore.setDeadline(choreDeadline)
+    if 'description' in dataDict:
+        choreDescription = dataDict['description']
+        chore.setDescription(choreDescription)
+    if 'completed' in dataDict:
+        choreCompleted = dataDict['completed']
+        chore.setCompleted(choreCompleted)
+    db.session.commit()
+    
+    return "Chore successfully modified"
     
 @routes.route('/api/chore', methods=['DELETE'])
 def deleteChore():
@@ -51,7 +80,7 @@ def deleteChore():
     try:
         choreID = dataDict['id']
     except KeyError:
-        error = "Invalid input parameters"
+        error = "No ID specified"
         return error, 400
 
     try:
