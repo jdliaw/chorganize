@@ -227,7 +227,11 @@ class Chore(db.Model):
     @property
     def serialize(self):
         return {
+                'id': self.id,
                 'name': self.name,
+                'description': self.description,
+                'completed': self.completed,
+                'deadline': self.deadline,
                 'group_id': self.group_id,
                 'user_email': self.user_email
                }

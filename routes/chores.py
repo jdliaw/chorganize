@@ -24,7 +24,40 @@ def createChore():
     
     try:
         Chore.createChore(choreName, choreDeadline, choreDescription)
-    except IntegrityError as err:
-        return err, 500
+    except IntegrityError as error:
+        return error, 500
         
     return "Chore successfully created"
+
+@routes.route('/api/chore', methods=['GET'])
+def getChoreByID():
+    choreID = int(request.args.get('id'))
+    if choreID is None:
+        error = "No ID specified"
+        return error, 400
+    try:
+        chore = Chore.getChore(choreID)
+    except NoResultFound:
+        error = "Chore not found"
+        return error, 404
+        
+    return jsonify(chore.serialize)
+    
+@routes.route('/api/chore', methods=['DELETE'])
+def deleteChore():
+    data = request.data
+    dataDict = loads(data)
+
+    try:
+        choreID = dataDict['id']
+    except KeyError:
+        error = "Invalid input parameters"
+        return error, 400
+
+    try:
+        Chore.deleteChore(choreID)
+    except NoResultFound:
+        error = "Chore not found"
+        return error, 404
+
+    return "Chore successfully removed"
