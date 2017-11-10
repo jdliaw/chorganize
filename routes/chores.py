@@ -1,6 +1,6 @@
 from . import routes
 from flask import request
-from database_setup import Chore
+from database_setup import Chore, Group, User
 from flask.json import loads, jsonify
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
@@ -11,21 +11,42 @@ from datetime import datetime
 def createChore():
     data = request.data
     dataDict = loads(data)
-    choreName = dataDict['name']
+    
+    try:
+        choreName = dataDict['name']
+        groupID = dataDict['groupID']
+    except KeyError:
+        error = "Name or group ID not specified"
+        return error, 400
+        
+    try:
+        group = Group.getGroup(groupID)
+    except NoResultFound:
+        error = "Group not found"
+        return error, 404
+    
     if 'deadline' in dataDict:
         choreDeadlineStr = dataDict['deadline']
         choreDeadline = datetime.strptime(choreDeadlineStr, "%m/%d/%Y")
     else:
         choreDeadline = None
+        
     if 'description' in dataDict:
         choreDescription = dataDict['description']
     else:
         choreDescription = None
-    
-    try:
-        Chore.createChore(choreName, choreDeadline, choreDescription)
-    except IntegrityError as error:
-        return error, 500
+        
+    chore = Chore.createChore(choreName, description=choreDescription, deadline=choreDeadline)
+    group.addChore(chore)
+        
+    if 'userEmail' in dataDict:
+        userEmail = dataDict['userEmail']
+        try:
+            user = User.getUser(userEmail)
+        except NoResultFound:
+            error = "User not found"
+            return error, 404
+        user.addChore(chore)
         
     return "Chore successfully created"
 

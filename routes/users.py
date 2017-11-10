@@ -13,8 +13,8 @@ def createUser():
         userEmail = dataDict['email']
         userName = dataDict['username']
         userPassword = dataDict['password']
-        userFirstName = dataDict['firstname']
-        userLastName = dataDict['lastname']
+        userFirstName = dataDict['firstName']
+        userLastName = dataDict['lastName']
     except KeyError:
         error = "Invalid input Parameters"
         return error, 400
