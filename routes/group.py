@@ -26,8 +26,9 @@ def create():
 
     return "Group Successfully Created"
 
-@routes.route('/api/group/get_by_id/<string:groupID>', methods=['GET'])
-def get_by_id(groupID):
+@routes.route('/api/group/get-by-id', methods=['GET'])
+def get_by_id():
+    groupID = request.args.get('groupID')
     try:
         group = Group.getGroup(groupID)
     except NoResultFound:
@@ -36,8 +37,9 @@ def get_by_id(groupID):
 
     return jsonify(group.serialize)
 
-@routes.route('/api/group/get_by_email/<string:email>', methods=['GET'])
-def get_by_email(email):
+@routes.route('/api/group/get-by-email', methods=['GET'])
+def get_by_email():
+    email = request.args.get('email')
     try:
         user = User.getUser(email)
     except NoResultFound:
@@ -67,7 +69,7 @@ def edit():
     group.setName(groupName)
     return "Group Name Successfully Editted"
 
-@routes.route('/api/group/addUsers', methods=['PUT'])
+@routes.route('/api/group/add-users', methods=['PUT'])
 def addPeople():
     data = request.data
     dataDict = loads(data)
@@ -95,7 +97,7 @@ def addPeople():
 
     return "Users Successfully Added To The Group"
 
-@routes.route('/api/group/removeUser', methods=['PUT'])
+@routes.route('/api/group/remove-user', methods=['PUT'])
 def deletePeople():
     data = request.data
     dataDict = loads(data)
@@ -123,3 +125,24 @@ def deletePeople():
         Group.deleteGroup(group.getId())
 
     return "User Successfully Removed From The Group"
+
+@routes.route('/api/group/get-completed-or-incompleted-chores', methods=['GET'])
+def getCompletedOrIncompletedChores():
+    groupID = request.args.get('groupID')
+    completed = request.args.get('completed')
+    try:
+        group = Group.getGroup(groupID)
+    except NoResultFound:
+        error = "Group Not Found"
+        return error, 404
+
+    try:
+        completed = loads(completed.lower())
+    except ValueError:
+        error = "Input Format Error"
+        return error, 400
+
+    chores = group.getChores()
+    chores = [chore.serialize for chore in chores if chore.getCompleted() == completed]
+
+    return jsonify(chores=chores)
