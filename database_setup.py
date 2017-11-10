@@ -77,7 +77,7 @@ class User(db.Model):
 
     @classmethod
     def createUser(cls, email, username, password, firstname, lastname):
-        user = User(email, username, password, firstname, lastname)
+        user = User(email=email, username=username, password=password, firstname=firstname, lastname=lastname)
         db.session.add(user)
         db.session.commit()
         return user
@@ -140,7 +140,7 @@ class Group(db.Model):
 
     @classmethod
     def createGroup(cls, name):
-        group = Group(name)
+        group = Group(name=name)
         db.session.add(group)
         db.session.commit()
         return group
@@ -212,8 +212,8 @@ class Chore(db.Model):
         return self.userEmail
 
     @classmethod
-    def createChore(cls, name, deadline=None, description=None, completed=False):
-        chore = Chore(name, deadline, description, completed)
+    def createChore(cls, name, description=None, completed=False, deadline=None):
+        chore = Chore(name=name, description=description, completed=completed, deadline=deadline)
         db.session.add(chore)
         db.session.commit()
         return chore
