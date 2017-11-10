@@ -27,7 +27,7 @@ def create():
     return "Group Successfully Created"
 
 @routes.route('/api/group/get-by-id', methods=['GET'])
-def get_by_id():
+def getByID():
     groupID = request.args.get('groupID')
     try:
         group = Group.getGroup(groupID)
@@ -38,7 +38,7 @@ def get_by_id():
     return jsonify(group.serialize)
 
 @routes.route('/api/group/get-by-email', methods=['GET'])
-def get_by_email():
+def getByEmail():
     email = request.args.get('email')
     try:
         user = User.getUser(email)
@@ -70,7 +70,7 @@ def edit():
     return "Group Name Successfully Editted"
 
 @routes.route('/api/group/add-users', methods=['PUT'])
-def addPeople():
+def addUsers():
     data = request.data
     dataDict = loads(data)
     try:
@@ -98,7 +98,7 @@ def addPeople():
     return "Users Successfully Added To The Group"
 
 @routes.route('/api/group/remove-user', methods=['PUT'])
-def deletePeople():
+def removeUser():
     data = request.data
     dataDict = loads(data)
     try:

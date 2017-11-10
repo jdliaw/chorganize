@@ -20,18 +20,11 @@ class User(db.Model):
     email = db.Column(db.String(80), primary_key=True)
     username = db.Column(db.String(80), nullable=False)
     password = db.Column(db.String(80), nullable=False)
-    firstname = db.Column(db.String(80), nullable=False)
-    lastname = db.Column(db.String(80), nullable=False)
+    firstName = db.Column(db.String(80), nullable=False)
+    lastName = db.Column(db.String(80), nullable=False)
     chores = db.relationship('Chore', backref='user', lazy='dynamic')
     groups = db.relationship('Group', secondary=association_table, lazy='dynamic',
                              backref=db.backref('users', lazy='dynamic'))
-
-    def __init__(self, email, username, password, firstname, lastname):
-        self.email = email
-        self.username = username
-        self.password = password
-        self.firstname = firstname
-        self.lastname = lastname
 
     def getEmail(self):
         return self.email
@@ -54,17 +47,17 @@ class User(db.Model):
         self.password = password
         db.session.commit()
 
-    def getFirstname(self):
+    def getFirstName(self):
         return self.firstname
 
-    def setFirstname(self, firstname):
+    def setFirstName(self, firstname):
         self.firstname = firstname
         db.session.commit()
 
-    def getLastname(self):
+    def getLastName(self):
         return self.lastname
 
-    def setLastname(self, lastname):
+    def setLastName(self, lastname):
         self.lastname = lastname
         db.session.commit()
 
@@ -105,8 +98,8 @@ class User(db.Model):
                 'email': self.email,
                 'username': self.username,
                 'password': self.password,
-                'firstname': self.firstname,
-                'lastname': self.lastname
+                'firstName': self.firstName,
+                'lastName': self.lastName
                }
 
 
@@ -117,10 +110,7 @@ class Group(db.Model):
     name = db.Column(db.String(80), nullable=False)
     chores = db.relationship('Chore', backref='group', lazy='dynamic')
 
-    def __init__(self, name):
-        self.name = name
-
-    def getId(self):
+    def getID(self):
         return self.id
 
     def getName(self):
@@ -181,16 +171,10 @@ class Chore(db.Model):
     description = db.Column(db.Text, default=None)
     completed = db.Column(db.Boolean, default=False)
     deadline = db.Column(db.DateTime)
-    group_id = db.Column(db.Integer, db.ForeignKey('group.id'))
-    user_email = db.Column(db.String, db.ForeignKey('user.email'))
+    groupID = db.Column(db.Integer, db.ForeignKey('group.id'))
+    userEmail = db.Column(db.String, db.ForeignKey('user.email'))
 
-    def __init__(self, name, deadline=None, description=None, completed=False):
-        self.name = name
-        self.deadline = deadline
-        self.description = description
-        self.completed = completed
-
-    def getId(self):
+    def getID(self):
         return self.id
 
     def getName(self):
@@ -200,26 +184,32 @@ class Chore(db.Model):
         self.name = name
         db.session.commit()
 
+    def getDescription(self):
+        return self.description
+
+    def setDescription(self, description):
+        self.description = description
+        db.session.commit()
+
+    def getCompleted(self):
+        return self.completed
+
+    def setCompleted(self, completed):
+        self.completed = completed
+        db.session.commit()
+
     def getDeadline(self):
         return self.deadline
 
     def setDeadline(self, deadline):
         self.deadline = deadline
         db.session.commit()
-        
-    def getDescription(self):
-        return self.description
-        
-    def setDescription(self, description):
-        self.description = description
-        db.session.commit()
-        
-    def getCompleted(self):
-        return self.completed
-        
-    def setCompleted(self, completed):
-        self.completed = completed
-        db.session.commit()
+
+    def getGroupID(self):
+        return self.groupID
+
+    def getUserEmail(self):
+        return self.userEmail
 
     @classmethod
     def createChore(cls, name, deadline=None, description=None, completed=False):
@@ -246,8 +236,8 @@ class Chore(db.Model):
                 'description': self.description,
                 'completed': self.completed,
                 'deadline': self.deadline,
-                'group_id': self.group_id,
-                'user_email': self.user_email
+                'groupID': self.group_id,
+                'userEmail': self.user_email
                }
 
 db.create_all()
