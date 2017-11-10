@@ -1,6 +1,7 @@
+import json
 from . import routes
 from flask import request
-from database_setup import User, db
+from database_setup import User, db, Group
 from flask.json import loads, jsonify
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
@@ -89,3 +90,42 @@ def deleteUser():
         return error, 404
 
     return "User Successfully Romved"
+
+#Get all active chores or completed chores for a particular user in a particular group
+@routes.route('/api/user/getUnfinisihedChores', methods=['GET'])
+def getChores():
+    userEmail = request.args.get('email')
+    groupID = request.args.get('groupID')
+    completed = request.args.get('completed')
+    try:
+        completed = loads(completed.lower())
+    except ValueError:
+        error = "Input Format Error"
+        return error, 400
+
+    if userEmail is None or groupID is None:
+        error = "Invalid input Parameters"
+        return error, 400
+    try:
+        group = Group.getGroup(groupID)
+    except NoResultFound:
+        error = "Group Not Found"
+        return error, 404
+
+    activeChoreList = []
+    completedChoreList = []
+    choreList = group.getChores()
+    resultList = []
+
+    for chore in choreList:
+        if chore.getUserEmail() == userEmail and chore.getCompleted() == False:
+            activeChoreList.append(chore)
+        elif chore.getUserEmail() == userEmail and chore.getCompleted() == True:
+            completedChoreList.append(chore)
+
+    if completed == False:
+        resultList.append([chore.serialize for chore in completedChoreList])
+    elif completed == True:
+        resultList.append([chore.serialize for chore in activeChoreList])
+
+    return jsonify(Chorelist=resultList)

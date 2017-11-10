@@ -88,6 +88,13 @@ def modifyChore():
         chore.setDescription(choreDescription)
     if 'completed' in dataDict:
         choreCompleted = dataDict['completed']
+        if not chore.getCompleted() and choreCompleted:
+            group = Group.getGroup(chore.getGroupID())
+            email = chore.getUserEmail()
+            record = group.getUserPerformances()[email]
+            record['total'] += 1
+            if not chore.deadlinePassed():
+                record['onTime'] += 1
         chore.setCompleted(choreCompleted)
     
     return "Chore successfully modified"
