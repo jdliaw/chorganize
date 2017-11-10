@@ -76,8 +76,8 @@ class User(db.Model):
         return self.groups.all()
 
     @classmethod
-    def createUser(cls, email, username, password, firstname, lastname):
-        user = User(email=email, username=username, password=password, firstname=firstname, lastname=lastname)
+    def createUser(cls, email, username, password, firstName, lastName):
+        user = User(email=email, username=username, password=password, firstName=firstName, lastName=lastName)
         db.session.add(user)
         db.session.commit()
         return user
