@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sqlite.db'
@@ -211,6 +212,10 @@ class Chore(db.Model):
     def getGroupID(self):
         return self.groupID
 
+    def deadlinePassed(self):
+        now = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+        return ((self.deadline - now).days < 0)
+
     @classmethod
     def createChore(cls, name, description=None, completed=False, deadline=None):
         chore = Chore(name=name, description=description, completed=completed, deadline=deadline)
@@ -236,8 +241,8 @@ class Chore(db.Model):
                 'description': self.description,
                 'completed': self.completed,
                 'deadline': self.deadline,
-                'groupID': self.group_id,
-                'userEmail': self.user_email
+                'groupID': self.groupID,
+                'userEmail': self.userEmail
                }
 
 db.create_all()
