@@ -48,17 +48,17 @@ class User(db.Model):
         db.session.commit()
 
     def getFirstName(self):
-        return self.firstname
+        return self.firstName
 
-    def setFirstName(self, firstname):
-        self.firstname = firstname
+    def setFirstName(self, firstName):
+        self.firstName = firstName
         db.session.commit()
 
     def getLastName(self):
-        return self.lastname
+        return self.lastName
 
-    def setLastName(self, lastname):
-        self.lastname = lastname
+    def setLastName(self, lastName):
+        self.lastName = lastName
         db.session.commit()
 
     def addChore(self, chore):
@@ -171,8 +171,8 @@ class Chore(db.Model):
     description = db.Column(db.Text, default=None)
     completed = db.Column(db.Boolean, default=False)
     deadline = db.Column(db.DateTime)
-    groupID = db.Column(db.Integer, db.ForeignKey('group.id'))
     userEmail = db.Column(db.String, db.ForeignKey('user.email'))
+    groupID = db.Column(db.Integer, db.ForeignKey('group.id'))
 
     def getID(self):
         return self.id
@@ -205,11 +205,11 @@ class Chore(db.Model):
         self.deadline = deadline
         db.session.commit()
 
-    def getGroupID(self):
-        return self.groupID
-
     def getUserEmail(self):
         return self.userEmail
+
+    def getGroupID(self):
+        return self.groupID
 
     @classmethod
     def createChore(cls, name, description=None, completed=False, deadline=None):
