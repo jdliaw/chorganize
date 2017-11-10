@@ -8,11 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		336A275F1FB4188700419E0E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336A275E1FB4188700419E0E /* LoginViewController.swift */; };
-		336A27671FB57DB000419E0E /* chorgibackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 336A27661FB57DB000419E0E /* chorgibackground.png */; };
 		336A276D1FB58FB300419E0E /* chorgibroom.png in Resources */ = {isa = PBXBuildFile; fileRef = 336A276C1FB58FB300419E0E /* chorgibroom.png */; };
+		336A27751FB5A48D00419E0E /* chorgibackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 336A27741FB5A48D00419E0E /* chorgibackground.png */; };
+		336A27771FB5AA0600419E0E /* chorgilogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 336A27761FB5AA0600419E0E /* chorgilogo.png */; };
+		336A277B1FB65FD900419E0E /* ToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336A277A1FB65FD900419E0E /* ToDoTableViewCell.swift */; };
+		336A277D1FB661EE00419E0E /* ChoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336A277C1FB661EE00419E0E /* ChoreViewController.swift */; };
+		336A277F1FB6701B00419E0E /* Chore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336A277E1FB6701B00419E0E /* Chore.swift */; };
 		339F545C1FAE8CB000346119 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339F545B1FAE8CB000346119 /* AppDelegate.swift */; };
-		339F545E1FAE8CB000346119 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339F545D1FAE8CB000346119 /* FirstViewController.swift */; };
-		339F54601FAE8CB000346119 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339F545F1FAE8CB000346119 /* SecondViewController.swift */; };
+		339F545E1FAE8CB000346119 /* ToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339F545D1FAE8CB000346119 /* ToDoViewController.swift */; };
+		339F54601FAE8CB000346119 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339F545F1FAE8CB000346119 /* GroupViewController.swift */; };
 		339F54631FAE8CB000346119 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 339F54611FAE8CB000346119 /* Main.storyboard */; };
 		339F54651FAE8CB000346119 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 339F54641FAE8CB000346119 /* Assets.xcassets */; };
 		339F54681FAE8CB000346119 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 339F54661FAE8CB000346119 /* LaunchScreen.storyboard */; };
@@ -39,12 +43,16 @@
 
 /* Begin PBXFileReference section */
 		336A275E1FB4188700419E0E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		336A27661FB57DB000419E0E /* chorgibackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chorgibackground.png; path = ../../../chorgibackground.png; sourceTree = "<group>"; };
 		336A276C1FB58FB300419E0E /* chorgibroom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chorgibroom.png; path = ../../../chorgibroom.png; sourceTree = "<group>"; };
+		336A27741FB5A48D00419E0E /* chorgibackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chorgibackground.png; path = ../../../chorgibackground.png; sourceTree = "<group>"; };
+		336A27761FB5AA0600419E0E /* chorgilogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chorgilogo.png; path = ../../../chorgilogo.png; sourceTree = "<group>"; };
+		336A277A1FB65FD900419E0E /* ToDoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTableViewCell.swift; sourceTree = "<group>"; };
+		336A277C1FB661EE00419E0E /* ChoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoreViewController.swift; sourceTree = "<group>"; };
+		336A277E1FB6701B00419E0E /* Chore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chore.swift; sourceTree = "<group>"; };
 		339F54581FAE8CB000346119 /* ChOrganizeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChOrganizeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		339F545B1FAE8CB000346119 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		339F545D1FAE8CB000346119 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		339F545F1FAE8CB000346119 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		339F545D1FAE8CB000346119 /* ToDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoViewController.swift; sourceTree = "<group>"; };
+		339F545F1FAE8CB000346119 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		339F54621FAE8CB000346119 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		339F54641FAE8CB000346119 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		339F54671FAE8CB000346119 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -106,13 +114,17 @@
 			isa = PBXGroup;
 			children = (
 				339F545B1FAE8CB000346119 /* AppDelegate.swift */,
-				339F545D1FAE8CB000346119 /* FirstViewController.swift */,
-				339F545F1FAE8CB000346119 /* SecondViewController.swift */,
+				339F545D1FAE8CB000346119 /* ToDoViewController.swift */,
+				336A277E1FB6701B00419E0E /* Chore.swift */,
+				339F545F1FAE8CB000346119 /* GroupViewController.swift */,
 				339F54611FAE8CB000346119 /* Main.storyboard */,
+				336A277C1FB661EE00419E0E /* ChoreViewController.swift */,
+				336A277A1FB65FD900419E0E /* ToDoTableViewCell.swift */,
 				339F54641FAE8CB000346119 /* Assets.xcassets */,
 				339F54661FAE8CB000346119 /* LaunchScreen.storyboard */,
-				336A27661FB57DB000419E0E /* chorgibackground.png */,
+				336A27741FB5A48D00419E0E /* chorgibackground.png */,
 				336A276C1FB58FB300419E0E /* chorgibroom.png */,
+				336A27761FB5AA0600419E0E /* chorgilogo.png */,
 				336A275E1FB4188700419E0E /* LoginViewController.swift */,
 				339F54691FAE8CB000346119 /* Info.plist */,
 			);
@@ -244,10 +256,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				336A27771FB5AA0600419E0E /* chorgilogo.png in Resources */,
 				339F54681FAE8CB000346119 /* LaunchScreen.storyboard in Resources */,
 				339F54651FAE8CB000346119 /* Assets.xcassets in Resources */,
-				336A27671FB57DB000419E0E /* chorgibackground.png in Resources */,
 				339F54631FAE8CB000346119 /* Main.storyboard in Resources */,
+				336A27751FB5A48D00419E0E /* chorgibackground.png in Resources */,
 				336A276D1FB58FB300419E0E /* chorgibroom.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,9 +287,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				336A275F1FB4188700419E0E /* LoginViewController.swift in Sources */,
-				339F54601FAE8CB000346119 /* SecondViewController.swift in Sources */,
+				339F54601FAE8CB000346119 /* GroupViewController.swift in Sources */,
 				339F545C1FAE8CB000346119 /* AppDelegate.swift in Sources */,
-				339F545E1FAE8CB000346119 /* FirstViewController.swift in Sources */,
+				336A277B1FB65FD900419E0E /* ToDoTableViewCell.swift in Sources */,
+				336A277F1FB6701B00419E0E /* Chore.swift in Sources */,
+				339F545E1FAE8CB000346119 /* ToDoViewController.swift in Sources */,
+				336A277D1FB661EE00419E0E /* ChoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

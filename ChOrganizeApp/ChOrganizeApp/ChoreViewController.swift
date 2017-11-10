@@ -1,24 +1,18 @@
 //
-//  LoginViewController.swift
+//  ChoreViewController.swift
 //  ChOrganizeApp
 //
-//  Created by Hana on 11/8/17.
+//  Created by Hana on 11/10/17.
 //  Copyright © 2017 Pusheen Code. All rights reserved.
 //
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class ChoreViewController: UIViewController {
 
-    @IBAction func moveToToDo(_ sender: AnyObject) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let TabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = TabBarVC
-        
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
     }
 
