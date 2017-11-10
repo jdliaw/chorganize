@@ -110,6 +110,7 @@ class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
     chores = db.relationship('Chore', backref='group', lazy='dynamic')
+    userPerformances = dict()
 
     def getID(self):
         return self.id
@@ -131,6 +132,9 @@ class Group(db.Model):
     def addUser(self, user):
         self.users.append(user)
         db.session.commit()
+        userEmail = user.getEmail()
+        if userEmail not in self.userPerformances:
+            self.userPerformances[userEmail] = {'total': 0, 'onTime': 0}
 
     def getUsers(self):
         return self.users.all()
@@ -138,6 +142,9 @@ class Group(db.Model):
     def removeUser(self, user):
         self.users.remove(user)
         db.session.commit()
+
+    def getUserPerformances(self):
+        return self.userPerformances
 
     @classmethod
     def createGroup(cls, name):
@@ -242,7 +249,8 @@ class Chore(db.Model):
                 'completed': self.completed,
                 'deadline': self.deadline,
                 'groupID': self.groupID,
-                'userEmail': self.userEmail
+                'userEmail': self.userEmail,
+                'deadlinePassed': self.deadlinePassed()
                }
 
 db.create_all()
