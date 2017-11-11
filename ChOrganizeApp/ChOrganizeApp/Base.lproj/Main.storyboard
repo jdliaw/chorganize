@@ -212,10 +212,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jPn-Ie-m5W">
-                                <rect key="frame" x="0.0" y="64" width="336" height="887"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="887"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Btv-0I-6nl">
-                                        <rect key="frame" x="0.0" y="0.0" width="336" height="887"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="887"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fow-cb-qcm">
                                                 <rect key="frame" x="8" y="8" width="45" height="21"/>
@@ -236,19 +236,19 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uod-mp-md8">
-                                                <rect key="frame" x="8" y="37" width="320" height="30"/>
+                                                <rect key="frame" x="8" y="37" width="304" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4xi-gc-TvJ">
-                                                <rect key="frame" x="8" y="515" width="320" height="100"/>
+                                            <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4xi-gc-TvJ">
+                                                <rect key="frame" x="8" y="515" width="328" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="Vp3-dA-Tj7"/>
                                                 </constraints>
                                             </pickerView>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Optional" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gtk-cT-e2w">
-                                                <rect key="frame" x="8" y="104" width="320" height="100"/>
+                                                <rect key="frame" x="8" y="104" width="304" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="cln-LQ-Ihz"/>
                                                 </constraints>
@@ -257,7 +257,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="gS6-Uw-Ut4">
-                                                <rect key="frame" x="8" y="241" width="320" height="100"/>
+                                                <rect key="frame" x="8" y="241" width="304" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="Gcz-1C-d4y"/>
                                                 </constraints>
@@ -272,7 +272,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f70-EA-0DS">
-                                                <rect key="frame" x="8" y="378" width="320" height="100"/>
+                                                <rect key="frame" x="8" y="378" width="304" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="f6O-AR-qd0"/>
                                                 </constraints>
@@ -327,6 +327,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="jPn-Ie-m5W" firstAttribute="leading" secondItem="2E4-0l-YnQ" secondAttribute="leading" id="4VO-KI-1CP"/>
+                            <constraint firstAttribute="trailing" secondItem="jPn-Ie-m5W" secondAttribute="trailing" id="PWQ-pU-oHi"/>
                             <constraint firstItem="jPn-Ie-m5W" firstAttribute="bottom" secondItem="G1H-C4-Wzp" secondAttribute="top" id="zmI-Zk-Dos"/>
                             <constraint firstItem="jPn-Ie-m5W" firstAttribute="top" secondItem="Xn7-iD-7ab" secondAttribute="bottom" id="zn2-2w-Hoy"/>
                         </constraints>
