@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		336A275F1FB4188700419E0E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336A275E1FB4188700419E0E /* LoginViewController.swift */; };
 		336A276D1FB58FB300419E0E /* chorgibroom.png in Resources */ = {isa = PBXBuildFile; fileRef = 336A276C1FB58FB300419E0E /* chorgibroom.png */; };
-		336A27751FB5A48D00419E0E /* chorgibackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 336A27741FB5A48D00419E0E /* chorgibackground.png */; };
 		336A27771FB5AA0600419E0E /* chorgilogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 336A27761FB5AA0600419E0E /* chorgilogo.png */; };
 		336A277B1FB65FD900419E0E /* ToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336A277A1FB65FD900419E0E /* ToDoTableViewCell.swift */; };
 		336A277D1FB661EE00419E0E /* ChoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336A277C1FB661EE00419E0E /* ChoreViewController.swift */; };
@@ -22,6 +21,9 @@
 		339F54681FAE8CB000346119 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 339F54661FAE8CB000346119 /* LaunchScreen.storyboard */; };
 		339F54731FAE8CB100346119 /* ChOrganizeAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339F54721FAE8CB100346119 /* ChOrganizeAppTests.swift */; };
 		339F547E1FAE8CB100346119 /* ChOrganizeAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339F547D1FAE8CB100346119 /* ChOrganizeAppUITests.swift */; };
+		33CB1A4C1FB788D5006F941D /* chorgiappimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CB1A4B1FB788D5006F941D /* chorgiappimage.png */; };
+		33CB1A4E1FB78982006F941D /* chorgiappicon60.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CB1A4D1FB78982006F941D /* chorgiappicon60.png */; };
+		33CB1A501FB78A31006F941D /* chorgiappicon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CB1A4F1FB78A31006F941D /* chorgiappicon120.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +46,6 @@
 /* Begin PBXFileReference section */
 		336A275E1FB4188700419E0E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		336A276C1FB58FB300419E0E /* chorgibroom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chorgibroom.png; path = ../../../chorgibroom.png; sourceTree = "<group>"; };
-		336A27741FB5A48D00419E0E /* chorgibackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chorgibackground.png; path = ../../../chorgibackground.png; sourceTree = "<group>"; };
 		336A27761FB5AA0600419E0E /* chorgilogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chorgilogo.png; path = ../../../chorgilogo.png; sourceTree = "<group>"; };
 		336A277A1FB65FD900419E0E /* ToDoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTableViewCell.swift; sourceTree = "<group>"; };
 		336A277C1FB661EE00419E0E /* ChoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoreViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +64,9 @@
 		339F54791FAE8CB100346119 /* ChOrganizeAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChOrganizeAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		339F547D1FAE8CB100346119 /* ChOrganizeAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChOrganizeAppUITests.swift; sourceTree = "<group>"; };
 		339F547F1FAE8CB100346119 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33CB1A4B1FB788D5006F941D /* chorgiappimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chorgiappimage.png; path = ../../../../../chorgiappimage.png; sourceTree = "<group>"; };
+		33CB1A4D1FB78982006F941D /* chorgiappicon60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chorgiappicon60.png; path = ../../../../../chorgiappicon60.png; sourceTree = "<group>"; };
+		33CB1A4F1FB78A31006F941D /* chorgiappicon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chorgiappicon120.png; path = ../../../../../chorgiappicon120.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +126,9 @@
 				336A277A1FB65FD900419E0E /* ToDoTableViewCell.swift */,
 				339F54641FAE8CB000346119 /* Assets.xcassets */,
 				339F54661FAE8CB000346119 /* LaunchScreen.storyboard */,
-				336A27741FB5A48D00419E0E /* chorgibackground.png */,
+				33CB1A4B1FB788D5006F941D /* chorgiappimage.png */,
+				33CB1A4D1FB78982006F941D /* chorgiappicon60.png */,
+				33CB1A4F1FB78A31006F941D /* chorgiappicon120.png */,
 				336A276C1FB58FB300419E0E /* chorgibroom.png */,
 				336A27761FB5AA0600419E0E /* chorgilogo.png */,
 				336A275E1FB4188700419E0E /* LoginViewController.swift */,
@@ -256,11 +262,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33CB1A501FB78A31006F941D /* chorgiappicon120.png in Resources */,
 				336A27771FB5AA0600419E0E /* chorgilogo.png in Resources */,
 				339F54681FAE8CB000346119 /* LaunchScreen.storyboard in Resources */,
+				33CB1A4E1FB78982006F941D /* chorgiappicon60.png in Resources */,
+				33CB1A4C1FB788D5006F941D /* chorgiappimage.png in Resources */,
 				339F54651FAE8CB000346119 /* Assets.xcassets in Resources */,
 				339F54631FAE8CB000346119 /* Main.storyboard in Resources */,
-				336A27751FB5A48D00419E0E /* chorgibackground.png in Resources */,
 				336A276D1FB58FB300419E0E /* chorgibroom.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

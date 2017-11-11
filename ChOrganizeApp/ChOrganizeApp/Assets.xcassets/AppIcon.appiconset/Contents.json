@@ -13,7 +13,7 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "chorgibackground.png",
+      "filename" : "chorgiappimage.png",
       "scale" : "2x"
     },
     {
@@ -32,8 +32,9 @@
       "scale" : "3x"
     },
     {
-      "idiom" : "iphone",
       "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "chorgiappicon120.png",
       "scale" : "2x"
     },
     {
