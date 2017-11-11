@@ -19,10 +19,16 @@
 		339F54681FAE8CB000346119 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 339F54661FAE8CB000346119 /* LaunchScreen.storyboard */; };
 		339F54731FAE8CB100346119 /* ChOrganizeAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339F54721FAE8CB100346119 /* ChOrganizeAppTests.swift */; };
 		339F547E1FAE8CB100346119 /* ChOrganizeAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339F547D1FAE8CB100346119 /* ChOrganizeAppUITests.swift */; };
+
 		33CB1A4C1FB788D5006F941D /* chorgiappimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CB1A4B1FB788D5006F941D /* chorgiappimage.png */; };
 		33CB1A501FB78A31006F941D /* chorgiappicon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CB1A4F1FB78A31006F941D /* chorgiappicon120.png */; };
 		FF2E4DB11FB7A0B300D3C35D /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E4DB01FB7A0B300D3C35D /* Group.swift */; };
 		FF2E4DB31FB7A19900D3C35D /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E4DB21FB7A19900D3C35D /* GroupTableViewCell.swift */; };
+
+		33CB1A521FB78EA3006F941D /* chorgilogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CB1A511FB78EA3006F941D /* chorgilogo.png */; };
+		33CB1A541FB78EDB006F941D /* chorgibroom.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CB1A531FB78EDB006F941D /* chorgibroom.png */; };
+		FF48C8EC1FB7A79E00812AE7 /* CreateChoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF48C8EB1FB7A79E00812AE7 /* CreateChoreViewController.swift */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,11 +66,16 @@
 		339F54741FAE8CB100346119 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		339F54791FAE8CB100346119 /* ChOrganizeAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChOrganizeAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		339F547D1FAE8CB100346119 /* ChOrganizeAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChOrganizeAppUITests.swift; sourceTree = "<group>"; };
-		339F547F1FAE8CB100346119 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+
 		33CB1A4B1FB788D5006F941D /* chorgiappimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chorgiappimage.png; path = Assets.xcassets/AppIcon.appiconset/chorgiappimage.png; sourceTree = "<group>"; };
 		33CB1A4F1FB78A31006F941D /* chorgiappicon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chorgiappicon120.png; path = Assets.xcassets/AppIcon.appiconset/chorgiappicon120.png; sourceTree = "<group>"; };
 		FF2E4DB01FB7A0B300D3C35D /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		FF2E4DB21FB7A19900D3C35D /* GroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
+
+		33CB1A511FB78EA3006F941D /* chorgilogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chorgilogo.png; path = ImageFiles/chorgilogo.png; sourceTree = SOURCE_ROOT; };
+		33CB1A531FB78EDB006F941D /* chorgibroom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chorgibroom.png; path = ImageFiles/chorgibroom.png; sourceTree = SOURCE_ROOT; };
+		FF48C8EB1FB7A79E00812AE7 /* CreateChoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChoreViewController.swift; sourceTree = "<group>"; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,11 +127,19 @@
 			isa = PBXGroup;
 			children = (
 				339F545B1FAE8CB000346119 /* AppDelegate.swift */,
+				336A275E1FB4188700419E0E /* LoginViewController.swift */,
 				339F545D1FAE8CB000346119 /* ToDoViewController.swift */,
+
 				336A277E1FB6701B00419E0E /* Chore.swift */,
 				FF2E4DB01FB7A0B300D3C35D /* Group.swift */,
+
+				336A277A1FB65FD900419E0E /* ToDoTableViewCell.swift */,
+				336A277C1FB661EE00419E0E /* ChoreViewController.swift */,
+
 				339F545F1FAE8CB000346119 /* GroupViewController.swift */,
+				339F54661FAE8CB000346119 /* LaunchScreen.storyboard */,
 				339F54611FAE8CB000346119 /* Main.storyboard */,
+
 				FF2E4DB21FB7A19900D3C35D /* GroupTableViewCell.swift */,
 				336A277C1FB661EE00419E0E /* ChoreViewController.swift */,
 				336A277A1FB65FD900419E0E /* ToDoTableViewCell.swift */,
@@ -129,6 +148,13 @@
 				33CB1A4B1FB788D5006F941D /* chorgiappimage.png */,
 				33CB1A4F1FB78A31006F941D /* chorgiappicon120.png */,
 				336A275E1FB4188700419E0E /* LoginViewController.swift */,
+
+				FF48C8EB1FB7A79E00812AE7 /* CreateChoreViewController.swift */,
+				336A277E1FB6701B00419E0E /* Chore.swift */,
+				339F54641FAE8CB000346119 /* Assets.xcassets */,
+				33CB1A511FB78EA3006F941D /* chorgilogo.png */,
+				33CB1A531FB78EDB006F941D /* chorgibroom.png */,
+
 				339F54691FAE8CB000346119 /* Info.plist */,
 			);
 			path = ChOrganizeApp;
@@ -259,11 +285,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
 				33CB1A501FB78A31006F941D /* chorgiappicon120.png in Resources */,
 				339F54681FAE8CB000346119 /* LaunchScreen.storyboard in Resources */,
 				33CB1A4C1FB788D5006F941D /* chorgiappimage.png in Resources */,
 				339F54651FAE8CB000346119 /* Assets.xcassets in Resources */,
 				339F54631FAE8CB000346119 /* Main.storyboard in Resources */,
+
+				339F54681FAE8CB000346119 /* LaunchScreen.storyboard in Resources */,
+				33CB1A521FB78EA3006F941D /* chorgilogo.png in Resources */,
+				339F54651FAE8CB000346119 /* Assets.xcassets in Resources */,
+				339F54631FAE8CB000346119 /* Main.storyboard in Resources */,
+				33CB1A541FB78EDB006F941D /* chorgibroom.png in Resources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +330,7 @@
 				336A277B1FB65FD900419E0E /* ToDoTableViewCell.swift in Sources */,
 				336A277F1FB6701B00419E0E /* Chore.swift in Sources */,
 				339F545E1FAE8CB000346119 /* ToDoViewController.swift in Sources */,
+				FF48C8EC1FB7A79E00812AE7 /* CreateChoreViewController.swift in Sources */,
 				336A277D1FB661EE00419E0E /* ChoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
