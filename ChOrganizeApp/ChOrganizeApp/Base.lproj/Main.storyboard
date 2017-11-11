@@ -124,7 +124,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Px-5g-hYi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2392.8000000000002" y="-322.48875562218893"/>
+            <point key="canvasLocation" x="2601" y="249"/>
         </scene>
         <!--To-Do List-->
         <scene sceneID="FOy-oG-6b7">
@@ -192,6 +192,116 @@
             </objects>
             <point key="canvasLocation" x="1614" y="404"/>
         </scene>
+        <!--Create a Chore-->
+        <scene sceneID="4Fm-qI-rYS">
+            <objects>
+                <viewController id="OWK-7j-1UY" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xn7-iD-7ab"/>
+                        <viewControllerLayoutGuide type="bottom" id="G1H-C4-Wzp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2E4-0l-YnQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1000"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AaL-V7-cST">
+                                <rect key="frame" x="0.0" y="64" width="320" height="899"/>
+                                <subviews>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NR3-ll-94c">
+                                        <rect key="frame" x="0.0" y="326" width="320" height="84"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    </pickerView>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gQk-pa-iEP">
+                                        <rect key="frame" x="0.0" y="447" width="320" height="84"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    </pickerView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Assignee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Phd-NS-YbA">
+                                        <rect key="frame" x="17" y="418" width="70" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="pDn-hm-dRu">
+                                        <rect key="frame" x="0.0" y="218" width="320" height="100"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="532052961.37167799">
+                                            <!--2017-11-11 00:29:21 +0000-->
+                                        </date>
+                                    </datePicker>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Groups" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pna-Gx-Xcm">
+                                        <rect key="frame" x="17" y="326" width="56" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="pDn-hm-dRu" firstAttribute="top" secondItem="AaL-V7-cST" secondAttribute="top" constant="16" id="X1h-A4-DEW"/>
+                                    <constraint firstItem="pDn-hm-dRu" firstAttribute="leading" secondItem="AaL-V7-cST" secondAttribute="leading" id="bvp-MH-QPy"/>
+                                    <constraint firstAttribute="trailing" secondItem="pDn-hm-dRu" secondAttribute="trailing" id="rW5-Lq-KDe"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
+                                        <size key="value" width="320" height="1000"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="rect" keyPath="frame">
+                                        <rect key="value" x="0.0" y="0.0" width="320" height="416"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fow-cb-qcm">
+                                <rect key="frame" x="16" y="90" width="45" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chn-5t-e44">
+                                <rect key="frame" x="16" y="165" width="88" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uod-mp-md8">
+                                <rect key="frame" x="16" y="119" width="288" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Optional" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gtk-cT-e2w">
+                                <rect key="frame" x="16" y="194" width="288" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Deadline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2se-zu-wmm">
+                                <rect key="frame" x="16" y="310" width="67" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Uod-mp-md8" firstAttribute="top" secondItem="Fow-cb-qcm" secondAttribute="bottom" constant="8" id="20S-5b-WvU"/>
+                            <constraint firstItem="Fow-cb-qcm" firstAttribute="leading" secondItem="2E4-0l-YnQ" secondAttribute="leadingMargin" id="3GV-1J-nX5"/>
+                            <constraint firstItem="2se-zu-wmm" firstAttribute="leading" secondItem="2E4-0l-YnQ" secondAttribute="leadingMargin" id="6vL-I6-OlA"/>
+                            <constraint firstItem="Fow-cb-qcm" firstAttribute="top" secondItem="Xn7-iD-7ab" secondAttribute="bottom" constant="26" id="Aye-77-646"/>
+                            <constraint firstItem="chn-5t-e44" firstAttribute="leading" secondItem="2E4-0l-YnQ" secondAttribute="leadingMargin" id="XGG-hn-79F"/>
+                            <constraint firstItem="chn-5t-e44" firstAttribute="top" secondItem="Uod-mp-md8" secondAttribute="bottom" constant="16" id="cKt-uG-FDv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Uod-mp-md8" secondAttribute="trailing" id="l1U-VQ-jWa"/>
+                            <constraint firstItem="Uod-mp-md8" firstAttribute="leading" secondItem="2E4-0l-YnQ" secondAttribute="leadingMargin" id="uOJ-VE-ac5"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Create a Chore" id="KbS-wo-7ib"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="1000"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d75-dP-uIE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2600.625" y="-665.49295774647885"/>
+        </scene>
         <!--Groups-->
         <scene sceneID="ruc-Sh-89e">
             <objects>
@@ -225,15 +335,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXP-8p-8DE">
-                                            <rect key="frame" x="92" y="34" width="45" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBx-oM-Xew">
-                                            <rect key="frame" x="92" y="34" width="45" height="21"/>
+                                            <rect key="frame" x="43" y="0.0" width="262" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -254,11 +357,17 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="To-Do List" id="x09-tg-ReV"/>
-                    <navigationItem key="navigationItem" title="To-Do List" id="nme-LG-AHK"/>
+                    <navigationItem key="navigationItem" title="To-Do List" id="nme-LG-AHK">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="8yX-RT-Neh">
+                            <connections>
+                                <segue destination="OWK-7j-1UY" kind="show" id="QCg-5P-UuU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S9R-xZ-HQJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1612.5" y="-322.18309859154931"/>
+            <point key="canvasLocation" x="1613" y="-322"/>
         </scene>
     </scenes>
     <resources>

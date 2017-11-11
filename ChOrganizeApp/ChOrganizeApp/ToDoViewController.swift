@@ -16,6 +16,7 @@ class ToDoViewController: UITableViewController {
         let chore1 = Chore(name: "Chore Example")
         let chore2 = Chore(name: "Chore 2")
         chores.insert(chore1!,at: 0)
+        chores.insert(chore2!, at: 1)
     }
     
 //    func numberOfSections(in tableView: UITableView) -> Int
@@ -45,6 +46,7 @@ class ToDoViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+
         loadToDoList()
     }
 
