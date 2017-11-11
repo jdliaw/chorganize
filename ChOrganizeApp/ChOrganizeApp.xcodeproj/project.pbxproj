@@ -21,6 +21,7 @@
 		339F547E1FAE8CB100346119 /* ChOrganizeAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339F547D1FAE8CB100346119 /* ChOrganizeAppUITests.swift */; };
 		33CB1A521FB78EA3006F941D /* chorgilogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CB1A511FB78EA3006F941D /* chorgilogo.png */; };
 		33CB1A541FB78EDB006F941D /* chorgibroom.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CB1A531FB78EDB006F941D /* chorgibroom.png */; };
+		FF48C8EC1FB7A79E00812AE7 /* CreateChoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF48C8EB1FB7A79E00812AE7 /* CreateChoreViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		339F547F1FAE8CB100346119 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33CB1A511FB78EA3006F941D /* chorgilogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chorgilogo.png; path = ImageFiles/chorgilogo.png; sourceTree = SOURCE_ROOT; };
 		33CB1A531FB78EDB006F941D /* chorgibroom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chorgibroom.png; path = ImageFiles/chorgibroom.png; sourceTree = SOURCE_ROOT; };
+		FF48C8EB1FB7A79E00812AE7 /* CreateChoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChoreViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				339F545F1FAE8CB000346119 /* GroupViewController.swift */,
 				339F54661FAE8CB000346119 /* LaunchScreen.storyboard */,
 				339F54611FAE8CB000346119 /* Main.storyboard */,
+				FF48C8EB1FB7A79E00812AE7 /* CreateChoreViewController.swift */,
 				336A277E1FB6701B00419E0E /* Chore.swift */,
 				339F54641FAE8CB000346119 /* Assets.xcassets */,
 				33CB1A511FB78EA3006F941D /* chorgilogo.png */,
@@ -288,6 +291,7 @@
 				336A277B1FB65FD900419E0E /* ToDoTableViewCell.swift in Sources */,
 				336A277F1FB6701B00419E0E /* Chore.swift in Sources */,
 				339F545E1FAE8CB000346119 /* ToDoViewController.swift in Sources */,
+				FF48C8EC1FB7A79E00812AE7 /* CreateChoreViewController.swift in Sources */,
 				336A277D1FB661EE00419E0E /* ChoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
