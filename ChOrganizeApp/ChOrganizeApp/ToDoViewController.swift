@@ -19,11 +19,17 @@ class ToDoViewController: UITableViewController {
         chores.insert(chore2!, at: 1)
     }
     
-//    func numberOfSections(in tableView: UITableView) -> Int
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-//    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadToDoList()
+    }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // Setup tableView
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -41,20 +47,5 @@ class ToDoViewController: UITableViewController {
         
         return cell!
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-
-        loadToDoList()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 

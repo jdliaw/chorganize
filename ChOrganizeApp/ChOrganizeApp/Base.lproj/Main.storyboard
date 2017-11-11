@@ -206,7 +206,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Chore Details" id="Lmm-Cn-jBD">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="o3s-UN-ut9"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="o3s-UN-ut9">
+                            <connections>
+                                <segue destination="OWK-7j-1UY" kind="show" identifier="editChore" id="kbP-O3-bTn"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="descriptionlabel" destination="8PU-ca-IMt" id="U99-7i-4aO"/>
@@ -492,7 +496,7 @@
                     <navigationItem key="navigationItem" title="To-Do List" id="nme-LG-AHK">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="8yX-RT-Neh">
                             <connections>
-                                <segue destination="OWK-7j-1UY" kind="show" id="QCg-5P-UuU"/>
+                                <segue destination="OWK-7j-1UY" kind="show" identifier="addChore" id="QCg-5P-UuU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -505,4 +509,7 @@
     <resources>
         <image name="chorgibroom" width="16" height="16"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="kbP-O3-bTn"/>
+    </inferredMetricsTieBreakers>
 </document>

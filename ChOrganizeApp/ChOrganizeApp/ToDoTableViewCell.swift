@@ -10,12 +10,8 @@ import UIKit
 
 class ToDoTableViewCell: UITableViewCell {
 
-    //MARK: Properties 
-    
-    
-
+    //MARK: Properties
     @IBOutlet weak var cell: UIView!
-
     @IBOutlet weak var nameLabel: UILabel!
     
     override func awakeFromNib() {
@@ -28,5 +24,4 @@ class ToDoTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }
