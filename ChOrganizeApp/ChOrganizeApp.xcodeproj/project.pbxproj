@@ -21,6 +21,8 @@
 		339F547E1FAE8CB100346119 /* ChOrganizeAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339F547D1FAE8CB100346119 /* ChOrganizeAppUITests.swift */; };
 		33CB1A521FB78EA3006F941D /* chorgilogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CB1A511FB78EA3006F941D /* chorgilogo.png */; };
 		33CB1A541FB78EDB006F941D /* chorgibroom.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CB1A531FB78EDB006F941D /* chorgibroom.png */; };
+		FF2E4DC01FB7C46500D3C35D /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E4DBE1FB7C46500D3C35D /* Group.swift */; };
+		FF2E4DC11FB7C46500D3C35D /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E4DBF1FB7C46500D3C35D /* GroupTableViewCell.swift */; };
 		FF48C8EC1FB7A79E00812AE7 /* CreateChoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF48C8EB1FB7A79E00812AE7 /* CreateChoreViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +64,8 @@
 		339F547F1FAE8CB100346119 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33CB1A511FB78EA3006F941D /* chorgilogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chorgilogo.png; path = ImageFiles/chorgilogo.png; sourceTree = SOURCE_ROOT; };
 		33CB1A531FB78EDB006F941D /* chorgibroom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chorgibroom.png; path = ImageFiles/chorgibroom.png; sourceTree = SOURCE_ROOT; };
+		FF2E4DBE1FB7C46500D3C35D /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Group.swift; path = ChOrganizeApp/Group.swift; sourceTree = "<group>"; };
+		FF2E4DBF1FB7C46500D3C35D /* GroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupTableViewCell.swift; path = ChOrganizeApp/GroupTableViewCell.swift; sourceTree = "<group>"; };
 		FF48C8EB1FB7A79E00812AE7 /* CreateChoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChoreViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,6 +97,8 @@
 		339F544F1FAE8CB000346119 = {
 			isa = PBXGroup;
 			children = (
+				FF2E4DBE1FB7C46500D3C35D /* Group.swift */,
+				FF2E4DBF1FB7C46500D3C35D /* GroupTableViewCell.swift */,
 				339F545A1FAE8CB000346119 /* ChOrganizeApp */,
 				339F54711FAE8CB100346119 /* ChOrganizeAppTests */,
 				339F547C1FAE8CB100346119 /* ChOrganizeAppUITests */,
@@ -285,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF2E4DC01FB7C46500D3C35D /* Group.swift in Sources */,
 				336A275F1FB4188700419E0E /* LoginViewController.swift in Sources */,
 				339F54601FAE8CB000346119 /* GroupViewController.swift in Sources */,
 				339F545C1FAE8CB000346119 /* AppDelegate.swift in Sources */,
@@ -293,6 +300,7 @@
 				339F545E1FAE8CB000346119 /* ToDoViewController.swift in Sources */,
 				FF48C8EC1FB7A79E00812AE7 /* CreateChoreViewController.swift in Sources */,
 				336A277D1FB661EE00419E0E /* ChoreViewController.swift in Sources */,
+				FF2E4DC11FB7C46500D3C35D /* GroupTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
