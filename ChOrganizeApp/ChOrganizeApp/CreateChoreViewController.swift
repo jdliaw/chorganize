@@ -13,6 +13,7 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     // MARK: Properties
     @IBOutlet weak var groupPicker: UIPickerView!
     @IBOutlet weak var assigneePicker: UIPickerView!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     // Var to store data for picker
     var groupPickerData: [String] = [String]()
@@ -73,5 +74,28 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
             return assigneePickerData[row]
         }
     }
+    
+    // MARK: Actions
 
+    @IBAction func cancelAction(_ sender: Any) {
+        print("hi")
+        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+//    @IBAction func onCancelClick(_ sender: UIBarButtonItem) {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        var nextVC: UIViewController!
+//        
+//        if origin == "editButton" {
+//            // goto ChoreViewController
+//            nextVC = storyboard.instantiateViewController(withIdentifier: "ChoreVC")
+//        }
+//        else {
+//            // goto TodoViewController
+//            nextVC = storyboard.instantiateViewController(withIdentifier: "ToDoVC")
+//            
+//        }
+//        //self.navigationController?.present(nextVC, animated: true)
+//    }
 }

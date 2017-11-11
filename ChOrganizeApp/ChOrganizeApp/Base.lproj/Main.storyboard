@@ -424,13 +424,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Create a Chore" id="KbS-wo-7ib">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="gl5-oK-tgn"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="gl5-oK-tgn">
+                            <connections>
+                                <action selector="cancelAction:" destination="OWK-7j-1UY" id="y41-8O-UXf"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="zUx-m6-ZJI"/>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="1000"/>
                     <connections>
                         <outlet property="assigneePicker" destination="4xi-gc-TvJ" id="ChV-14-uhM"/>
+                        <outlet property="cancelButton" destination="gl5-oK-tgn" id="ekC-9m-5uL"/>
                         <outlet property="groupPicker" destination="f70-EA-0DS" id="VZc-6u-Aoo"/>
                     </connections>
                 </viewController>
@@ -510,6 +515,6 @@
         <image name="chorgibroom" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kbP-O3-bTn"/>
+        <segue reference="QCg-5P-UuU"/>
     </inferredMetricsTieBreakers>
 </document>
