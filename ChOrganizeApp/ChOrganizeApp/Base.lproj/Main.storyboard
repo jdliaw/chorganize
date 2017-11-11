@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -121,10 +121,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Px-5g-hYi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2601" y="249"/>
+            <point key="canvasLocation" x="2991" y="-187"/>
         </scene>
         <!--To-Do List-->
         <scene sceneID="FOy-oG-6b7">
@@ -141,7 +143,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EQT-zO-Tov" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="846" y="-322"/>
+            <point key="canvasLocation" x="1236" y="-758"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -160,37 +162,96 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="34" y="76"/>
+            <point key="canvasLocation" x="424" y="308"/>
         </scene>
         <!--Groups-->
         <scene sceneID="BSH-Lh-Zby">
             <objects>
-                <tableViewController id="VAD-yh-I3Q" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="GroupVC" id="VAD-yh-I3Q" customClass="GroupViewController" customModule="ChOrganizeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="yBc-ue-BZf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="z8q-a0-pWM">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupTableViewCell" id="z8q-a0-pWM" customClass="GroupTableViewCell" customModule="ChOrganizeApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z8q-a0-pWM" id="7fy-Rv-Ybh">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z8q-a0-pWM" id="7fy-Rv-Ybh" customClass="GroupTableViewCell" customModule="ChOrganizeApp" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HkD-Kh-Nxc">
+                                            <rect key="frame" x="0.0" y="0.0" width="289" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cell" destination="7fy-Rv-Ybh" id="RZi-fP-Cfb"/>
+                                    <outlet property="nameLabel" destination="HkD-Kh-Nxc" id="ips-db-xyJ"/>
+                                    <segue destination="RHT-ay-dW9" kind="show" id="U8o-Iy-Wf5"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="VAD-yh-I3Q" id="SBB-yg-ayT"/>
+                            <outlet property="dataSource" destination="VAD-yh-I3Q" id="v7T-k1-HCZ"/>
                             <outlet property="delegate" destination="VAD-yh-I3Q" id="NVf-p0-psO"/>
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Groups" id="PaF-wl-yaH"/>
-                    <navigationItem key="navigationItem" title="Groups" id="dnu-aR-J03"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Groups" id="dnu-aR-J03">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="m1O-NQ-Mvf">
+                            <connections>
+                                <segue destination="RCp-b8-WmU" kind="push" id="Yqp-6S-Bfc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SK8-18-lDB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1614" y="404"/>
+            <point key="canvasLocation" x="2002.5" y="1038.3802816901409"/>
+        </scene>
+        <!--Create Group-->
+        <scene sceneID="pbW-JU-drc">
+            <objects>
+                <viewController id="RCp-b8-WmU" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zUN-Vr-de6"/>
+                        <viewControllerLayoutGuide type="bottom" id="i77-18-UCc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Zbb-rq-6Lv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Create Group" id="Bcn-Bj-6nJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bFL-X5-Ymh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2991" y="739"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="dYO-an-I9P">
+            <objects>
+                <viewController id="RHT-ay-dW9" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hh1-3o-5VU"/>
+                        <viewControllerLayoutGuide type="bottom" id="c2L-FN-6cc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6bh-pU-OWw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Th-sb-P5i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2991" y="1495"/>
         </scene>
         <!--Create a Chore-->
         <scene sceneID="4Fm-qI-rYS">
@@ -300,7 +361,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d75-dP-uIE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2600.625" y="-665.49295774647885"/>
+            <point key="canvasLocation" x="2991" y="-1101"/>
         </scene>
         <!--Groups-->
         <scene sceneID="ruc-Sh-89e">
@@ -317,7 +378,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sa2-b0-wbD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="846" y="405"/>
+            <point key="canvasLocation" x="1236" y="1039"/>
         </scene>
         <!--To-Do List-->
         <scene sceneID="Tfh-7d-Y4c">
@@ -367,7 +428,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S9R-xZ-HQJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1613" y="-322"/>
+            <point key="canvasLocation" x="2003" y="-758"/>
         </scene>
     </scenes>
     <resources>
