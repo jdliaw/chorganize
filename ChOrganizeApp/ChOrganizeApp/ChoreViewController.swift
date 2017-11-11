@@ -10,10 +10,16 @@ import UIKit
 
 class ChoreViewController: UIViewController {
     
+
+    @IBOutlet weak var descriptionlabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        descriptionlabel.layer.borderWidth = 0.5
+        descriptionlabel.layer.cornerRadius = 8
     }
 
     override func didReceiveMemoryWarning() {
