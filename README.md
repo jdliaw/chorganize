@@ -1,9 +1,9 @@
 # chorganize
-CS 130 Project
+CS 130 Project Fall 2017
 
-Authors: Hana Kim, Jennifer Liaw, Isaac Kim, Michael Shea, Yanting Zeng, Kaitlyne Chan
+Hana Kim, Jennifer Liaw, Isaac Kim, Michael Shea, Yanting Zeng, Kaitlyne Chan
 
-### Directory
+## Directory
 
 `/routes`
 
@@ -24,7 +24,7 @@ Subdirectories containing tests for iOS portion.
 Flask and SQLAlchemy are included as libraries in the databse setup.
 
 
-### Class Structure
+## Class Structure
 
 **User**
 
@@ -57,9 +57,9 @@ Flask and SQLAlchemy are included as libraries in the databse setup.
   deadlinePassed: bool
 ```
 
-### API Documentation
+## API Documentation
 
-##### Users
+### Users
 
 ```python
 """
@@ -128,6 +128,6 @@ def deleteUser():
 def getChores():
 ```
 
-##### Groups
+### Groups
 
-##### Chores
+### Chores
