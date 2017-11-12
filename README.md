@@ -30,7 +30,7 @@ Flask and SQLAlchemy are included as libraries in the database setup.
 
 ## Class Structure
 
-**User**
+###User
 
 Primary class representing a user in our application.
 
@@ -42,7 +42,7 @@ Primary class representing a user in our application.
   lastName: string
 ```
 
-**Group**
+###Group
 
 A user can belong to a group which specifies chores to be done for a group.
 
@@ -52,7 +52,7 @@ A user can belong to a group which specifies chores to be done for a group.
   Users: [Users]
 ```
 
-**Chore**
+###Chore
 
 Primary class representing chores as tasks to be completed.
 
@@ -101,10 +101,9 @@ Retriever information about a user
 def getUser():
 ```
 
-```python
-
 Modify a user's information
 
+```python
 """
 @param str newemail: The new email of the user
 @param str oldemail: The original email of the user
@@ -149,29 +148,97 @@ def getChores():
 
 ### Groups
 
+Create a group
 
 ```python
-
+"""
+@param str email: the user's email.
+@param str groupName: the intended name for the group.
+@return str: a message that marks the success of creating the group.
+@raise KeyError: when lack of required fields of inputs.
+"""
+@routes.route('/api/group/create', methods=['POST'])
+def create():
 ```
 
-```python
+Get a group's information
 
+```python
+"""
+@param str groupID: the group's ID.
+@return json: a json object that describes the group.
+@raise NoResultFound: when the group does not exist in database.
+"""
+@routes.route('/api/group/get-by-id', methods=['GET'])
+def getByID():
 ```
 
-```python
+Get the groups a user belongs to
 
+```python
+"""
+@param str email: the user's email.
+@return json: a json object that contains the descriptions of a list of groups.
+@raise NoResultFound: when the user does not exist in database.
+"""
+@routes.route('/api/group/get-by-email', methods=['GET'])
+def getByEmail():
 ```
 
-```python
+Edit a group's information
 
+```python
+"""
+@param str groupID: the group's ID.
+@param str groupName: the intended new name for the group.
+@return str: a message that marks the success of editing the group name.
+@raise KeyError: when lack of required fields of inputs.
+@raise NoResultFound: when the group does not exist in database.
+"""
+@routes.route('/api/group/edit', methods=['PUT'])
+def edit():
 ```
 
-```python
+Add a user to a group
 
+```python
+"""
+@param str groupID: the group's ID.
+@param list-of-str listOfEmails: the list of user's emails waiting to be added to the group.
+@return str: a message that marks the success of adding members to the group.
+@raise KeyError: when lack of required fields of inputs.
+@raise NoResultFound: when the group/user does not exist in database.
+"""
+@routes.route('/api/group/add-users', methods=['PUT'])
+def addUsers():
 ```
 
-```python
+Remove a user
 
+```python
+"""
+@param str groupID: the group's ID.
+@param str email: the user's email.
+@return str: a message that marks the success of removing a member from the group.
+@raise KeyError: when lack of required fields of inputs.
+@raise NoResultFound: when the group/user does not exist in database.
+"""
+@routes.route('/api/group/remove-user', methods=['PUT'])
+def removeUser():
+```
+
+Get completed or incompleted chores
+
+```python
+"""
+@param str groupID: the group's ID.
+@param bool completed: whether to get incompleted or completed chores.
+@return json: a json object that contains the descriptions of a list of chores.
+@raise KeyError: when lack of required fields of inputs.
+@raise NoResultFound: when the group does not exist in database.
+"""
+@routes.route('/api/group/get-completed-or-incompleted-chores', methods=['GET'])
+def getCompletedOrIncompletedChores():
 ```
 
 ### Chores
@@ -193,7 +260,7 @@ Create a chore
 def createChore():
 ```
 
-Get information about a chore by ID
+Get information about a chore
 
 ```python
 """
