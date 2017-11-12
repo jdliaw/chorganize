@@ -30,7 +30,7 @@ Flask and SQLAlchemy are included as libraries in the database setup.
 
 ## Class Structure
 
-###User
+### User
 
 Primary class representing a user in our application.
 
@@ -42,7 +42,7 @@ Primary class representing a user in our application.
   lastName: string
 ```
 
-###Group
+### Group
 
 A user can belong to a group which specifies chores to be done for a group.
 
@@ -52,7 +52,7 @@ A user can belong to a group which specifies chores to be done for a group.
   Users: [Users]
 ```
 
-###Chore
+### Chore
 
 Primary class representing chores as tasks to be completed.
 
