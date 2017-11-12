@@ -9,6 +9,20 @@ from datetime import datetime
 
 @routes.route('/api/chore', methods=['POST'])
 def createChore():
+    """
+    Create a new Chore object.
+    
+    @param str name: name of the chore (e.g. "vacuum")
+    @param int groupID: the unique ID of the group where the chore will be added
+    @param str deadline: the date that the chore should be completed by (m/d/yyyy)
+    @param str description: more information about the chore
+    @param str userEmail: the email of the user who will be assigned to the chore
+    
+    @return str: a message confirming that the chore was successfully created
+    
+    @raise KeyError: name and/or groupID parameters were not specified
+    @raise NoResultFound: user or group does not exist
+    """
     data = request.data
     dataDict = loads(data)
     
@@ -52,6 +66,15 @@ def createChore():
 
 @routes.route('/api/chore', methods=['GET'])
 def getChoreByID():
+    """
+    Get information about a chore.
+    
+    @param int id: the unique ID corresponding to the target chore
+    
+    @return json: a JSON object that contains information about the chore (description, deadline, etc.)
+    
+    @raise NoResultFound: chore corresponding to the specified ID does not exist
+    """
     choreID = int(request.args.get('id'))
     if choreID is None:
         error = "No ID specified"
@@ -66,6 +89,15 @@ def getChoreByID():
 
 @routes.route('/api/chore', methods=['PUT'])    
 def modifyChore():
+    """
+    Modify fields of a Chore object.
+    
+    @param int id: the unique ID corresponding to the target chore
+    
+    @return str: a message confirming that the chore was successfully modified
+    
+    @raise KeyError: chore ID was not specified
+    """
     data = request.data
     dataDict = loads(data)
     
@@ -101,6 +133,15 @@ def modifyChore():
     
 @routes.route('/api/chore', methods=['DELETE'])
 def deleteChore():
+    """
+    Delete a Chore object.
+    
+    @param int id: the unique ID corresponding to the target chore
+    
+    @return str: a message confirming that the chore was successfully deleted
+    
+    @raise KeyError: chore ID was not specified
+    """
     data = request.data
     dataDict = loads(data)
 
