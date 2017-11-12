@@ -1,4 +1,3 @@
-import json
 from . import routes
 from flask import request
 from database_setup import User, db, Group
@@ -6,6 +5,16 @@ from flask.json import loads, jsonify
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 
+"""  
+@param str email: The email of the user
+@param str username: The username of the username
+@param str password: The password of the user
+@param str firstName: The firstName of the user 
+@param str lastName: The lastName of the user
+@return: str "User Successfully Created"
+@raise KeyError: If the input is not provided by the user
+@raise IntegrityError: If the user already existed in the database 
+"""
 @routes.route('/api/user', methods=['POST'])
 def createUser():
     data = request.data
@@ -29,6 +38,12 @@ def createUser():
     return "User Successfully Created"
 
 
+"""  
+@param str email: The email of the user
+@return: str "A user Json object"
+@return 400 if the input is not provided by the user
+@raise NoResultFound: if the user is not found in the database 
+"""
 @routes.route('/api/user', methods=['GET'])
 def getUser():
     userEmail = request.args.get('email')
@@ -43,7 +58,19 @@ def getUser():
 
     return jsonify(user.serialize)
 
-# Edit
+
+
+"""  
+@param str newemail: The new email of the user
+@param str oldemail: The original email of the user
+@param str username: The new username of the user
+@param str password: The new password of the user
+@param str firstName: The new firstName of the user
+@param str lastName: The new lastName of the user
+@return: "Successfully Modified"
+@raise keyError: If the input is not provided by the user
+"""
+#Edit User
 @routes.route('/api/user', methods=['PUT'])
 def modifyUser():
     data = request.data
@@ -53,8 +80,8 @@ def modifyUser():
         useroldEmail = dataDict['oldemail']
         userName = dataDict['username']
         userPassword = dataDict['password']
-        userFirstName = dataDict['firstname']
-        userLastName = dataDict['lastname']
+        userFirstName = dataDict['firstName']
+        userLastName = dataDict['lastName']
     except KeyError:
         error = "Invalid input Parameters"
         return error, 400
@@ -70,7 +97,12 @@ def modifyUser():
     return "Successfully Modified"
 
 
-
+"""  
+@param str email: The email of the user
+@return: "User Successfully Removed"
+@raise keyError: If the input is not provided by the user
+@raise NoResultFound: if the user is not found in the database 
+"""
 #Delete User
 @routes.route('/api/user/delete', methods=['POST'])
 def deleteUser():
@@ -89,8 +121,17 @@ def deleteUser():
         error = "User Not found"
         return error, 404
 
-    return "User Successfully Romved"
+    return "User Successfully Removed"
 
+
+"""  
+@param str email: The email of the user
+@param str groupID: A particular groupID that the user is in
+@param str completed: A boolean indicating whether a list of active chores or completed chores get return 
+@return: A list of Json chore object
+@raise ValueError: If the input of the completed parameter is neither true or false
+@raise NoResultFound: if the user is not found in the database 
+"""
 #Get all active chores or completed chores for a particular user in a particular group
 @routes.route('/api/user/getUnfinisihedChores', methods=['GET'])
 def getChores():
