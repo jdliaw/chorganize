@@ -3,3 +3,4 @@ routes = Blueprint('routes', __name__)
 
 from .group import *
 from .users import *
+from .chores import *

@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sqlite.db'
@@ -20,17 +21,11 @@ class User(db.Model):
     email = db.Column(db.String(80), primary_key=True)
     username = db.Column(db.String(80), nullable=False)
     password = db.Column(db.String(80), nullable=False)
-    total = db.Column(db.Integer, default=0)
-    miss = db.Column(db.Integer, default=0)
+    firstName = db.Column(db.String(80), nullable=False)
+    lastName = db.Column(db.String(80), nullable=False)
     chores = db.relationship('Chore', backref='user', lazy='dynamic')
-    groups = db.relationship('Group', secondary=association_table, backref='users')
-
-    def __init__(self, email, username, password, total=0, miss=0):
-        self.email = email
-        self.username = username
-        self.password = password
-        self.total = total
-        self.miss = miss
+    groups = db.relationship('Group', secondary=association_table, lazy='dynamic',
+                             backref=db.backref('users', lazy='dynamic'))
 
     def getEmail(self):
         return self.email
@@ -53,34 +48,40 @@ class User(db.Model):
         self.password = password
         db.session.commit()
 
-    def getTotal(self):
-        return self.total
+    def getFirstName(self):
+        return self.firstName
 
-    def setTotal(self, total):
-        self.total = total
+    def setFirstName(self, firstName):
+        self.firstName = firstName
         db.session.commit()
 
-    def getMiss(self):
-        return self.miss
+    def getLastName(self):
+        return self.lastName
 
-    def setMiss(self, miss):
-        self.miss = miss
+    def setLastName(self, lastName):
+        self.lastName = lastName
         db.session.commit()
 
     def addChore(self, chore):
         self.chores.append(chore)
+        db.session.commit()
 
     def getChores(self):
         return self.chores.all()
 
-    def getChoreByName(self, name):
-        pass
+    def addGroup(self, group):
+        self.groups.append(group)
+        db.session.commit()
+
+    def getGroups(self):
+        return self.groups.all()
 
     @classmethod
-    def createUser(cls, email, username, password, total=0, miss=0):
-        user = User(email, username, password, total, miss)
+    def createUser(cls, email, username, password, firstName, lastName):
+        user = User(email=email, username=username, password=password, firstName=firstName, lastName=lastName)
         db.session.add(user)
         db.session.commit()
+        return user
 
     @classmethod
     def getUser(cls, email):
@@ -98,8 +99,8 @@ class User(db.Model):
                 'email': self.email,
                 'username': self.username,
                 'password': self.password,
-                'total': self.total,
-                'misses': self.miss
+                'firstName': self.firstName,
+                'lastName': self.lastName
                }
 
 
@@ -109,11 +110,9 @@ class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
     chores = db.relationship('Chore', backref='group', lazy='dynamic')
+    userPerformances = dict()
 
-    def __init__(self, name):
-        self.name = name
-
-    def getId(self):
+    def getID(self):
         return self.id
 
     def getName(self):
@@ -125,15 +124,34 @@ class Group(db.Model):
 
     def addChore(self, chore):
         self.chores.append(chore)
+        db.session.commit()
 
     def getChores(self):
         return self.chores.all()
 
+    def addUser(self, user):
+        self.users.append(user)
+        db.session.commit()
+        userEmail = user.getEmail()
+        if userEmail not in self.userPerformances:
+            self.userPerformances[userEmail] = {'total': 0, 'onTime': 0}
+
+    def getUsers(self):
+        return self.users.all()
+
+    def removeUser(self, user):
+        self.users.remove(user)
+        db.session.commit()
+
+    def getUserPerformances(self):
+        return self.userPerformances
+
     @classmethod
     def createGroup(cls, name):
-        group = Group(name)
+        group = Group(name=name)
         db.session.add(group)
         db.session.commit()
+        return group
 
     @classmethod
     def getGroup(cls, id):
@@ -148,8 +166,8 @@ class Group(db.Model):
     @property
     def serialize(self):
         return {
-                'name': self.name,
-                'user_email': self.user_email
+                'id': self.id,
+                'name': self.name
                }
 
 
@@ -158,15 +176,13 @@ class Chore(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
-    deadline = db.Column(db.DateTime, nullable=False, server_default=db.func.now())
-    group_id = db.Column(db.Integer, db.ForeignKey('group.id'))
-    user_email = db.Column(db.String, db.ForeignKey('user.email'))
+    description = db.Column(db.Text, default=None)
+    completed = db.Column(db.Boolean, default=False)
+    deadline = db.Column(db.DateTime)
+    userEmail = db.Column(db.String, db.ForeignKey('user.email'))
+    groupID = db.Column(db.Integer, db.ForeignKey('group.id'))
 
-    def __init__(self, name, deadline):
-        self.name = name
-        self.deadline = deadline
-
-    def getId(self):
+    def getID(self):
         return self.id
 
     def getName(self):
@@ -176,6 +192,20 @@ class Chore(db.Model):
         self.name = name
         db.session.commit()
 
+    def getDescription(self):
+        return self.description
+
+    def setDescription(self, description):
+        self.description = description
+        db.session.commit()
+
+    def getCompleted(self):
+        return self.completed
+
+    def setCompleted(self, completed):
+        self.completed = completed
+        db.session.commit()
+
     def getDeadline(self):
         return self.deadline
 
@@ -183,11 +213,22 @@ class Chore(db.Model):
         self.deadline = deadline
         db.session.commit()
 
+    def getUserEmail(self):
+        return self.userEmail
+
+    def getGroupID(self):
+        return self.groupID
+
+    def deadlinePassed(self):
+        now = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+        return ((self.deadline - now).days < 0)
+
     @classmethod
-    def createChore(cls, name, deadline):
-        chore = Chore(name, deadline)
+    def createChore(cls, name, description=None, completed=False, deadline=None):
+        chore = Chore(name=name, description=description, completed=completed, deadline=deadline)
         db.session.add(chore)
         db.session.commit()
+        return chore
 
     @classmethod
     def getChore(cls, id):
@@ -202,9 +243,14 @@ class Chore(db.Model):
     @property
     def serialize(self):
         return {
+                'id': self.id,
                 'name': self.name,
-                'group_id': self.group_id,
-                'user_email': self.user_email
+                'description': self.description,
+                'completed': self.completed,
+                'deadline': self.deadline,
+                'groupID': self.groupID,
+                'userEmail': self.userEmail,
+                'deadlinePassed': self.deadlinePassed()
                }
 
 db.create_all()
