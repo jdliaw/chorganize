@@ -206,7 +206,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Chore Details" id="Lmm-Cn-jBD">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="o3s-UN-ut9"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="o3s-UN-ut9">
+                            <connections>
+                                <segue destination="OWK-7j-1UY" kind="show" identifier="editChore" id="kbP-O3-bTn"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="descriptionlabel" destination="8PU-ca-IMt" id="U99-7i-4aO"/>
@@ -420,13 +424,21 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Create a Chore" id="KbS-wo-7ib">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="gl5-oK-tgn"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="gl5-oK-tgn">
+                            <connections>
+                                <action selector="cancelAction:" destination="OWK-7j-1UY" id="y41-8O-UXf"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="zUx-m6-ZJI"/>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="1000"/>
                     <connections>
                         <outlet property="assigneePicker" destination="4xi-gc-TvJ" id="ChV-14-uhM"/>
+<<<<<<< HEAD
+=======
+                        <outlet property="cancelButton" destination="gl5-oK-tgn" id="ekC-9m-5uL"/>
+>>>>>>> 9a5061fdff7e5ce476c9c4c00e8bc1dddeedcbb7
                         <outlet property="groupPicker" destination="f70-EA-0DS" id="VZc-6u-Aoo"/>
                     </connections>
                 </viewController>
@@ -492,7 +504,7 @@
                     <navigationItem key="navigationItem" title="To-Do List" id="nme-LG-AHK">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="8yX-RT-Neh">
                             <connections>
-                                <segue destination="OWK-7j-1UY" kind="show" id="QCg-5P-UuU"/>
+                                <segue destination="OWK-7j-1UY" kind="show" identifier="addChore" id="QCg-5P-UuU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -505,4 +517,7 @@
     <resources>
         <image name="chorgibroom" width="16" height="16"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="QCg-5P-UuU"/>
+    </inferredMetricsTieBreakers>
 </document>

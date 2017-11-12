@@ -15,10 +15,13 @@ class ChoreViewController: UIViewController {
     @IBAction func completechore(_ sender: Any) {
         let alert = UIAlertController(title: "Complete chore?", message: "Chore will be marked complete, but will remain on your To-Do list until removed.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
+<<<<<<< HEAD
             
             //TODO: Mark chore as completed, change background color to green.
             
             //Transition back to TabBarController 
+=======
+>>>>>>> 9a5061fdff7e5ce476c9c4c00e8bc1dddeedcbb7
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let TabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -47,15 +50,11 @@ class ChoreViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // Send data over segue to indicate came from Edit button and set the title to "Edit Chore"
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "editChore" {
+            let destVC = segue.destination as! CreateChoreViewController
+            destVC.origin = "editButton"
+        }
     }
-    */
-
 }

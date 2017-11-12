@@ -13,13 +13,21 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     // MARK: Properties
     @IBOutlet weak var groupPicker: UIPickerView!
     @IBOutlet weak var assigneePicker: UIPickerView!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     // Var to store data for picker
     var groupPickerData: [String] = [String]()
     var assigneePickerData: [String] = [String]()
+    // default origin is the add button, optional from edit button
+    var origin = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Change navigation bar title based on how the user got here (using same view and logic for Create and Edit)
+        if (origin == "editButton") {
+            self.navigationItem.title = "Edit Chore"
+        }
         
         // Connect data to picker
         self.groupPicker.delegate = self
@@ -39,6 +47,8 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
     // Setting up the group UIPickerView
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -65,15 +75,27 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
     }
     
+    // MARK: Actions
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func cancelAction(_ sender: Any) {
+        print("hi")
+        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
-    */
-
+    
+//    @IBAction func onCancelClick(_ sender: UIBarButtonItem) {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        var nextVC: UIViewController!
+//        
+//        if origin == "editButton" {
+//            // goto ChoreViewController
+//            nextVC = storyboard.instantiateViewController(withIdentifier: "ChoreVC")
+//        }
+//        else {
+//            // goto TodoViewController
+//            nextVC = storyboard.instantiateViewController(withIdentifier: "ToDoVC")
+//            
+//        }
+//        //self.navigationController?.present(nextVC, animated: true)
+//    }
 }
