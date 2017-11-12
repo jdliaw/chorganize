@@ -116,7 +116,7 @@ class Group(db.Model):
         return self.id
 
     def getName(self):
-        print self.name
+        return self.name
 
     def setName(self, name):
         self.name = name
@@ -143,8 +143,9 @@ class Group(db.Model):
         self.users.remove(user)
         db.session.commit()
 
-    def getUserPerformances(self):
-        return self.userPerformances
+    @classmethod
+    def getUserPerformances(cls):
+        return cls.userPerformances
 
     @classmethod
     def createGroup(cls, name):
