@@ -15,13 +15,9 @@ class ChoreViewController: UIViewController {
     @IBAction func completechore(_ sender: Any) {
         let alert = UIAlertController(title: "Complete chore?", message: "Chore will be marked complete, but will remain on your To-Do list until removed.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
-<<<<<<< HEAD
-            
             //TODO: Mark chore as completed, change background color to green.
             
-            //Transition back to TabBarController 
-=======
->>>>>>> 9a5061fdff7e5ce476c9c4c00e8bc1dddeedcbb7
+            //Transition back to TabBarController
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let TabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
             let appDelegate = UIApplication.shared.delegate as! AppDelegate

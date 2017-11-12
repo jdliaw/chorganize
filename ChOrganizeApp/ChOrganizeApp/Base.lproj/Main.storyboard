@@ -435,10 +435,7 @@
                     <size key="freeformSize" width="320" height="1000"/>
                     <connections>
                         <outlet property="assigneePicker" destination="4xi-gc-TvJ" id="ChV-14-uhM"/>
-<<<<<<< HEAD
-=======
                         <outlet property="cancelButton" destination="gl5-oK-tgn" id="ekC-9m-5uL"/>
->>>>>>> 9a5061fdff7e5ce476c9c4c00e8bc1dddeedcbb7
                         <outlet property="groupPicker" destination="f70-EA-0DS" id="VZc-6u-Aoo"/>
                     </connections>
                 </viewController>
