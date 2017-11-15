@@ -22,7 +22,6 @@ def createChore():
     @raise KeyError: name and/or groupID parameters were not specified
     @raise NoResultFound: user or group does not exist
     """
-    print("EXECUTING CHORE API")
     data = request.data
     dataDict = loads(data)
     

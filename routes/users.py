@@ -1,6 +1,6 @@
 from . import routes
 from flask import request
-from database_setup import User, db, Group
+from database_setup import User, Group
 from flask.json import loads, jsonify
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
@@ -92,7 +92,6 @@ def modifyUser():
     user.setFirstname(userFirstName)
     user.setLastname(userLastName)
     user.setUsername(userName)
-    db.session.commit()
 
     return "Successfully Modified"
 

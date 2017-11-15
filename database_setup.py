@@ -2,8 +2,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
+global db
 db = SQLAlchemy()
-print(str(id(db)) + "initializing db with SQLAlchemy()")
 
 def createApp(testing=False):
     app = Flask(__name__)
@@ -12,11 +12,8 @@ def createApp(testing=False):
     else:
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sqlite.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    #db.init_app(app)
     db = SQLAlchemy(app)
-    print(str(id(db)) + "binding app to db")
-    print(app.config['SQLALCHEMY_DATABASE_URI'])
-    print("blah this excecutes")
+    db.create_all()
     return app
     
     
@@ -137,7 +134,6 @@ class Group(db.Model):
     def addChore(self, chore):
         self.chores.append(chore)
         db.session.commit()
-        print(str(id(db)) + "adding chore to db")
 
     def getChores(self):
         return self.chores.all()
@@ -266,11 +262,3 @@ class Chore(db.Model):
                 'userEmail': self.userEmail,
                 'deadlinePassed': self.deadlinePassed()
                }
-"""
-if __name__ == '__main__':
-    app = createApp()
-    app.app_context().push()
-    db.create_all()
-"""
-
-db.create_all()
