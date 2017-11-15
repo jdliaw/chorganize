@@ -1,9 +1,7 @@
 import unittest
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 import sys
 sys.path.append('..')
-from database_setup import db, User, Group, Chore, createApp
+from database_setup import db, User, Group, createApp
 import requests
 
 class TestChores(unittest.TestCase):

@@ -262,3 +262,8 @@ class Chore(db.Model):
                 'userEmail': self.userEmail,
                 'deadlinePassed': self.deadlinePassed()
                }
+               
+if __name__ == '__main__':
+    app = createApp()
+    app.app_context().push()
+    db.create_all()

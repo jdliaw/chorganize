@@ -1,9 +1,6 @@
-from flask import Flask
 from database_setup import createApp
 from routes import *
 import sys
-
-global app
 
 if __name__ == '__main__':
     print(len(sys.argv))
