@@ -38,16 +38,16 @@ def createChore():
         error = "Group not found"
         return error, 404
     
+    if 'description' in dataDict:
+        choreDescription = dataDict['description']
+    else:
+        choreDescription = None
+    
     if 'deadline' in dataDict:
         choreDeadlineStr = dataDict['deadline']
         choreDeadline = datetime.strptime(choreDeadlineStr, "%m/%d/%Y")
     else:
         choreDeadline = None
-        
-    if 'description' in dataDict:
-        choreDescription = dataDict['description']
-    else:
-        choreDescription = None
         
     chore = Chore.createChore(choreName, description=choreDescription, deadline=choreDeadline)
     group.addChore(chore)
@@ -107,16 +107,20 @@ def modifyChore():
         return error, 400
     
     chore = Chore.query.filter_by(id=choreID).one()
+    
     if 'name' in dataDict:
         choreName = dataDict['name']
         chore.setName(choreName)
+        
     if 'deadline' in dataDict:
         choreDeadlineStr = dataDict['deadline']
         choreDeadline = datetime.strptime(choreDeadlineStr, "%m/%d/%Y")
         chore.setDeadline(choreDeadline)
+        
     if 'description' in dataDict:
         choreDescription = dataDict['description']
         chore.setDescription(choreDescription)
+        
     if 'completed' in dataDict:
         choreCompleted = dataDict['completed']
         if not chore.getCompleted() and choreCompleted:

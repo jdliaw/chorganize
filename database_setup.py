@@ -230,8 +230,11 @@ class Chore(db.Model):
         return self.groupID
 
     def deadlinePassed(self):
-        now = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
-        return ((self.deadline - now).days < 0)
+        if self.deadline != None:
+            now = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+            return ((self.deadline - now).days < 0)
+        else:
+            return None
 
     @classmethod
     def createChore(cls, name, description=None, completed=False, deadline=None):
