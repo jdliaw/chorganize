@@ -4,10 +4,9 @@ from database_setup import Chore, Group, User
 from flask.json import loads, jsonify
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
-
 from datetime import datetime
 
-@routes.route('/api/chore', methods=['POST'])
+@routes.route('/api/chore/create', methods=['POST'])
 def createChore():
     """
     Create a new Chore object.
@@ -23,6 +22,7 @@ def createChore():
     @raise KeyError: name and/or groupID parameters were not specified
     @raise NoResultFound: user or group does not exist
     """
+    print("EXECUTING CHORE API")
     data = request.data
     dataDict = loads(data)
     
@@ -64,7 +64,7 @@ def createChore():
         
     return "Chore successfully created"
 
-@routes.route('/api/chore', methods=['GET'])
+@routes.route('/api/chore/get', methods=['GET'])
 def getChoreByID():
     """
     Get information about a chore.
@@ -87,7 +87,7 @@ def getChoreByID():
         
     return jsonify(chore.serialize)
 
-@routes.route('/api/chore', methods=['PUT'])    
+@routes.route('/api/chore/modify', methods=['PUT'])    
 def modifyChore():
     """
     Modify fields of a Chore object.
@@ -131,7 +131,7 @@ def modifyChore():
     
     return "Chore successfully modified"
     
-@routes.route('/api/chore', methods=['DELETE'])
+@routes.route('/api/chore/delete', methods=['DELETE'])
 def deleteChore():
     """
     Delete a Chore object.
