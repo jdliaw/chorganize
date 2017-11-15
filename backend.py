@@ -3,7 +3,6 @@ from routes import *
 import sys
 
 if __name__ == '__main__':
-    print(len(sys.argv))
     if len(sys.argv) == 1:
         app = createApp(False)
     else:

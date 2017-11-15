@@ -30,5 +30,9 @@ class TestChores(unittest.TestCase):
         response = requests.post('http://localhost:8080/api/chore/create', data='{"name": "vacuum", "groupID": 1}')
         self.assertEqual(response.status_code, 200)
         
+    def test_create_chore_invalid(self):
+        response = requests.post('http://localhost:8080/api/chore/create', data='{"name": "clean bathroom"}')
+        self.assertGreaterEqual(response.status_code, 400)
+        
 if __name__ == '__main__':
     unittest.main()
