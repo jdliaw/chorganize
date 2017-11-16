@@ -188,7 +188,7 @@ class Chore(db.Model):
     name = db.Column(db.String(80), nullable=False)
     description = db.Column(db.Text, default=None)
     completed = db.Column(db.Boolean, default=False)
-    deadline = db.Column(db.DateTime)
+    deadline = db.Column(db.DateTime, default=None)
     userEmail = db.Column(db.String, db.ForeignKey('user.email'))
     groupID = db.Column(db.Integer, db.ForeignKey('group.id'))
 
