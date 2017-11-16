@@ -69,5 +69,35 @@ class TestChores(unittest.TestCase):
         response = requests.put('http://localhost:8080/api/chore/modify', data='{"id": 1, "name": "vacuum bedroom"}')
         self.assertEqual(response.status_code, 200)
         
+    def test_modify_chore_missing_input(self):
+        chore = Chore.createChore("vacuum")
+        self.group.addChore(chore)
+        response = requests.put('http://localhost:8080/api/chore/modify', data='{"name": "vacuum bedroom"}')
+        self.assertGreaterEqual(response.status_code, 400)
+        
+    def test_modify_chore_invalid_input(self):
+        chore = Chore.createChore("vacuum")
+        self.group.addChore(chore)
+        response = requests.put('http://localhost:8080/api/chore/modify', data='{"id": 4, "deadline": "12/31/2017"}')
+        self.assertGreaterEqual(response.status_code, 400)
+        
+    def test_delete_chore(self):
+        chore = Chore.createChore("dust shelves")
+        self.group.addChore(chore)
+        response = requests.delete('http://localhost:8080/api/chore/delete', data='{"id": 1}')
+        self.assertEqual(response.status_code, 200)
+        
+    def test_delete_chore_missing_input(self):
+        chore = Chore.createChore("dust shelves")
+        self.group.addChore(chore)
+        response = requests.delete('http://localhost:8080/api/chore/delete', data='{}')
+        self.assertGreaterEqual(response.status_code, 400)
+        
+    def test_delete_chore_invalid_input(self):
+        chore = Chore.createChore("dust shelves")
+        self.group.addChore(chore)
+        response = requests.delete('http://localhost:8080/api/chore/delete', data='{"id": 0}')
+        self.assertGreaterEqual(response.status_code, 400)
+        
 if __name__ == '__main__':
     unittest.main()
