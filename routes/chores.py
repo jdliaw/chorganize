@@ -11,16 +11,23 @@ def createChore():
     """
     Create a new Chore object.
     
-    @param str name: name of the chore (e.g. "vacuum")
-    @param int groupID: the unique ID of the group where the chore will be added
-    @param str deadline: the date that the chore should be completed by (m/d/yyyy)
-    @param str description: more information about the chore
-    @param str userEmail: the email of the user who will be assigned to the chore
+    :param name: name of the chore
+    :param groupID: the unique ID of the group where the chore will be added
+    :param deadline: the date that the chore should be completed by (m/d/yyyy)
+    :param description: more information about the chore
+    :param userEmail: the email of the user who will be assigned to the chore
     
-    @return str: a message confirming that the chore was successfully created
+    :type name: str
+    :type groupID: int
+    :type deadline: str
+    :type description: str
+    :type userEmail: str
     
-    @raise KeyError: name and/or groupID parameters were not specified
-    @raise NoResultFound: user or group does not exist
+    :return: a message confirming whether the chore successfully created, status code
+    :rtype: str, int
+    
+    :raises KeyError: name or group ID was not specified
+    :raises sqlalchemy.orm.exc.NoResultFound: user or group does not exist
     """
     data = request.data
     dataDict = loads(data)
@@ -68,11 +75,13 @@ def getChoreByID():
     """
     Get information about a chore.
     
-    @param int id: the unique ID corresponding to the target chore
+    :param id: the unique ID corresponding to the target chore
+    :type id: int
     
-    @return json: a JSON object that contains information about the chore (description, deadline, etc.)
+    :return: a JSON object that contains information about the chore, status code
+    :rtype: JSON object, int
     
-    @raise NoResultFound: chore corresponding to the specified ID does not exist
+    :raises sqlalchemy.orm.exc.NoResultFound: chore corresponding to the specified ID does not exist
     """
     choreIDstr = request.args.get('id')
     if choreIDstr is None:
@@ -92,11 +101,14 @@ def modifyChore():
     """
     Modify fields of a Chore object.
     
-    @param int id: the unique ID corresponding to the target chore
+    :param id: the unique ID corresponding to the target chore
+    :type id: int
     
-    @return str: a message confirming that the chore was successfully modified
+    :return: a message confirming whether the chore was successfully modified, status code
+    :rtype: str, int
     
-    @raise KeyError: chore ID was not specified
+    :raises KeyError: chore ID was not specified
+    :raises sqlalchemy.orm.exc.NoResultFound: chore corresponding to the specified ID does not exist
     """
     data = request.data
     dataDict = loads(data)
@@ -144,11 +156,14 @@ def deleteChore():
     """
     Delete a Chore object.
     
-    @param int id: the unique ID corresponding to the target chore
+    :param id: the unique ID corresponding to the target chore
+    :type id: int
     
-    @return str: a message confirming that the chore was successfully deleted
+    :return: a message confirming whether the chore was successfully deleted, status code
+    :rtype: str, int
     
-    @raise KeyError: chore ID was not specified
+    :raises KeyError: chore ID was not specified
+    :raises sqlalchemy.orm.exc.NoResultFound: chore corresponding to the specified ID does not exist
     """
     data = request.data
     dataDict = loads(data)

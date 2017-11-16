@@ -5,18 +5,27 @@ from flask.json import loads, jsonify
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 
-"""  
-@param str email: The email of the user
-@param str username: The username of the username
-@param str password: The password of the user
-@param str firstName: The firstName of the user 
-@param str lastName: The lastName of the user
-@return: str "User Successfully Created"
-@raise KeyError: If the input is not provided by the user
-@raise IntegrityError: If the user already existed in the database 
-"""
 @routes.route('/api/user', methods=['POST'])
 def createUser():
+    """  
+    :param email: the email of the user
+    :param username: the username of the user
+    :param password: the password of the user
+    :param firstName: the first name of the user 
+    :param lastName: the last name of the user
+    
+    :type email: str
+    :type username: str
+    :type password: str
+    :type firstName: str
+    :type lastName: str
+    
+    :return: "User Successfully Created", status code
+    :rtype: str, int
+    
+    :raises KeyError: if the input is not provided by the user
+    :raises sqlalchemy.exc.IntegrityError: if the user already existed in the database 
+    """
     data = request.data
     dataDict = loads(data)
     try:
@@ -38,14 +47,16 @@ def createUser():
     return "User Successfully Created"
 
 
-"""  
-@param str email: The email of the user
-@return: str "A user Json object"
-@return 400 if the input is not provided by the user
-@raise NoResultFound: if the user is not found in the database 
-"""
+    
 @routes.route('/api/user', methods=['GET'])
 def getUser():
+    """  
+    :param email: the email of the user
+    :type email: str
+    :return: a user JSON object, status code
+    :rtype: JSON object, int
+    :raises sqlalchemy.orm.exc.NoResultFound: if the user is not found in the database 
+    """
     userEmail = request.args.get('email')
     if userEmail is None:
         error = "Invalid input Parameters"
@@ -60,19 +71,29 @@ def getUser():
 
 
 
-"""  
-@param str newemail: The new email of the user
-@param str oldemail: The original email of the user
-@param str username: The new username of the user
-@param str password: The new password of the user
-@param str firstName: The new firstName of the user
-@param str lastName: The new lastName of the user
-@return: "Successfully Modified"
-@raise keyError: If the input is not provided by the user
-"""
 #Edit User
 @routes.route('/api/user', methods=['PUT'])
 def modifyUser():
+    """  
+    :param newemail: the new email of the user
+    :param oldemail: the original email of the user
+    :param username: the new username of the user
+    :param password: the new password of the user
+    :param firstName: the new firstName of the user
+    :param lastName: the new lastName of the user
+    
+    :type newemail: str
+    :type oldemail: str
+    :type username: str
+    :type password: str
+    :type firstName: str
+    :type lastName: str
+    
+    :return: "Successfully Modified", status code
+    :rtype: str, int
+    
+    :raises KeyError: if the input is not provided by the user
+    """
     data = request.data
     dataDict = loads(data)
     try:
@@ -96,15 +117,18 @@ def modifyUser():
     return "Successfully Modified"
 
 
-"""  
-@param str email: The email of the user
-@return: "User Successfully Removed"
-@raise keyError: If the input is not provided by the user
-@raise NoResultFound: if the user is not found in the database 
-"""
+
 #Delete User
 @routes.route('/api/user/delete', methods=['POST'])
 def deleteUser():
+    """  
+    :param email: the email of the user
+    :type email: str
+    :return: "User Successfully Removed", status code
+    :rtype: str, int
+    :raises KeyError: if the input is not provided by the user
+    :raises sqlalchemy.orm.exc.NoResultFound: if the user is not found in the database 
+    """
     data = request.data
     dataDict = loads(data)
 
@@ -123,17 +147,25 @@ def deleteUser():
     return "User Successfully Removed"
 
 
-"""  
-@param str email: The email of the user
-@param str groupID: A particular groupID that the user is in
-@param str completed: A boolean indicating whether a list of active chores or completed chores get return 
-@return: A list of Json chore object
-@raise ValueError: If the input of the completed parameter is neither true or false
-@raise NoResultFound: if the user is not found in the database 
-"""
+
 #Get all active chores or completed chores for a particular user in a particular group
 @routes.route('/api/user/getUnfinisihedChores', methods=['GET'])
 def getChores():
+    """  
+    :param email: the email of the user
+    :param groupID: a particular groupID that the user is in
+    :param completed: a boolean indicating whether a list of active chores or completed chores get return 
+    
+    :type email: str
+    :type groupID: int
+    :type completed: boolean
+    
+    :return: a list of JSON chore objects, status code
+    :rtype: list of JSON objects, int
+    
+    :raises ValueError: if the input of the completed parameter is neither true or false
+    :raises sqlalchemy.orm.exc.NoResultFound: if the user is not found in the database 
+    """
     userEmail = request.args.get('email')
     groupID = request.args.get('groupID')
     completed = request.args.get('completed')
