@@ -74,10 +74,11 @@ def getChoreByID():
     
     @raise NoResultFound: chore corresponding to the specified ID does not exist
     """
-    choreID = int(request.args.get('id'))
-    if choreID is None:
+    choreIDstr = request.args.get('id')
+    if choreIDstr is None:
         error = "No ID specified"
         return error, 400
+    choreID = int(choreIDstr)
     try:
         chore = Chore.getChore(choreID)
     except NoResultFound:
@@ -105,8 +106,12 @@ def modifyChore():
     except KeyError:
         error = "No ID specified"
         return error, 400
-    
-    chore = Chore.query.filter_by(id=choreID).one()
+        
+    try:
+        chore = Chore.getChore(choreID)
+    except NoResultFound:
+        error = "Chore not found"
+        return error, 404
     
     if 'name' in dataDict:
         choreName = dataDict['name']

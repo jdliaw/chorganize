@@ -50,6 +50,24 @@ class TestChores(unittest.TestCase):
             attributesPresent = False
             
         self.assertEqual(attributesPresent, True)
+    
+    def test_get_chore_missing_input(self):
+        chore = Chore.createChore("clean sink")
+        self.group.addChore(chore)
+        response = requests.get('http://localhost:8080/api/chore/get')
+        self.assertGreaterEqual(response.status_code, 400)
+        
+    def test_get_chore_invalid_input(self):
+        chore = Chore.createChore("clean shower")
+        self.group.addChore(chore)
+        response = requests.get('http://localhost:8080/api/chore/get?id=5')
+        self.assertGreaterEqual(response.status_code, 400)
+        
+    def test_modify_chore_name(self):
+        chore = Chore.createChore("vacuum")
+        self.group.addChore(chore)
+        response = requests.put('http://localhost:8080/api/chore/modify', data='{"id": 1, "name": "vacuum bedroom"}')
+        self.assertEqual(response.status_code, 200)
         
 if __name__ == '__main__':
     unittest.main()
