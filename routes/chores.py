@@ -9,7 +9,7 @@ from datetime import datetime
 @routes.route('/api/chore/create', methods=['POST'])
 def createChore():
     """
-    Create a new Chore object.
+    Create a new Chore object and add it to the database.
     
     :param name: name of the chore
     :param groupID: the unique ID of the group where the chore will be added
@@ -154,7 +154,7 @@ def modifyChore():
 @routes.route('/api/chore/delete', methods=['DELETE'])
 def deleteChore():
     """
-    Delete a Chore object.
+    Delete a Chore object from the database.
     
     :param id: the unique ID corresponding to the target chore
     :type id: int

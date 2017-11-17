@@ -7,6 +7,8 @@ from sqlalchemy.orm.exc import NoResultFound
 @routes.route('/api/group/create', methods=['POST'])
 def create():
     """
+    Create a new group and add it to the database. The user who created the group is automatically added as a member.
+    
     :param email: the user's email
     :param groupName: the intended name for the group
     
@@ -42,6 +44,8 @@ def create():
 @routes.route('/api/group/get-by-id', methods=['GET'])
 def getByID():
     """
+    Get information about a group, using the group's ID.
+    
     :param groupID: the group's ID
     :type groupID: int
     :return: a JSON object that describes the group, status code
@@ -60,6 +64,8 @@ def getByID():
 @routes.route('/api/group/get-by-email', methods=['GET'])
 def getByEmail():
     """
+    Get a list of groups that a user is in.
+    
     :param email: the user's email
     :type email: str
     :return: a JSON object that contains the descriptions of a list of groups, status code
@@ -79,6 +85,8 @@ def getByEmail():
 @routes.route('/api/group/edit', methods=['PUT'])
 def edit():
     """
+    Edit a group's name.
+    
     :param groupID: the group's ID
     :param groupName: the intended new name for the group.
     
@@ -112,6 +120,8 @@ def edit():
 @routes.route('/api/group/add-users', methods=['PUT'])
 def addUsers():
     """
+    Add users to a group.
+    
     :param groupID: the group's ID
     :param listOfEmails: the list of user's emails waiting to be added to the group
     
@@ -153,6 +163,8 @@ def addUsers():
 @routes.route('/api/group/remove-user', methods=['PUT'])
 def removeUser():
     """
+    Remove a user from the group.
+    
     :param groupID: the group's ID
     :param email: the user's email
     
@@ -195,6 +207,8 @@ def removeUser():
 @routes.route('/api/group/get-completed-or-incompleted-chores', methods=['GET'])
 def getCompletedOrIncompletedChores():
     """
+    Get a list of a group's completed or incomplete chores.
+    
     :param groupID: the group's ID
     :param completed: whether to get incompleted or completed chores
     

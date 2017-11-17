@@ -7,7 +7,9 @@ from sqlalchemy.orm.exc import NoResultFound
 
 @routes.route('/api/user', methods=['POST'])
 def createUser():
-    """  
+    """
+    Create a new user and add to the database.
+    
     :param email: the email of the user
     :param username: the username of the user
     :param password: the password of the user
@@ -50,7 +52,9 @@ def createUser():
     
 @routes.route('/api/user', methods=['GET'])
 def getUser():
-    """  
+    """
+    Get information about a user.
+    
     :param email: the email of the user
     :type email: str
     :return: a user JSON object, status code
@@ -74,7 +78,9 @@ def getUser():
 #Edit User
 @routes.route('/api/user', methods=['PUT'])
 def modifyUser():
-    """  
+    """
+    Modify fields of a User object.
+    
     :param newemail: the new email of the user
     :param oldemail: the original email of the user
     :param username: the new username of the user
@@ -121,7 +127,9 @@ def modifyUser():
 #Delete User
 @routes.route('/api/user/delete', methods=['POST'])
 def deleteUser():
-    """  
+    """
+    Delete a user from the database.
+    
     :param email: the email of the user
     :type email: str
     :return: "User Successfully Removed", status code
@@ -151,7 +159,9 @@ def deleteUser():
 #Get all active chores or completed chores for a particular user in a particular group
 @routes.route('/api/user/getUnfinisihedChores', methods=['GET'])
 def getChores():
-    """  
+    """
+    Get all active chores or completed chores for a particular user in a particular group.
+    
     :param email: the email of the user
     :param groupID: a particular groupID that the user is in
     :param completed: a boolean indicating whether a list of active chores or completed chores get return 
