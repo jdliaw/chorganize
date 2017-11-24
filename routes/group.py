@@ -239,3 +239,22 @@ def getCompletedOrIncompletedChores():
     chores = [chore.serialize for chore in chores if chore.getCompleted() == completed]
 
     return jsonify(chores=chores)
+
+@routes.route('/api/group/get-user-performance', methods=['GET'])
+def getUserPerformance():
+    groupID = request.args.get('groupID')
+    email = request.args.get('email')
+
+    try:
+        group = Group.getGroup(groupID)
+    except NoResultFound:
+        error = "Group Not Found"
+        return error, 404
+
+    performances = group.getPerformance()
+
+    if email not in performances:
+        error = "User " + email + " haven't joined the group before."
+        return error, 404
+
+    return jsonify(performances[email])
