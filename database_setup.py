@@ -154,8 +154,16 @@ class Group(db.Model):
         self.users.remove(user)
         db.session.commit()
 
-    def getPerformance(self):
-        return self.performances
+    def getPerformanceByEmail(self, email):
+        return self.performances.get(email)
+
+    def incrementPerformanceTotalByEmail(self, email):
+        if email in self.performances:
+            self.performances[email]['total'] += 1
+
+    def incrementPerformanceOnTimeByEmail(self, email):
+        if email in self.performances:
+            self.performances[email]['onTime'] += 1
 
     @classmethod
     def createGroup(cls, name):

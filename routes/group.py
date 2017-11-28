@@ -49,7 +49,7 @@ def getByID():
     :param groupID: the group's ID
     :type groupID: int
     :return: a JSON object that describes the group, status code
-    :rtype: JSON object, int
+    :rtype: str, int
     :raises sqlalchemy.orm.exc.NoResultFound: when the group does not exist in database
     """
     groupID = request.args.get('groupID')
@@ -69,7 +69,7 @@ def getByEmail():
     :param email: the user's email
     :type email: str
     :return: a JSON object that contains the descriptions of a list of groups, status code
-    :rtype: JSON object, int
+    :rtype: str, int
     :raises sqlalchemy.orm.exc.NoResultFound: when the user does not exist in database
     """
     email = request.args.get('email')
@@ -216,9 +216,8 @@ def getCompletedOrIncompletedChores():
     :type completed: boolean
     
     :return: a JSON object that contains the descriptions of a list of chores, status code
-    :rtype: JSON object, int
-    
-    :raises KeyError: when lack of required fields of inputs
+    :rtype: str, int
+
     :raises sqlalchemy.orm.exc.NoResultFound: when the group does not exist in database
     """
     groupID = request.args.get('groupID')
@@ -240,8 +239,22 @@ def getCompletedOrIncompletedChores():
 
     return jsonify(chores=chores)
 
-@routes.route('/api/group/get-user-performance', methods=['GET'])
-def getUserPerformance():
+@routes.route('/api/group/get-performance-by-group-and-email', methods=['GET'])
+def getPerformanceByGroupAndEmail():
+    """
+    Get the user's performance in the specified group.
+
+    :param groupID: the group's ID
+    :param email: the user's email
+
+    :type groupID: int
+    :type email: str
+
+    :return: a JSON object that contains the user's performance in the specified group.
+    :rtype: str, int
+
+    :raises sqlalchemy.orm.exc.NoResultFound: when the group does not exist in database
+    """
     groupID = request.args.get('groupID')
     email = request.args.get('email')
 
@@ -251,10 +264,10 @@ def getUserPerformance():
         error = "Group Not Found"
         return error, 404
 
-    performances = group.getPerformance()
+    performance = group.getPerformanceByEmail(email)
 
-    if email not in performances:
-        error = "User " + email + " haven't joined the group before."
+    if performance is None:
+        error = "User " + email + " never joined the group before."
         return error, 404
 
-    return jsonify(performances[email])
+    return jsonify(performance)

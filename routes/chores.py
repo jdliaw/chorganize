@@ -143,10 +143,11 @@ def modifyChore():
         if not chore.getCompleted() and choreCompleted:
             group = Group.getGroup(chore.getGroupID())
             email = chore.getUserEmail()
-            record = group.getUserPerformances()[email]
-            record['total'] += 1
+
+            group.incrementPerformanceTotalByEmail(email)
             if not chore.deadlinePassed():
-                record['onTime'] += 1
+                group.incrementPerformanceOnTimeByEmail(email)
+
         chore.setCompleted(choreCompleted)
     
     return "Chore successfully modified"
