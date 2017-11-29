@@ -14,7 +14,9 @@ class GroupTableViewCell: UITableViewCell {
     
 //    @IBOutlet weak var cell: GroupTableViewCell!
     
+ //   @IBOutlet weak var cell: UIView!
     @IBOutlet weak var cell: UIView!
+  //  @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
   
     
