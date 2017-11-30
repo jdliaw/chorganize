@@ -13,9 +13,9 @@ def createChore():
     
     :param name: name of the chore
     :param groupID: the unique ID of the group where the chore will be added
-    :param deadline: the date that the chore should be completed by (format: "mm/dd/yyyy, HH:MM")
-    :param description: more information about the chore
-    :param userEmail: the email of the user who will be assigned to the chore
+    :param deadline: (optional) the date that the chore should be completed by (format: "mm/dd/yyyy, HH:MM")
+    :param description: (optional) more information about the chore
+    :param userEmail: (optional) the email of the user who will be assigned to the chore
     
     :type name: str
     :type groupID: int
@@ -102,7 +102,16 @@ def modifyChore():
     Modify fields of a Chore object.
     
     :param id: the unique ID corresponding to the target chore
+    :param name: (optional) the new name for the chore
+    :param deadline: (optional) the new deadline for the chore (format: "mm/dd/yyyy, HH:MM")
+    :param description: (optional) the new description for the chore
+    :param completed: (optional) whether the chore has been completed or not
+    
     :type id: int
+    :type name: str
+    :type deadline: str
+    :type description: str
+    :type completed: boolean
     
     :return: a message confirming whether the chore was successfully modified, status code
     :rtype: str, int
