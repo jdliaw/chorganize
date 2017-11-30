@@ -437,7 +437,7 @@
         <scene sceneID="FOy-oG-6b7">
             <objects>
                 <navigationController id="JAU-qd-lK4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="To-Do List" id="nVm-wi-U6c"/>
+                    <tabBarItem key="tabBarItem" title="To-Do List" image="todolist.png" id="nVm-wi-U6c"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vCn-Ax-YHH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -506,7 +506,7 @@
                             <outlet property="delegate" destination="VAD-yh-I3Q" id="NVf-p0-psO"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Groups" id="PaF-wl-yaH"/>
+                    <tabBarItem key="tabBarItem" title="Groups" image="groups.png" id="PaF-wl-yaH"/>
                     <navigationItem key="navigationItem" title="Groups" id="dnu-aR-J03">
                         <barButtonItem key="leftBarButtonItem" image="settings.png" id="LaI-CL-6bW">
                             <connections>
@@ -752,7 +752,7 @@
         <scene sceneID="ruc-Sh-89e">
             <objects>
                 <navigationController id="eeR-Nf-RXo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Groups" id="qfL-lz-VhP"/>
+                    <tabBarItem key="tabBarItem" title="Groups" image="groups.png" id="qfL-lz-VhP"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3gh-lL-aqt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -778,7 +778,7 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wE9-a9-E1j" id="aHi-mD-r3t">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBx-oM-Xew">
@@ -822,7 +822,7 @@
                             <outlet property="delegate" destination="kJ7-iV-4NV" id="cjs-Hf-ukA"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="To-Do List" id="x09-tg-ReV"/>
+                    <tabBarItem key="tabBarItem" title="To-Do List" image="todolist.png" id="x09-tg-ReV"/>
                     <navigationItem key="navigationItem" title="To-Do List" id="nme-LG-AHK">
                         <barButtonItem key="leftBarButtonItem" image="settings.png" id="rsj-4C-voQ">
                             <connections>
@@ -840,32 +840,17 @@
             </objects>
             <point key="canvasLocation" x="1612.5" y="-322.18309859154931"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="MeR-OA-w3Z">
-            <objects>
-                <viewController id="4Z2-CH-6Tv" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="FrJ-eU-fkq"/>
-                        <viewControllerLayoutGuide type="bottom" id="T2b-0n-i7t"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="76J-mT-La9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="60X-Ue-vAU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
     </scenes>
     <resources>
         <image name="UnCheckBox.png" width="30" height="30"/>
         <image name="chorgibroom" width="16" height="16"/>
+        <image name="groups.png" width="22" height="22"/>
         <image name="settings.png" width="22" height="22"/>
+        <image name="todolist.png" width="22" height="22"/>
         <image name="trash.png" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="QCg-5P-UuU"/>
-        <segue reference="FXi-gR-gVJ"/>
+        <segue reference="4qM-Px-ZAu"/>
     </inferredMetricsTieBreakers>
 </document>

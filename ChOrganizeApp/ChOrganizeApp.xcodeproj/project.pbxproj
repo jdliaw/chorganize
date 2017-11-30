@@ -28,6 +28,8 @@
 		FF555D041FCFB9EC002A43A7 /* CheckBox.png in Resources */ = {isa = PBXBuildFile; fileRef = FF555D021FCFB9EC002A43A7 /* CheckBox.png */; };
 		FF555D051FCFB9EC002A43A7 /* UnCheckBox.png in Resources */ = {isa = PBXBuildFile; fileRef = FF555D031FCFB9EC002A43A7 /* UnCheckBox.png */; };
 		FF555D071FCFD050002A43A7 /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = FF555D061FCFD050002A43A7 /* trash.png */; };
+		FF555D0A1FCFD3C8002A43A7 /* groups.png in Resources */ = {isa = PBXBuildFile; fileRef = FF555D081FCFD3C8002A43A7 /* groups.png */; };
+		FF555D0B1FCFD3C8002A43A7 /* todolist.png in Resources */ = {isa = PBXBuildFile; fileRef = FF555D091FCFD3C8002A43A7 /* todolist.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		FF555D021FCFB9EC002A43A7 /* CheckBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CheckBox.png; path = ImageFiles/CheckBox.png; sourceTree = SOURCE_ROOT; };
 		FF555D031FCFB9EC002A43A7 /* UnCheckBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UnCheckBox.png; path = ImageFiles/UnCheckBox.png; sourceTree = SOURCE_ROOT; };
 		FF555D061FCFD050002A43A7 /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = trash.png; path = ImageFiles/trash.png; sourceTree = SOURCE_ROOT; };
+		FF555D081FCFD3C8002A43A7 /* groups.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = groups.png; path = ImageFiles/groups.png; sourceTree = SOURCE_ROOT; };
+		FF555D091FCFD3C8002A43A7 /* todolist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = todolist.png; path = ImageFiles/todolist.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,8 @@
 				FF555D021FCFB9EC002A43A7 /* CheckBox.png */,
 				FF555D031FCFB9EC002A43A7 /* UnCheckBox.png */,
 				FF555D061FCFD050002A43A7 /* trash.png */,
+				FF555D081FCFD3C8002A43A7 /* groups.png */,
+				FF555D091FCFD3C8002A43A7 /* todolist.png */,
 				339F545B1FAE8CB000346119 /* AppDelegate.swift */,
 				336A275E1FB4188700419E0E /* LoginViewController.swift */,
 				FF2E4DBE1FB7C46500D3C35D /* Group.swift */,
@@ -282,7 +288,9 @@
 				339F54651FAE8CB000346119 /* Assets.xcassets in Resources */,
 				339F54631FAE8CB000346119 /* Main.storyboard in Resources */,
 				33CB1A541FB78EDB006F941D /* chorgibroom.png in Resources */,
+				FF555D0B1FCFD3C8002A43A7 /* todolist.png in Resources */,
 				FF555D071FCFD050002A43A7 /* trash.png in Resources */,
+				FF555D0A1FCFD3C8002A43A7 /* groups.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
