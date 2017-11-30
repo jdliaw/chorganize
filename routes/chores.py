@@ -13,7 +13,7 @@ def createChore():
     
     :param name: name of the chore
     :param groupID: the unique ID of the group where the chore will be added
-    :param deadline: the date that the chore should be completed by (m/d/yyyy)
+    :param deadline: the date that the chore should be completed by (format: "mm/dd/yyyy, HH:MM")
     :param description: more information about the chore
     :param userEmail: the email of the user who will be assigned to the chore
     
@@ -52,7 +52,7 @@ def createChore():
     
     if 'deadline' in dataDict:
         choreDeadlineStr = dataDict['deadline']
-        choreDeadline = datetime.strptime(choreDeadlineStr, "%m/%d/%Y")
+        choreDeadline = datetime.strptime(choreDeadlineStr, "%m/%d/%Y, %H:%M")
     else:
         choreDeadline = None
         
@@ -131,7 +131,7 @@ def modifyChore():
         
     if 'deadline' in dataDict:
         choreDeadlineStr = dataDict['deadline']
-        choreDeadline = datetime.strptime(choreDeadlineStr, "%m/%d/%Y")
+        choreDeadline = datetime.strptime(choreDeadlineStr, "%m/%d/%Y, %H:%M")
         chore.setDeadline(choreDeadline)
         
     if 'description' in dataDict:
