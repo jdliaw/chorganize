@@ -24,6 +24,10 @@
 		FF2E4DC01FB7C46500D3C35D /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E4DBE1FB7C46500D3C35D /* Group.swift */; };
 		FF2E4DC11FB7C46500D3C35D /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E4DBF1FB7C46500D3C35D /* GroupTableViewCell.swift */; };
 		FF48C8EC1FB7A79E00812AE7 /* CreateChoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF48C8EB1FB7A79E00812AE7 /* CreateChoreViewController.swift */; };
+		FF555D011FCFB497002A43A7 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = FF555D001FCFB497002A43A7 /* settings.png */; };
+		FF555D041FCFB9EC002A43A7 /* CheckBox.png in Resources */ = {isa = PBXBuildFile; fileRef = FF555D021FCFB9EC002A43A7 /* CheckBox.png */; };
+		FF555D051FCFB9EC002A43A7 /* UnCheckBox.png in Resources */ = {isa = PBXBuildFile; fileRef = FF555D031FCFB9EC002A43A7 /* UnCheckBox.png */; };
+		FF555D071FCFD050002A43A7 /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = FF555D061FCFD050002A43A7 /* trash.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +71,10 @@
 		FF2E4DBE1FB7C46500D3C35D /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		FF2E4DBF1FB7C46500D3C35D /* GroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		FF48C8EB1FB7A79E00812AE7 /* CreateChoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChoreViewController.swift; sourceTree = "<group>"; };
+		FF555D001FCFB497002A43A7 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settings.png; path = ImageFiles/settings.png; sourceTree = SOURCE_ROOT; };
+		FF555D021FCFB9EC002A43A7 /* CheckBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CheckBox.png; path = ImageFiles/CheckBox.png; sourceTree = SOURCE_ROOT; };
+		FF555D031FCFB9EC002A43A7 /* UnCheckBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UnCheckBox.png; path = ImageFiles/UnCheckBox.png; sourceTree = SOURCE_ROOT; };
+		FF555D061FCFD050002A43A7 /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = trash.png; path = ImageFiles/trash.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +125,10 @@
 		339F545A1FAE8CB000346119 /* ChOrganizeApp */ = {
 			isa = PBXGroup;
 			children = (
+				FF555D001FCFB497002A43A7 /* settings.png */,
+				FF555D021FCFB9EC002A43A7 /* CheckBox.png */,
+				FF555D031FCFB9EC002A43A7 /* UnCheckBox.png */,
+				FF555D061FCFD050002A43A7 /* trash.png */,
 				339F545B1FAE8CB000346119 /* AppDelegate.swift */,
 				336A275E1FB4188700419E0E /* LoginViewController.swift */,
 				FF2E4DBE1FB7C46500D3C35D /* Group.swift */,
@@ -262,11 +274,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF555D011FCFB497002A43A7 /* settings.png in Resources */,
 				339F54681FAE8CB000346119 /* LaunchScreen.storyboard in Resources */,
+				FF555D041FCFB9EC002A43A7 /* CheckBox.png in Resources */,
 				33CB1A521FB78EA3006F941D /* chorgilogo.png in Resources */,
+				FF555D051FCFB9EC002A43A7 /* UnCheckBox.png in Resources */,
 				339F54651FAE8CB000346119 /* Assets.xcassets in Resources */,
 				339F54631FAE8CB000346119 /* Main.storyboard in Resources */,
 				33CB1A541FB78EDB006F941D /* chorgibroom.png in Resources */,
+				FF555D071FCFD050002A43A7 /* trash.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
