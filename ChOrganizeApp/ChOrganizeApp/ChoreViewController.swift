@@ -9,10 +9,19 @@
 import UIKit
 
 class ChoreViewController: UIViewController {
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descriptionlabel: UILabel!
+    
+    var choreName = ""
+    var choreDate = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Load data
+        nameLabel.text = choreName
+        dateLabel.text = choreDate
         
         // Put border around decription text.
         descriptionlabel.layer.borderWidth = 0.5

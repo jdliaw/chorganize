@@ -274,7 +274,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="dateLabel" destination="zjF-Uj-1wI" id="PXf-zi-8rQ"/>
                         <outlet property="descriptionlabel" destination="8PU-ca-IMt" id="U99-7i-4aO"/>
+                        <outlet property="nameLabel" destination="yQV-9Z-oUt" id="22a-fW-HPm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Px-5g-hYi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -909,7 +911,7 @@
                                     <outlet property="checkBoxButton" destination="zgB-AU-KaY" id="Pau-wy-707"/>
                                     <outlet property="dateLabel" destination="jTg-Yv-TrI" id="F18-co-W0n"/>
                                     <outlet property="nameLabel" destination="GBx-oM-Xew" id="AIM-SJ-6Oe"/>
-                                    <segue destination="4GJ-43-TPx" kind="show" id="Sp4-kj-cUT"/>
+                                    <segue destination="4GJ-43-TPx" kind="show" identifier="choreDetails" id="Sp4-kj-cUT"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -947,6 +949,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="4qM-Px-ZAu"/>
-        <segue reference="QCg-5P-UuU"/>
+        <segue reference="kbP-O3-bTn"/>
     </inferredMetricsTieBreakers>
 </document>
