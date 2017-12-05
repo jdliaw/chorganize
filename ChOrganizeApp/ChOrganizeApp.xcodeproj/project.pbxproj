@@ -36,6 +36,7 @@
 		FF62A90F1FD65BAB008DE923 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A90E1FD65BAB008DE923 /* SettingsViewController.swift */; };
 		FF62A9111FD65DC7008DE923 /* ChoresByGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A9101FD65DC7008DE923 /* ChoresByGroupTableViewCell.swift */; };
 		FF62A9131FD65DFD008DE923 /* ChoresByGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A9121FD65DFD008DE923 /* ChoresByGroupTableViewController.swift */; };
+		FF62A9151FD665F7008DE923 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A9141FD665F7008DE923 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		FF62A90E1FD65BAB008DE923 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FF62A9101FD65DC7008DE923 /* ChoresByGroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoresByGroupTableViewCell.swift; sourceTree = "<group>"; };
 		FF62A9121FD65DFD008DE923 /* ChoresByGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoresByGroupTableViewController.swift; sourceTree = "<group>"; };
+		FF62A9141FD665F7008DE923 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 				339F54611FAE8CB000346119 /* Main.storyboard */,
 				339F54661FAE8CB000346119 /* LaunchScreen.storyboard */,
 				FF2E4DBE1FB7C46500D3C35D /* Group.swift */,
+				FF62A9141FD665F7008DE923 /* User.swift */,
 				336A277E1FB6701B00419E0E /* Chore.swift */,
 				339F54641FAE8CB000346119 /* Assets.xcassets */,
 				33CB1A511FB78EA3006F941D /* chorgilogo.png */,
@@ -340,6 +343,7 @@
 				FF62A9131FD65DFD008DE923 /* ChoresByGroupTableViewController.swift in Sources */,
 				336A277B1FB65FD900419E0E /* ToDoTableViewCell.swift in Sources */,
 				336A277F1FB6701B00419E0E /* Chore.swift in Sources */,
+				FF62A9151FD665F7008DE923 /* User.swift in Sources */,
 				339F545E1FAE8CB000346119 /* ToDoViewController.swift in Sources */,
 				FF48C8EC1FB7A79E00812AE7 /* CreateChoreViewController.swift in Sources */,
 				FF62A9071FD65698008DE923 /* CreateGroupViewController.swift in Sources */,

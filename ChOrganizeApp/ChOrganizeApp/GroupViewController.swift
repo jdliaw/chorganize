@@ -13,16 +13,21 @@ class GroupViewController: UITableViewController {
     var groups = [Group]()
     
     private func loadGroups() {
-        let group1 = Group(name: "Group Example")
-        let group2 = Group(name: "Group 2")
+        let group1 = Group(name: "Pusheen Code")
+        let group2 = Group(name: "Apt 401")
         groups.insert(group1!,at: 0)
         groups.insert(group2!, at: 1)
     }
     
-    //    func numberOfSections(in tableView: UITableView) -> Int
-    //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    //
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadGroups()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -34,27 +39,11 @@ class GroupViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupTableViewCell", for: indexPath) as? GroupTableViewCell
-        
         let group = groups[indexPath.row]
         
         cell!.nameLabel.text = group.name
         
         return cell!
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        
-        loadGroups()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
 }
 

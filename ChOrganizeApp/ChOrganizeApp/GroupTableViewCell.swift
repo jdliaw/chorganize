@@ -11,12 +11,6 @@ import UIKit
 class GroupTableViewCell: UITableViewCell {
     
     //MARK: Properties
-    
-//    @IBOutlet weak var cell: GroupTableViewCell!
-    
-//    @IBOutlet weak var cell: UIView!
-//   @IBOutlet weak var nameLabel: UILabel!
-  
     @IBOutlet weak var cell: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     

@@ -16,10 +16,9 @@ class ToDoTableViewCell: UITableViewCell {
     @IBOutlet weak var checkBoxButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
     
-    let checkBox = UIImage(named: "CheckBox")
-    let uncheckBox = UIImage(named: "UnCheckBox")
-    
-    var isboxclicked: Bool!
+//    let checkBox = UIImage(named: "CheckBox")
+//    let uncheckBox = UIImage(named: "UnCheckBox")
+//    var isboxclicked: Bool!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,17 +31,17 @@ class ToDoTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBAction func clickBox(_ sender: AnyObject) {
-        if isboxclicked == true {
-            isboxclicked = false
-        } else {
-            isboxclicked = true
-        }
-        
-        if isboxclicked == true {
-            checkBoxButton.setImage(checkBox, for: UIControlState.normal)
-        } else {
-            checkBoxButton.setImage(uncheckBox, for: UIControlState.normal)
-        }
-    }
+//    @IBAction func clickBox(_ sender: AnyObject) {
+//        if isboxclicked == true {
+//            isboxclicked = false
+//        } else {
+//            isboxclicked = true
+//        }
+//        
+//        if isboxclicked == true {
+//            checkBoxButton.setImage(checkBox, for: UIControlState.normal)
+//        } else {
+//            checkBoxButton.setImage(uncheckBox, for: UIControlState.normal)
+//        }
+//    }
 }
