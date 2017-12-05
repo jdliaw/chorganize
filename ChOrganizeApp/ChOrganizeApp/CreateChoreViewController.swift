@@ -49,7 +49,6 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     
-    
     // Setting up the group UIPickerView
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -78,24 +77,16 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     // MARK: Actions
 
     @IBAction func cancelAction(_ sender: Any) {
-        print("hi")
+        dismiss()
+    }
+    
+    @IBAction func saveAction(_ sender: Any) {
+        dismiss()
+    }
+    
+    func dismiss() {
         self.navigationController?.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
     }
     
-//    @IBAction func onCancelClick(_ sender: UIBarButtonItem) {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        var nextVC: UIViewController!
-//        
-//        if origin == "editButton" {
-//            // goto ChoreViewController
-//            nextVC = storyboard.instantiateViewController(withIdentifier: "ChoreVC")
-//        }
-//        else {
-//            // goto TodoViewController
-//            nextVC = storyboard.instantiateViewController(withIdentifier: "ToDoVC")
-//            
-//        }
-//        //self.navigationController?.present(nextVC, animated: true)
-//    }
 }

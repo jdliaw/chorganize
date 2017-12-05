@@ -223,7 +223,7 @@
         <!--Create a Group-->
         <scene sceneID="7HP-Y0-71v">
             <objects>
-                <viewController id="vPK-Va-Bhc" sceneMemberID="viewController">
+                <viewController id="vPK-Va-Bhc" customClass="CreateGroupViewController" customModule="ChOrganizeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jgQ-MO-KWD"/>
                         <viewControllerLayoutGuide type="bottom" id="vnB-tL-UH3"/>
@@ -264,8 +264,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create a Group" id="Hj6-o9-QE3">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="9D4-3G-r2l"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="HNY-4t-RUT"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="9D4-3G-r2l">
+                            <connections>
+                                <action selector="cancel:" destination="vPK-Va-Bhc" id="R70-q0-o0I"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="HNY-4t-RUT">
+                            <connections>
+                                <action selector="save:" destination="vPK-Va-Bhc" id="o0D-Uh-6zw"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6kv-ZQ-Tg5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -326,7 +334,7 @@
         <!--Edit Group-->
         <scene sceneID="4HK-rF-rhI">
             <objects>
-                <viewController id="Bae-M7-65n" sceneMemberID="viewController">
+                <viewController id="Bae-M7-65n" customClass="EditGroupViewController" customModule="ChOrganizeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QM8-r3-FfF"/>
                         <viewControllerLayoutGuide type="bottom" id="ghu-rs-8Qa"/>
@@ -423,8 +431,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Group" id="Rpg-7q-Gml">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="tH3-ZS-Leh"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="6Nz-Nl-81z"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="tH3-ZS-Leh">
+                            <connections>
+                                <action selector="cancel:" destination="Bae-M7-65n" id="FHc-Qx-iOi"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="6Nz-Nl-81z">
+                            <connections>
+                                <action selector="save:" destination="Bae-M7-65n" id="LR6-Lf-vPN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="887"/>
@@ -515,7 +531,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="mU7-Fm-RFz">
                             <connections>
-                                <segue destination="vPK-Va-Bhc" kind="show" id="lsz-xN-U5L"/>
+                                <segue destination="vPK-Va-Bhc" kind="show" id="cwN-Hn-MC9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -678,7 +694,11 @@
                                 <action selector="cancelAction:" destination="OWK-7j-1UY" id="y41-8O-UXf"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="zUx-m6-ZJI"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="zUx-m6-ZJI">
+                            <connections>
+                                <action selector="saveAction:" destination="OWK-7j-1UY" id="7qH-LZ-N9J"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="1000"/>
@@ -812,6 +832,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="cell" destination="aHi-mD-r3t" id="gOH-fR-nIi"/>
+                                    <outlet property="checkBoxButton" destination="zgB-AU-KaY" id="Pau-wy-707"/>
                                     <outlet property="nameLabel" destination="GBx-oM-Xew" id="AIM-SJ-6Oe"/>
                                     <segue destination="4GJ-43-TPx" kind="show" id="Sp4-kj-cUT"/>
                                 </connections>
@@ -851,6 +872,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="QCg-5P-UuU"/>
-        <segue reference="4qM-Px-ZAu"/>
+        <segue reference="FXi-gR-gVJ"/>
     </inferredMetricsTieBreakers>
 </document>

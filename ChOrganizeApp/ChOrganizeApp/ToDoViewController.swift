@@ -19,12 +19,6 @@ class ToDoViewController: UITableViewController {
         chores.insert(chore2!, at: 1)
     }
     
-    
-//    var checkBox = UIImage(named: "CheckBox")
-//    var uncheckBox = UIImage(named: "UnCheckBox")
-    
-//    var isboxclicked: Bool!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadToDoList()
@@ -53,20 +47,6 @@ class ToDoViewController: UITableViewController {
         
         return cell!
     }
-    
-//    @IBAction func ClickBox(_ sender: AnyObject) {
-//        if isboxclicked == true {
-//            isboxclicked = false
-//        } else {
-//            isboxclicked = true
-//        }
-//        
-//        if isboxclicked == true {
-//            uncheckbox.setImage(checkBox, for: UIControlState.normal)
-//        } else {
-//            uncheckbox.setImage(uncheckBox, for: UIControlState.normal)
-//        }
-//    }
     
 }
 

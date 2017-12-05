@@ -30,6 +30,8 @@
 		FF555D071FCFD050002A43A7 /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = FF555D061FCFD050002A43A7 /* trash.png */; };
 		FF555D0A1FCFD3C8002A43A7 /* groups.png in Resources */ = {isa = PBXBuildFile; fileRef = FF555D081FCFD3C8002A43A7 /* groups.png */; };
 		FF555D0B1FCFD3C8002A43A7 /* todolist.png in Resources */ = {isa = PBXBuildFile; fileRef = FF555D091FCFD3C8002A43A7 /* todolist.png */; };
+		FF62A9071FD65698008DE923 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A9061FD65698008DE923 /* CreateGroupViewController.swift */; };
+		FF62A90B1FD6578C008DE923 /* EditGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A90A1FD6578C008DE923 /* EditGroupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,8 @@
 		FF555D061FCFD050002A43A7 /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = trash.png; path = ImageFiles/trash.png; sourceTree = SOURCE_ROOT; };
 		FF555D081FCFD3C8002A43A7 /* groups.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = groups.png; path = ImageFiles/groups.png; sourceTree = SOURCE_ROOT; };
 		FF555D091FCFD3C8002A43A7 /* todolist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = todolist.png; path = ImageFiles/todolist.png; sourceTree = SOURCE_ROOT; };
+		FF62A9061FD65698008DE923 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
+		FF62A90A1FD6578C008DE923 /* EditGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditGroupViewController.swift; path = ../EditGroupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,27 +133,29 @@
 		339F545A1FAE8CB000346119 /* ChOrganizeApp */ = {
 			isa = PBXGroup;
 			children = (
+				339F545B1FAE8CB000346119 /* AppDelegate.swift */,
+				336A275E1FB4188700419E0E /* LoginViewController.swift */,
+				339F545D1FAE8CB000346119 /* ToDoViewController.swift */,
+				336A277A1FB65FD900419E0E /* ToDoTableViewCell.swift */,
+				336A277C1FB661EE00419E0E /* ChoreViewController.swift */,
+				FF48C8EB1FB7A79E00812AE7 /* CreateChoreViewController.swift */,
+				339F545F1FAE8CB000346119 /* GroupViewController.swift */,
+				FF2E4DBF1FB7C46500D3C35D /* GroupTableViewCell.swift */,
+				FF62A9061FD65698008DE923 /* CreateGroupViewController.swift */,
+				FF62A90A1FD6578C008DE923 /* EditGroupViewController.swift */,
+				339F54611FAE8CB000346119 /* Main.storyboard */,
+				339F54661FAE8CB000346119 /* LaunchScreen.storyboard */,
+				FF2E4DBE1FB7C46500D3C35D /* Group.swift */,
+				336A277E1FB6701B00419E0E /* Chore.swift */,
+				339F54641FAE8CB000346119 /* Assets.xcassets */,
+				33CB1A511FB78EA3006F941D /* chorgilogo.png */,
+				33CB1A531FB78EDB006F941D /* chorgibroom.png */,
 				FF555D001FCFB497002A43A7 /* settings.png */,
 				FF555D021FCFB9EC002A43A7 /* CheckBox.png */,
 				FF555D031FCFB9EC002A43A7 /* UnCheckBox.png */,
 				FF555D061FCFD050002A43A7 /* trash.png */,
 				FF555D081FCFD3C8002A43A7 /* groups.png */,
 				FF555D091FCFD3C8002A43A7 /* todolist.png */,
-				339F545B1FAE8CB000346119 /* AppDelegate.swift */,
-				336A275E1FB4188700419E0E /* LoginViewController.swift */,
-				FF2E4DBE1FB7C46500D3C35D /* Group.swift */,
-				FF2E4DBF1FB7C46500D3C35D /* GroupTableViewCell.swift */,
-				339F545D1FAE8CB000346119 /* ToDoViewController.swift */,
-				336A277A1FB65FD900419E0E /* ToDoTableViewCell.swift */,
-				336A277C1FB661EE00419E0E /* ChoreViewController.swift */,
-				339F545F1FAE8CB000346119 /* GroupViewController.swift */,
-				339F54661FAE8CB000346119 /* LaunchScreen.storyboard */,
-				339F54611FAE8CB000346119 /* Main.storyboard */,
-				FF48C8EB1FB7A79E00812AE7 /* CreateChoreViewController.swift */,
-				336A277E1FB6701B00419E0E /* Chore.swift */,
-				339F54641FAE8CB000346119 /* Assets.xcassets */,
-				33CB1A511FB78EA3006F941D /* chorgilogo.png */,
-				33CB1A531FB78EDB006F941D /* chorgibroom.png */,
 				339F54691FAE8CB000346119 /* Info.plist */,
 			);
 			path = ChOrganizeApp;
@@ -323,7 +329,9 @@
 				336A277F1FB6701B00419E0E /* Chore.swift in Sources */,
 				339F545E1FAE8CB000346119 /* ToDoViewController.swift in Sources */,
 				FF48C8EC1FB7A79E00812AE7 /* CreateChoreViewController.swift in Sources */,
+				FF62A9071FD65698008DE923 /* CreateGroupViewController.swift in Sources */,
 				336A277D1FB661EE00419E0E /* ChoreViewController.swift in Sources */,
+				FF62A90B1FD6578C008DE923 /* EditGroupViewController.swift in Sources */,
 				FF2E4DC11FB7C46500D3C35D /* GroupTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
