@@ -32,6 +32,8 @@
 		FF555D0B1FCFD3C8002A43A7 /* todolist.png in Resources */ = {isa = PBXBuildFile; fileRef = FF555D091FCFD3C8002A43A7 /* todolist.png */; };
 		FF62A9071FD65698008DE923 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A9061FD65698008DE923 /* CreateGroupViewController.swift */; };
 		FF62A90B1FD6578C008DE923 /* EditGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A90A1FD6578C008DE923 /* EditGroupViewController.swift */; };
+		FF62A90D1FD65B1B008DE923 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A90C1FD65B1B008DE923 /* SignUpViewController.swift */; };
+		FF62A90F1FD65BAB008DE923 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A90E1FD65BAB008DE923 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,8 @@
 		FF555D091FCFD3C8002A43A7 /* todolist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = todolist.png; path = ImageFiles/todolist.png; sourceTree = SOURCE_ROOT; };
 		FF62A9061FD65698008DE923 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		FF62A90A1FD6578C008DE923 /* EditGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditGroupViewController.swift; path = ../EditGroupViewController.swift; sourceTree = "<group>"; };
+		FF62A90C1FD65B1B008DE923 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		FF62A90E1FD65BAB008DE923 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +139,7 @@
 			children = (
 				339F545B1FAE8CB000346119 /* AppDelegate.swift */,
 				336A275E1FB4188700419E0E /* LoginViewController.swift */,
+				FF62A90C1FD65B1B008DE923 /* SignUpViewController.swift */,
 				339F545D1FAE8CB000346119 /* ToDoViewController.swift */,
 				336A277A1FB65FD900419E0E /* ToDoTableViewCell.swift */,
 				336A277C1FB661EE00419E0E /* ChoreViewController.swift */,
@@ -143,6 +148,7 @@
 				FF2E4DBF1FB7C46500D3C35D /* GroupTableViewCell.swift */,
 				FF62A9061FD65698008DE923 /* CreateGroupViewController.swift */,
 				FF62A90A1FD6578C008DE923 /* EditGroupViewController.swift */,
+				FF62A90E1FD65BAB008DE923 /* SettingsViewController.swift */,
 				339F54611FAE8CB000346119 /* Main.storyboard */,
 				339F54661FAE8CB000346119 /* LaunchScreen.storyboard */,
 				FF2E4DBE1FB7C46500D3C35D /* Group.swift */,
@@ -330,8 +336,10 @@
 				339F545E1FAE8CB000346119 /* ToDoViewController.swift in Sources */,
 				FF48C8EC1FB7A79E00812AE7 /* CreateChoreViewController.swift in Sources */,
 				FF62A9071FD65698008DE923 /* CreateGroupViewController.swift in Sources */,
+				FF62A90F1FD65BAB008DE923 /* SettingsViewController.swift in Sources */,
 				336A277D1FB661EE00419E0E /* ChoreViewController.swift in Sources */,
 				FF62A90B1FD6578C008DE923 /* EditGroupViewController.swift in Sources */,
+				FF62A90D1FD65B1B008DE923 /* SignUpViewController.swift in Sources */,
 				FF2E4DC11FB7C46500D3C35D /* GroupTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
