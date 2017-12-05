@@ -12,7 +12,7 @@ class GroupViewController: UITableViewController {
 
     var groups = [Group]()
     
-    private func loadToDoList() {
+    private func loadGroups() {
         let group1 = Group(name: "Group Example")
         let group2 = Group(name: "Group 2")
         groups.insert(group1!,at: 0)
@@ -47,7 +47,7 @@ class GroupViewController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         
-        loadToDoList()
+        loadGroups()
     }
     
     override func didReceiveMemoryWarning() {

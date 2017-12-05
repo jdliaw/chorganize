@@ -9,12 +9,14 @@
 import UIKit
 
 class Chore {
-    init?(name: String) {
-        if name.isEmpty {
+    init?(name: String, date: String) {
+        if name.isEmpty || date.isEmpty {
             return nil
         }
         self.name = name
+        self.date = date
     }
     
     var name: String
+    var date: String
 }

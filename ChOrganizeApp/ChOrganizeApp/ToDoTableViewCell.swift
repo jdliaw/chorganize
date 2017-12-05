@@ -14,6 +14,7 @@ class ToDoTableViewCell: UITableViewCell {
     @IBOutlet weak var cell: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var checkBoxButton: UIButton!
+    @IBOutlet weak var dateLabel: UILabel!
     
     let checkBox = UIImage(named: "CheckBox")
     let uncheckBox = UIImage(named: "UnCheckBox")

@@ -34,6 +34,8 @@
 		FF62A90B1FD6578C008DE923 /* EditGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A90A1FD6578C008DE923 /* EditGroupViewController.swift */; };
 		FF62A90D1FD65B1B008DE923 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A90C1FD65B1B008DE923 /* SignUpViewController.swift */; };
 		FF62A90F1FD65BAB008DE923 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A90E1FD65BAB008DE923 /* SettingsViewController.swift */; };
+		FF62A9111FD65DC7008DE923 /* ChoresByGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A9101FD65DC7008DE923 /* ChoresByGroupTableViewCell.swift */; };
+		FF62A9131FD65DFD008DE923 /* ChoresByGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62A9121FD65DFD008DE923 /* ChoresByGroupTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,8 @@
 		FF62A90A1FD6578C008DE923 /* EditGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditGroupViewController.swift; path = ../EditGroupViewController.swift; sourceTree = "<group>"; };
 		FF62A90C1FD65B1B008DE923 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		FF62A90E1FD65BAB008DE923 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		FF62A9101FD65DC7008DE923 /* ChoresByGroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoresByGroupTableViewCell.swift; sourceTree = "<group>"; };
+		FF62A9121FD65DFD008DE923 /* ChoresByGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoresByGroupTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +150,8 @@
 				FF48C8EB1FB7A79E00812AE7 /* CreateChoreViewController.swift */,
 				339F545F1FAE8CB000346119 /* GroupViewController.swift */,
 				FF2E4DBF1FB7C46500D3C35D /* GroupTableViewCell.swift */,
+				FF62A9121FD65DFD008DE923 /* ChoresByGroupTableViewController.swift */,
+				FF62A9101FD65DC7008DE923 /* ChoresByGroupTableViewCell.swift */,
 				FF62A9061FD65698008DE923 /* CreateGroupViewController.swift */,
 				FF62A90A1FD6578C008DE923 /* EditGroupViewController.swift */,
 				FF62A90E1FD65BAB008DE923 /* SettingsViewController.swift */,
@@ -331,11 +337,13 @@
 				336A275F1FB4188700419E0E /* LoginViewController.swift in Sources */,
 				339F54601FAE8CB000346119 /* GroupViewController.swift in Sources */,
 				339F545C1FAE8CB000346119 /* AppDelegate.swift in Sources */,
+				FF62A9131FD65DFD008DE923 /* ChoresByGroupTableViewController.swift in Sources */,
 				336A277B1FB65FD900419E0E /* ToDoTableViewCell.swift in Sources */,
 				336A277F1FB6701B00419E0E /* Chore.swift in Sources */,
 				339F545E1FAE8CB000346119 /* ToDoViewController.swift in Sources */,
 				FF48C8EC1FB7A79E00812AE7 /* CreateChoreViewController.swift in Sources */,
 				FF62A9071FD65698008DE923 /* CreateGroupViewController.swift in Sources */,
+				FF62A9111FD65DC7008DE923 /* ChoresByGroupTableViewCell.swift in Sources */,
 				FF62A90F1FD65BAB008DE923 /* SettingsViewController.swift in Sources */,
 				336A277D1FB661EE00419E0E /* ChoreViewController.swift in Sources */,
 				FF62A90B1FD6578C008DE923 /* EditGroupViewController.swift in Sources */,

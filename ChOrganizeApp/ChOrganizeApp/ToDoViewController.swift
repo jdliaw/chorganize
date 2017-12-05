@@ -13,8 +13,8 @@ class ToDoViewController: UITableViewController {
     var chores = [Chore]()
 
     private func loadToDoList() {
-        let chore1 = Chore(name: "Chore Example")
-        let chore2 = Chore(name: "Chore 2")
+        let chore1 = Chore(name: "Chore Example", date: "Dec 6")
+        let chore2 = Chore(name: "Chore 2", date: "Dec 14")
         chores.insert(chore1!,at: 0)
         chores.insert(chore2!, at: 1)
     }
@@ -40,10 +40,10 @@ class ToDoViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoTableViewCell", for: indexPath) as? ToDoTableViewCell
-        
         let chore = chores[indexPath.row]
-        
+
         cell!.nameLabel.text = chore.name
+        cell!.dateLabel.text = chore.date
         
         return cell!
     }

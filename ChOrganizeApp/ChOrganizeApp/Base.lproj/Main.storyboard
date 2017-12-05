@@ -344,35 +344,45 @@
         <!--Group Name-->
         <scene sceneID="wCE-Di-JcL">
             <objects>
-                <tableViewController id="zrx-fe-4Vs" sceneMemberID="viewController">
+                <tableViewController id="zrx-fe-4Vs" customClass="ChoresByGroupTableViewController" customModule="ChOrganizeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cCX-0v-o72">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="90" id="WXn-W4-b1t">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChoresByGroupTableViewCell" rowHeight="90" id="WXn-W4-b1t" customClass="ChoresByGroupTableViewCell" customModule="ChOrganizeApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WXn-W4-b1t" id="g3U-XP-9NO">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chore Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="get-cA-Ifl">
-                                            <rect key="frame" x="34" y="14" width="96" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Chore Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="get-cA-Ifl">
+                                            <rect key="frame" x="16" y="16" width="96" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R82-2K-boI">
-                                            <rect key="frame" x="245" y="14" width="36" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R82-2K-boI">
+                                            <rect key="frame" x="245" y="16" width="36" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="R82-2K-boI" firstAttribute="top" secondItem="g3U-XP-9NO" secondAttribute="topMargin" constant="8" id="BxI-Wj-DOP"/>
+                                        <constraint firstItem="get-cA-Ifl" firstAttribute="leading" secondItem="g3U-XP-9NO" secondAttribute="leadingMargin" constant="8" id="DSb-gc-ngy"/>
+                                        <constraint firstItem="R82-2K-boI" firstAttribute="leading" secondItem="get-cA-Ifl" secondAttribute="trailing" constant="177" id="V2t-e7-7sh"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="R82-2K-boI" secondAttribute="trailing" constant="8" id="YDc-RX-4Dy"/>
+                                        <constraint firstItem="get-cA-Ifl" firstAttribute="top" secondItem="g3U-XP-9NO" secondAttribute="topMargin" constant="8" id="fTw-aT-7vt"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cell" destination="g3U-XP-9NO" id="CNp-QM-AhH"/>
+                                    <outlet property="dateLabel" destination="R82-2K-boI" id="jQT-dG-tcI"/>
+                                    <outlet property="nameLabel" destination="get-cA-Ifl" id="SGG-KC-H3l"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -390,7 +400,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PQA-Pq-lh9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2509" y="1347"/>
+            <point key="canvasLocation" x="2508.75" y="1346.8309859154929"/>
         </scene>
         <!--Edit Group-->
         <scene sceneID="4HK-rF-rhI">
@@ -897,6 +907,7 @@
                                 <connections>
                                     <outlet property="cell" destination="aHi-mD-r3t" id="gOH-fR-nIi"/>
                                     <outlet property="checkBoxButton" destination="zgB-AU-KaY" id="Pau-wy-707"/>
+                                    <outlet property="dateLabel" destination="jTg-Yv-TrI" id="F18-co-W0n"/>
                                     <outlet property="nameLabel" destination="GBx-oM-Xew" id="AIM-SJ-6Oe"/>
                                     <segue destination="4GJ-43-TPx" kind="show" id="Sp4-kj-cUT"/>
                                 </connections>
@@ -935,7 +946,7 @@
         <image name="trash.png" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="4qM-Px-ZAu"/>
         <segue reference="QCg-5P-UuU"/>
-        <segue reference="FXi-gR-gVJ"/>
     </inferredMetricsTieBreakers>
 </document>
