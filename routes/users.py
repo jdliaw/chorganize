@@ -5,7 +5,7 @@ from flask.json import loads, jsonify
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 
-@routes.route('/api/user', methods=['POST'])
+@routes.route('/api/user/create', methods=['POST'])
 def createUser():
     """
     Create a new user and add to the database.
@@ -50,7 +50,7 @@ def createUser():
 
 
     
-@routes.route('/api/user', methods=['GET'])
+@routes.route('/api/user/get', methods=['GET'])
 def getUser():
     """
     Get information about a user.
@@ -76,7 +76,7 @@ def getUser():
 
 
 #Edit User
-@routes.route('/api/user', methods=['PUT'])
+@routes.route('/api/user/edit', methods=['PUT'])
 def modifyUser():
     """
     Modify fields of a User object.
@@ -157,7 +157,7 @@ def deleteUser():
 
 
 #Get all active chores or completed chores for a particular user in a particular group
-@routes.route('/api/user/getUnfinisihedChores', methods=['GET'])
+@routes.route('/api/user/get-unfinished-chores', methods=['GET'])
 def getChores():
     """
     Get all active chores or completed chores for a particular user in a particular group.
