@@ -39,7 +39,7 @@ class TestChores(unittest.TestCase):
         
     def test_create_chore_more_input(self):
         response = requests.post('http://localhost:8080/api/chore/create',
-                                 data='{"name": "sweep", "groupID": 1, "deadline": "11/20/2017", "description": "sweep bedroom and living room", "userEmail": "kchan52@ucla.edu"}'
+                                 data='{"name": "sweep", "groupID": 1, "deadline": "11/20/2017, 23:59", "description": "sweep bedroom and living room", "userEmail": "kchan52@ucla.edu"}'
                                 )
         self.assertEqual(response.status_code, 200)
         

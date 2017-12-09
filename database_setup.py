@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.ext import mutable
 from datetime import datetime
 
 global db
@@ -77,6 +78,10 @@ class User(db.Model):
 
     def getChores(self):
         return self.chores.all()
+        
+    def removeChore(self, chore):
+        self.chores.remove(chore)
+        db.session.commit()
 
     def addGroup(self, group):
         self.groups.append(group)
@@ -119,7 +124,7 @@ class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
     chores = db.relationship('Chore', backref='group', lazy='dynamic')
-    performances = db.Column(db.PickleType)
+    performances = db.Column(mutable.MutableDict.as_mutable(db.PickleType))
 
     def getID(self):
         return self.id
@@ -146,6 +151,7 @@ class Group(db.Model):
             self.performances = {userEmail: {'total': 0, 'onTime': 0}}
         elif userEmail not in self.performances:
             self.performances[userEmail] = {'total': 0, 'onTime': 0}
+        db.session.commit()
 
     def getUsers(self):
         return self.users.all()
@@ -159,11 +165,18 @@ class Group(db.Model):
 
     def incrementPerformanceTotalByEmail(self, email):
         if email in self.performances:
-            self.performances[email]['total'] += 1
+            performance = self.performances[email]
+            performance['total'] += 1
+            self.performances[email] = performance
+            db.session.commit()
+        
 
     def incrementPerformanceOnTimeByEmail(self, email):
         if email in self.performances:
-            self.performances[email]['onTime'] += 1
+            performance = self.performances[email]
+            performance['onTime'] += 1
+            self.performances[email] = performance
+            db.session.commit()
 
     @classmethod
     def createGroup(cls, name):
@@ -198,7 +211,7 @@ class Chore(db.Model):
     description = db.Column(db.Text, default=None)
     completed = db.Column(db.Boolean, default=False)
     deadline = db.Column(db.DateTime, default=None)
-    userEmail = db.Column(db.String, db.ForeignKey('user.email'))
+    userEmail = db.Column(db.String, db.ForeignKey('user.email'), default=None)
     groupID = db.Column(db.Integer, db.ForeignKey('group.id'))
 
     def getID(self):

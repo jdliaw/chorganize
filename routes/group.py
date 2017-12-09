@@ -37,7 +37,7 @@ def create():
         return error, 404
 
     group = Group.createGroup(groupName)
-    user.addGroup(group)
+    group.addUser(user)
 
     return "Group Successfully Created"
 
@@ -200,7 +200,7 @@ def removeUser():
 
     group.removeUser(user)
     if len(group.getUsers()) == 0:
-        Group.deleteGroup(group.getId())
+        Group.deleteGroup(group.getID())
 
     return "User Successfully Removed From The Group"
 
@@ -259,7 +259,7 @@ def getPerformanceByGroupAndEmail():
     email = request.args.get('email')
 
     try:
-        group = Group.getGroup(groupID)
+        group = Group.getGroup(int(groupID))
     except NoResultFound:
         error = "Group Not Found"
         return error, 404
