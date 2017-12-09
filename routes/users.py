@@ -219,3 +219,40 @@ def getChores():
         resultList.append([chore.serialize for chore in activeChoreList])
 
     return jsonify(Chorelist=resultList)
+
+@routes.route('/api/user/validate-password', methods=['POST'])
+def validatePassword():
+    """
+        Validate email and password when a user log in to the app.
+
+        :param email: the email of the user
+        :param password: password of a user
+
+        :type email: str
+        :type groupID: password
+
+        :return: Json with a result item, true/false
+        :rtype: Json object
+
+        :raises KeyError: if the input is not provided by the user
+        """
+    data = request.data
+    dataDict = loads(data)
+
+    try:
+        userEmail = dataDict['email']
+        userPassword = dataDict['password']
+    except KeyError:
+        error = "Invalid input Parameters"
+        return error, 400
+
+    try:
+        user = User.getUser(userEmail)
+    except NoResultFound:
+        return jsonify(result=False)
+
+
+    if bcrypt.hashpw(userPassword.encode(), user.getPassword()) == user.getPassword():
+        return jsonify(result=True)
+    else:
+        return jsonify(result=False)
