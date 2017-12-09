@@ -10,6 +10,15 @@ import UIKit
 
 class ProgressTableViewController: UITableViewController {
 
+    var members = [User]()
+    
+    private func loadChores() {
+        let member1 = User(name: "Hana", email: "100%")
+        let member2 = User(name: "Jennifer", email: "100%")
+        members.insert(member1!, at: 0)
+        members.insert(member2!, at: 1)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,14 +36,23 @@ class ProgressTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
 
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return members.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProgressTableViewCell", for: indexPath) as? ProgressTableViewCell
+        let member = members[indexPath.row]
+        
+        cell!.nameLabel.text = member.name
+        cell!.progressLabel.text = member.email
+        
+        return cell!
     }
 
     /*
