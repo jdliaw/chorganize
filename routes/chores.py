@@ -191,10 +191,6 @@ def assignUserOrDeadlineToChore():
         choreDeadline = datetime.strptime(choreDeadlineStr, "%m/%d/%Y, %H:%M")
         chore.setDeadline(choreDeadline)
         
-    #if chore.userEmail is None or chore.deadline is None:
-    #    error = "Cannot set a deadline without assigning a user, and vice versa"
-    #    return error, 412
-        
     return "User assignment and deadline set successfully"
 
 @routes.route('/api/chore/complete', methods=['PUT'])
