@@ -42,6 +42,23 @@ class ChoreViewController: UIViewController {
         }
     }
     
+    @IBAction func deleteChore(_ sender: Any) {
+        let alert = UIAlertController(title: "Delete chore?", message: "Chore will be removed from the group.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: "Default action"), style: .`default`, handler: { _ in
+            //TODO: Delete chore from group.
+            
+            //Transition back to TabBarController
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let TabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = TabBarVC
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel, handler: { _ in
+            NSLog("The \"Cancel\" alert occured.")
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func completechore(_ sender: Any) {
         let alert = UIAlertController(title: "Complete chore?", message: "Chore will be marked complete, but will remain on your To-Do list until removed.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
