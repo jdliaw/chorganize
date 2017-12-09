@@ -369,23 +369,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdf-Og-bDe">
-                                <rect key="frame" x="0.0" y="92" width="320" height="427"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <connections>
                                     <segue destination="Rj2-ta-SNs" kind="embed" id="1EZ-Tj-t37"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o5I-h9-zGJ">
-                                <rect key="frame" x="0.0" y="92" width="320" height="427"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <connections>
                                     <segue destination="UQn-wW-d3p" kind="embed" id="35E-2b-Ti4"/>
                                 </connections>
                             </containerView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Npa-4D-dto">
-                                <rect key="frame" x="92" y="64" width="137" height="29"/>
+                                <rect key="frame" x="92" y="80" width="137" height="29"/>
                                 <segments>
                                     <segment title="Chores"/>
                                     <segment title="Progress"/>
                                 </segments>
+                                <color key="tintColor" red="0.3411764705882353" green="0.47058823529411764" blue="0.65490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="showComponent:" destination="fpi-Lh-cPN" eventType="valueChanged" id="wzH-bP-RNt"/>
                                 </connections>
@@ -393,16 +394,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="QF5-0Y-J4q" firstAttribute="top" secondItem="tdf-Og-bDe" secondAttribute="bottom" id="4cM-Nj-ZbO"/>
-                            <constraint firstItem="Npa-4D-dto" firstAttribute="centerX" secondItem="IDr-Vo-pzt" secondAttribute="centerX" id="Aut-cD-G5A"/>
-                            <constraint firstItem="tdf-Og-bDe" firstAttribute="leading" secondItem="IDr-Vo-pzt" secondAttribute="leading" id="EdF-X2-8d0"/>
-                            <constraint firstAttribute="trailing" secondItem="o5I-h9-zGJ" secondAttribute="trailing" id="G9Q-j8-S4F"/>
-                            <constraint firstItem="Npa-4D-dto" firstAttribute="top" secondItem="eph-6N-sG0" secondAttribute="bottom" id="IHM-cg-EES"/>
-                            <constraint firstItem="tdf-Og-bDe" firstAttribute="top" secondItem="Npa-4D-dto" secondAttribute="bottom" id="bZL-eg-Ykn"/>
-                            <constraint firstItem="o5I-h9-zGJ" firstAttribute="top" secondItem="Npa-4D-dto" secondAttribute="bottom" id="c4f-QY-qbj"/>
-                            <constraint firstItem="o5I-h9-zGJ" firstAttribute="leading" secondItem="IDr-Vo-pzt" secondAttribute="leading" id="uz2-xz-TxN"/>
-                            <constraint firstItem="QF5-0Y-J4q" firstAttribute="top" secondItem="o5I-h9-zGJ" secondAttribute="bottom" id="vK6-fu-SoX"/>
-                            <constraint firstAttribute="trailing" secondItem="tdf-Og-bDe" secondAttribute="trailing" id="vWo-9G-YwY"/>
+                            <constraint firstItem="Npa-4D-dto" firstAttribute="top" secondItem="eph-6N-sG0" secondAttribute="bottom" constant="16" id="2TG-7g-GMm"/>
+                            <constraint firstItem="tdf-Og-bDe" firstAttribute="top" secondItem="eph-6N-sG0" secondAttribute="bottom" id="3UU-4N-fCv"/>
+                            <constraint firstAttribute="trailing" secondItem="o5I-h9-zGJ" secondAttribute="trailing" id="C46-92-dql"/>
+                            <constraint firstItem="Npa-4D-dto" firstAttribute="centerX" secondItem="IDr-Vo-pzt" secondAttribute="centerX" id="UQz-X2-Wzk"/>
+                            <constraint firstAttribute="trailing" secondItem="tdf-Og-bDe" secondAttribute="trailing" id="YjC-fn-Hae"/>
+                            <constraint firstItem="QF5-0Y-J4q" firstAttribute="top" secondItem="tdf-Og-bDe" secondAttribute="bottom" id="bT0-BA-YdV"/>
+                            <constraint firstItem="QF5-0Y-J4q" firstAttribute="top" secondItem="o5I-h9-zGJ" secondAttribute="bottom" id="jM9-aH-5Tf"/>
+                            <constraint firstItem="o5I-h9-zGJ" firstAttribute="top" secondItem="eph-6N-sG0" secondAttribute="bottom" id="kZe-E1-h6h"/>
+                            <constraint firstItem="tdf-Og-bDe" firstAttribute="leading" secondItem="IDr-Vo-pzt" secondAttribute="leading" id="t9S-RB-pMB"/>
+                            <constraint firstItem="o5I-h9-zGJ" firstAttribute="leading" secondItem="IDr-Vo-pzt" secondAttribute="leading" id="wha-fI-zkR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Group Name" id="gaP-gc-Aqx">
@@ -997,7 +998,7 @@
             <objects>
                 <viewController title="Progress" automaticallyAdjustsScrollViewInsets="NO" id="UQn-wW-d3p" customClass="ProgressTableViewController" customModule="ChOrganizeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="O62-mS-lmW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="427"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -1060,7 +1061,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UwB-f0-fVU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Chores" automaticallyAdjustsScrollViewInsets="NO" id="Rj2-ta-SNs" customClass="ChoresByGroupTableViewController" customModule="ChOrganizeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="R48-gC-3po">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="427"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
