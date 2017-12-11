@@ -9,6 +9,92 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    
+    private func login() {
+//        /api/user/create
+        print("in login")
+        
+        let params = ["email": "abc2@gmail.com",
+                      "firstName": "Pusheen2",
+                      "lastName": "Code",
+                      "password": "password2",
+                      "username": "test"]
+        
+        let url = URL(string: "http://shea3100.pythonanywhere.com/api/user/create")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        print("successfully serialized body")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let task = URLSession.shared.dataTask(with: request){ data, response, error in
+            guard let data = data, error == nil else {
+                print("error=\(error)")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                print("response = \(response)")
+                // pop-up
+            }
+            
+            // success, save user data / session
+            let responseString = String(data: data, encoding: .utf8)
+            print("responseString = \(responseString)")
+        }
+        
+        task.resume()
+        print("end request")
+    }
+    
+    private func getUser() {
+        print("in get user")
+        
+        var components = URLComponents(string: "http://shea3100.pythonanywhere.com/api/user/get")!
+        components.queryItems = [URLQueryItem(name: "email", value: "abc11@gmail.com")]
+        var request = URLRequest(url: components.url!)
+        request.httpMethod = "GET"
+        
+        let task = URLSession.shared.dataTask(with: request){ data, response, error in
+            guard let data = data, error == nil else {
+                print("error=\(error)")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                print("response = \(response)")
+            }
+            
+            let responseString = String(data: data, encoding: .utf8)
+            print("responseString = \(responseString)")
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
+                let email = json["email"] as? String ?? ""
+                let firstName = json["firstName"] as? String ?? ""
+                let lastName = json["lastName"] as? String ?? ""
+                let username = json["username"] as? String ?? ""
+                print("parsed...")
+                print(email)
+                print(firstName)
+                print(username)
+            } catch let error as NSError {
+                print(error)
+            }
+        
+        }
+        
+        task.resume()
+        print("end get user")
+    }
 
     @IBAction func moveToToDo(_ sender: AnyObject) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -20,6 +106,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //login()
+        getUser()
         // Do any additional setup after loading the view.
     }
 
