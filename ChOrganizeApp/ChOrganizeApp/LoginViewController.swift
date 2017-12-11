@@ -9,110 +9,91 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    let BASE_URL = "http://shea3100.pythonanywhere.com"
+    let VALIDATE_USER_URL = "/api/user/get"
     
-    private func login() {
-//        /api/user/create
-        print("in login")
-        
-        let params = ["email": "abc2@gmail.com",
-                      "firstName": "Pusheen2",
-                      "lastName": "Code",
-                      "password": "password2",
-                      "username": "test"]
-        
-        let url = URL(string: "http://shea3100.pythonanywhere.com/api/user/create")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        print("successfully serialized body")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        let task = URLSession.shared.dataTask(with: request){ data, response, error in
-            guard let data = data, error == nil else {
-                print("error=\(error)")
-                return
-            }
-            
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
-                print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("response = \(response)")
-                // pop-up
-            }
-            
-            // success, save user data / session
-            let responseString = String(data: data, encoding: .utf8)
-            print("responseString = \(responseString)")
-        }
-        
-        task.resume()
-        print("end request")
-    }
-    
-    private func getUser() {
-        print("in get user")
-        
-        var components = URLComponents(string: "http://shea3100.pythonanywhere.com/api/user/get")!
-        components.queryItems = [URLQueryItem(name: "email", value: "abc11@gmail.com")]
-        var request = URLRequest(url: components.url!)
-        request.httpMethod = "GET"
-        
-        let task = URLSession.shared.dataTask(with: request){ data, response, error in
-            guard let data = data, error == nil else {
-                print("error=\(error)")
-                return
-            }
-            
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
-                print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("response = \(response)")
-            }
-            
-            let responseString = String(data: data, encoding: .utf8)
-            print("responseString = \(responseString)")
-            
-            do {
-                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
-                let email = json["email"] as? String ?? ""
-                let firstName = json["firstName"] as? String ?? ""
-                let lastName = json["lastName"] as? String ?? ""
-                let username = json["username"] as? String ?? ""
-                print("parsed...")
-                print(email)
-                print(firstName)
-                print(username)
-            } catch let error as NSError {
-                print(error)
-            }
-        
-        }
-        
-        task.resume()
-        print("end get user")
-    }
-
-    @IBAction func moveToToDo(_ sender: AnyObject) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let TabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = TabBarVC
-        
-    }
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //login()
-        getUser()
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    private func moveToToDo() {
+        print("in move to")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let TabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = TabBarVC
+    }
+    
+    private func emptyLoginParamsAlert() {
+        let alert = UIAlertController(
+            title: "Error",
+            message: "Please enter a valid email and password to Login",
+            preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func userLogin(_ sender: Any) {
+        // TODO: validate fields
+        // TODO: make password field starred out
+        
+        // check required fields are entered
+        if emailField.text == "" || passwordField.text == "" {
+            // popup alert
+            emptyLoginParamsAlert()
+        }
+        else {
+            // try to validate user
+            validateUserRequest()
+        }
+    }
+    
+    private func validateUserRequest() {
+        let emailInput = emailField.text
+        let passwordInput = passwordField.text
+        print("user inputs:")
+        print(emailInput)
+        print(passwordInput)
+        
+        // setup GET request for VALIDATE_USER_URL
+        var components = URLComponents(string: BASE_URL + VALIDATE_USER_URL)!
+        components.queryItems = [
+            URLQueryItem(name: "email", value: emailInput),
+            URLQueryItem(name: "password", value: passwordInput)
+        ]
+        var request = URLRequest(url: components.url!)
+        request.httpMethod = "GET"
+        
+        print("staritng request")
+        let task = URLSession.shared.dataTask(with: request){ data, response, error in
+            guard let data = data, error == nil else {
+                print("error=\(error)")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                print("response = \(response)")
+                // TODO: popup alert based on response
+            }
+            
+            // success
+            let responseString = String(data: data, encoding: .utf8)
+            print("responseString = \(responseString)")
+            
+            DispatchQueue.main.async {
+                self.moveToToDo()
+            }
+        }
+        task.resume()
+        print("finished")
     }
 }
