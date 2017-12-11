@@ -112,7 +112,6 @@ class User(db.Model):
         return {
                 'email': self.email,
                 'username': self.username,
-                'password': self.password,
                 'firstName': self.firstName,
                 'lastName': self.lastName
                }
