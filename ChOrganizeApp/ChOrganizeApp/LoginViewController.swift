@@ -42,6 +42,9 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func userLogin(_ sender: Any) {
+        // TODO: validate fields
+        // TODO: make password field starred out
+        
         // check required fields are entered
         if emailField.text == "" || passwordField.text == "" {
             // popup alert
@@ -79,7 +82,7 @@ class LoginViewController: UIViewController {
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")
                 print("response = \(response)")
-                // popup alert based on login
+                // TODO: popup alert based on response
             }
             
             // success
