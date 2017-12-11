@@ -54,6 +54,16 @@ class ChoresByGroupTableViewController: UITableViewController {
         
         return cell!
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "choreDetails" {
+            if let destVC = segue.destination as? ChoreViewController {
+                let choresToPass = chores[tableView.indexPathForSelectedRow!.row]
+                destVC.choreName = choresToPass.name
+                destVC.choreDate = choresToPass.date
+            }
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.

@@ -172,11 +172,11 @@
                         <viewControllerLayoutGuide type="bottom" id="KSk-yP-Bqy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="JdO-YX-rBI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQV-9Z-oUt">
-                                <rect key="frame" x="112" y="72" width="96" height="20"/>
+                                <rect key="frame" x="112" y="8" width="96" height="20"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Chore Name">
                                         <attributes>
@@ -188,19 +188,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deadline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjF-Uj-1wI">
-                                <rect key="frame" x="127" y="100" width="67" height="21"/>
+                                <rect key="frame" x="127" y="36" width="67" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.52513617277145386" green="0.54203450679779053" blue="0.49630057811737061" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rwt-xp-l4r">
-                                <rect key="frame" x="24" y="129" width="272" height="21"/>
+                                <rect key="frame" x="24" y="65" width="272" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DescriptionText" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8PU-ca-IMt">
-                                <rect key="frame" x="24" y="158" width="272" height="100"/>
+                                <rect key="frame" x="24" y="94" width="272" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="YpX-Sg-p5c"/>
                                 </constraints>
@@ -209,7 +209,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTh-5c-HcB">
-                                <rect key="frame" x="24" y="290" width="272" height="30"/>
+                                <rect key="frame" x="24" y="226" width="272" height="30"/>
                                 <color key="backgroundColor" red="0.52228443944436542" green="0.75174060880829019" blue="0.44404561786283003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="GHb-FX-6ec"/>
@@ -222,14 +222,14 @@
                                 </connections>
                             </button>
                             <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zR2-dr-Ri5">
-                                <rect key="frame" x="24" y="328" width="272" height="1"/>
+                                <rect key="frame" x="24" y="264" width="272" height="1"/>
                                 <color key="backgroundColor" red="0.38194219559585496" green="0.38194219559585496" blue="0.38194219559585496" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="OkN-Em-IUL"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xlu-aJ-bQn">
-                                <rect key="frame" x="24" y="330" width="272" height="30"/>
+                                <rect key="frame" x="24" y="266" width="272" height="30"/>
                                 <state key="normal" title="Delete">
                                     <color key="titleColor" red="0.79041855569948183" green="0.29859338815499392" blue="0.26416830044208434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -238,7 +238,7 @@
                                 </connections>
                             </button>
                             <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bbj-aG-i1R">
-                                <rect key="frame" x="24" y="361" width="272" height="1"/>
+                                <rect key="frame" x="24" y="297" width="272" height="1"/>
                                 <color key="backgroundColor" red="0.38194219559999998" green="0.38194219559999998" blue="0.38194219559999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="ztg-lu-4SJ"/>
@@ -451,7 +451,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="288" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bnQ-V3-iLe" id="VIt-cb-dq4">
-                                                            <rect key="frame" x="0.0" y="0.0" width="288" height="44"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="288" height="43.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Person Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWD-DX-5cp">
@@ -621,15 +621,6 @@
         <!--Groups-->
         <scene sceneID="BSH-Lh-Zby">
             <objects>
-                <searchDisplayController id="vVK-5y-Em1">
-                    <connections>
-                        <outlet property="delegate" destination="VAD-yh-I3Q" id="jRE-V8-nQU"/>
-                        <outlet property="searchContentsController" destination="VAD-yh-I3Q" id="Rkn-Zv-NwS"/>
-                        <outlet property="searchResultsDataSource" destination="VAD-yh-I3Q" id="LCc-0f-k0R"/>
-                        <outlet property="searchResultsDelegate" destination="VAD-yh-I3Q" id="dMM-9K-deS"/>
-                    </connections>
-                </searchDisplayController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SK8-18-lDB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="VAD-yh-I3Q" customClass="GroupViewController" customModule="ChOrganizeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="yBc-ue-BZf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -684,6 +675,15 @@
                         <outlet property="searchDisplayController" destination="vVK-5y-Em1" id="LnH-rr-RBo"/>
                     </connections>
                 </tableViewController>
+                <searchDisplayController id="vVK-5y-Em1">
+                    <connections>
+                        <outlet property="delegate" destination="VAD-yh-I3Q" id="jRE-V8-nQU"/>
+                        <outlet property="searchContentsController" destination="VAD-yh-I3Q" id="Rkn-Zv-NwS"/>
+                        <outlet property="searchResultsDataSource" destination="VAD-yh-I3Q" id="LCc-0f-k0R"/>
+                        <outlet property="searchResultsDelegate" destination="VAD-yh-I3Q" id="dMM-9K-deS"/>
+                    </connections>
+                </searchDisplayController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SK8-18-lDB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1612.5" y="403.52112676056339"/>
         </scene>
@@ -1058,7 +1058,6 @@
         <!--Chores-->
         <scene sceneID="55R-Xp-5Gh">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UwB-f0-fVU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Chores" automaticallyAdjustsScrollViewInsets="NO" id="Rj2-ta-SNs" customClass="ChoresByGroupTableViewController" customModule="ChOrganizeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="R48-gC-3po">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
@@ -1102,12 +1101,13 @@
                                     <outlet property="cell" destination="Hn2-Tt-FQj" id="oly-N6-kUV"/>
                                     <outlet property="dateLabel" destination="lKU-GN-0PI" id="neC-2Q-Tpm"/>
                                     <outlet property="nameLabel" destination="EZH-pX-KKH" id="xCA-MN-DJE"/>
-                                    <segue destination="4GJ-43-TPx" kind="show" id="LI5-SV-kFo"/>
+                                    <segue destination="4GJ-43-TPx" kind="show" identifier="choreDetails" id="LI5-SV-kFo"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UwB-f0-fVU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2304.375" y="1939.9647887323945"/>
         </scene>
@@ -1121,8 +1121,8 @@
         <image name="trash.png" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Sp4-kj-cUT"/>
-        <segue reference="FXi-gR-gVJ"/>
+        <segue reference="LI5-SV-kFo"/>
         <segue reference="QCg-5P-UuU"/>
+        <segue reference="4qM-Px-ZAu"/>
     </inferredMetricsTieBreakers>
 </document>

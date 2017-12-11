@@ -12,7 +12,7 @@ class ProgressTableViewController: UITableViewController {
 
     var members = [User]()
     
-    private func loadChores() {
+    private func loadProgress() {
         let member1 = User(name: "Hana", email: "100%")
         let member2 = User(name: "Jennifer", email: "100%")
         members.insert(member1!, at: 0)
@@ -21,7 +21,8 @@ class ProgressTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        loadProgress()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
