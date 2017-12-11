@@ -55,14 +55,6 @@ class ToDoViewController: UITableViewController {
         cell!.nameLabel.text = chore.name
         cell!.dateLabel.text = chore.date
         
-//        // Save data to pass
-//        choreNameToPass = chore.name
-//        choreDateToPass = chore.date
-//        
-//        let dest : UIViewController = UIViewController() as! ChoreViewController
-//        let segue : UIStoryboardSegue = UIStoryboardSegue(identifier: "choreDetail", source: self, destination: dest)
-//        prepare(for: segue, sender: self)
-        
         return cell!
     }
     

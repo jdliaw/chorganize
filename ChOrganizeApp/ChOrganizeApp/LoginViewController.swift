@@ -42,8 +42,10 @@ class LoginViewController: UIViewController {
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")
                 print("response = \(response)")
+                // pop-up
             }
             
+            // success, save user data / session
             let responseString = String(data: data, encoding: .utf8)
             print("responseString = \(responseString)")
         }
@@ -73,6 +75,21 @@ class LoginViewController: UIViewController {
             
             let responseString = String(data: data, encoding: .utf8)
             print("responseString = \(responseString)")
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
+                let email = json["email"] as? String ?? ""
+                let firstName = json["firstName"] as? String ?? ""
+                let lastName = json["lastName"] as? String ?? ""
+                let username = json["username"] as? String ?? ""
+                print("parsed...")
+                print(email)
+                print(firstName)
+                print(username)
+            } catch let error as NSError {
+                print(error)
+            }
+        
         }
         
         task.resume()
