@@ -10,7 +10,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
     let BASE_URL = "http://shea3100.pythonanywhere.com"
-    let VALIDATE_USER_URL = "/api/user/get"
+    let VALIDATE_USER_URL = "/api/user/validate-password"
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -59,20 +59,25 @@ class LoginViewController: UIViewController {
     private func validateUserRequest() {
         let emailInput = emailField.text
         let passwordInput = passwordField.text
-        print("user inputs:")
-        print(emailInput)
-        print(passwordInput)
         
-        // setup GET request for VALIDATE_USER_URL
-        var components = URLComponents(string: BASE_URL + VALIDATE_USER_URL)!
-        components.queryItems = [
-            URLQueryItem(name: "email", value: emailInput),
-            URLQueryItem(name: "password", value: passwordInput)
+        // setup POST request for VALIDATE_USER_URL
+        let url = URL(string: BASE_URL + VALIDATE_USER_URL)!
+        let params = [
+            "email": emailInput,
+            "password": passwordInput
         ]
-        var request = URLRequest(url: components.url!)
-        request.httpMethod = "GET"
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
         
-        print("staritng request")
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+        } catch let error {
+            print("Error serializing params for request")
+            print(error.localizedDescription)
+        }
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("appilcation/json", forHTTPHeaderField: "Accept")
+
         let task = URLSession.shared.dataTask(with: request){ data, response, error in
             guard let data = data, error == nil else {
                 print("error=\(error)")
@@ -85,15 +90,26 @@ class LoginViewController: UIViewController {
                 // TODO: popup alert based on response
             }
             
-            // success
+            // request success
             let responseString = String(data: data, encoding: .utf8)
             print("responseString = \(responseString)")
             
-            DispatchQueue.main.async {
-                self.moveToToDo()
+            // parse response. only successful login if the result is true
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String: Any]
+                let result = json["result"] as? Bool ?? nil
+                
+                // if result true, move to app homepage
+                if result! {
+                    DispatchQueue.main.async {
+                        self.moveToToDo()
+                    }
+                }
+            } catch let error as NSError {
+                print(error)
+                // TODO: login error popup (invalid credentials)
             }
         }
         task.resume()
-        print("finished")
     }
 }
