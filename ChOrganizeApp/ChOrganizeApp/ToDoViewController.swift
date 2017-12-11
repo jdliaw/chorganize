@@ -11,8 +11,6 @@ import UIKit
 class ToDoViewController: UITableViewController {
     
 //    var chores = [Chore]()
-//    var choreNameToPass = ""
-//    var choreDateToPass = ""
 //
 //    private func loadToDoList() {
 //        let chore1 = Chore(name: "Take out the trash", date: "Dec 6")
@@ -23,6 +21,9 @@ class ToDoViewController: UITableViewController {
     
     let sections = ["to-do", "completed"]
     var chores =  [[Chore]]()
+    var choreNameToPass = ""
+    var choreDateToPass = ""
+    
     private func loadToDoList(){
         
         let chore1 = Chore(name: "Take out the trash", date: "tomorrow")
@@ -77,14 +78,15 @@ class ToDoViewController: UITableViewController {
         return cell!
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "choreDetail" {
-//            let destVC = segue.destination as! ChoreViewController
-//            // Pass vars
-//            destVC.choreName = choreNameToPass
-//            destVC.choreDate = choreDateToPass
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "choreDetails" {
+            if let destVC = segue.destination as? ChoreViewController {
+                let choresToPass = chores[tableView.indexPathForSelectedRow!.section][tableView.indexPathForSelectedRow!.row]
+                destVC.choreName = choresToPass.name
+                destVC.choreDate = choresToPass.date
+            }
+        }
+    }
     
 }
 
