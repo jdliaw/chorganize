@@ -45,5 +45,14 @@ class GroupViewController: UITableViewController {
         
         return cell!
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "groupToGroupName" {
+            if let destVC = segue.destination as? GroupSplitViewController {
+                let groupToPass = groups[tableView.indexPathForSelectedRow!.row]
+                destVC.groupName = groupToPass.name
+            }
+        }
+    }
 }
 

@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -370,7 +371,7 @@
         <!--Group Name-->
         <scene sceneID="8fh-Cr-9Nv">
             <objects>
-                <viewController id="fpi-Lh-cPN" customClass="GroupSplitViewController" customModule="ChOrganizeApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" id="fpi-Lh-cPN" customClass="GroupSplitViewController" customModule="ChOrganizeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eph-6N-sG0"/>
                         <viewControllerLayoutGuide type="bottom" id="QF5-0Y-J4q"/>
@@ -431,11 +432,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Group Name" id="gaP-gc-Aqx">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Fim-WE-Lzv">
-                            <connections>
-                                <segue destination="Bae-M7-65n" kind="show" id="Iuv-gg-ioT"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="edit" id="Fim-WE-Lzv">
+                                <connections>
+                                    <segue destination="Bae-M7-65n" kind="show" identifier="editGroup" id="Iuv-gg-ioT"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="add" id="Jze-Nc-o1C">
+                                <connections>
+                                    <segue destination="OWK-7j-1UY" kind="show" id="thV-Kq-6FJ"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="ChoresContainer" destination="tdf-Og-bDe" id="KAU-jf-Lha"/>
@@ -520,7 +528,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NQD-8K-5uH">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Group Name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NQD-8K-5uH">
                                                 <rect key="frame" x="16" y="69" width="288" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="YAW-41-wKX"/>
@@ -601,6 +609,9 @@
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="887"/>
+                    <connections>
+                        <outlet property="descriptionField" destination="NQD-8K-5uH" id="SLK-A6-T75"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mvS-S8-rFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -673,7 +684,7 @@
                                 <connections>
                                     <outlet property="cell" destination="7fy-Rv-Ybh" id="bUM-9N-JLF"/>
                                     <outlet property="nameLabel" destination="b4C-Qo-zkU" id="Grb-Vj-UDJ"/>
-                                    <segue destination="fpi-Lh-cPN" kind="show" id="978-aO-omX"/>
+                                    <segue destination="fpi-Lh-cPN" kind="show" identifier="groupToGroupName" id="978-aO-omX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -839,6 +850,13 @@
                                     <constraint firstItem="Btv-0I-6nl" firstAttribute="centerY" secondItem="jPn-Ie-m5W" secondAttribute="centerY" id="x5Y-JB-yJy"/>
                                 </constraints>
                             </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chore Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xyy-sG-GjN">
+                                <rect key="frame" x="96" y="489" width="128" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1043,9 +1061,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2v-sq-h9y">
-                                            <rect key="frame" x="232" y="8" width="96" height="21"/>
+                                            <rect key="frame" x="168" y="8" width="128" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="96" id="8Gd-zH-PFa"/>
+                                                <constraint firstAttribute="width" constant="128" id="81x-Y8-iQf"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -1053,9 +1071,9 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="z2v-sq-h9y" firstAttribute="top" secondItem="e60-qM-BlD" secondAttribute="topMargin" id="F44-rW-0Xc"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="z2v-sq-h9y" secondAttribute="trailing" constant="16" id="4CV-YI-gda"/>
+                                        <constraint firstItem="z2v-sq-h9y" firstAttribute="top" secondItem="e60-qM-BlD" secondAttribute="topMargin" id="aA0-6t-pUn"/>
                                         <constraint firstItem="6K0-UP-qEM" firstAttribute="leading" secondItem="e60-qM-BlD" secondAttribute="leadingMargin" constant="16" id="feN-JK-1XB"/>
-                                        <constraint firstItem="z2v-sq-h9y" firstAttribute="trailing" secondItem="e60-qM-BlD" secondAttribute="trailingMargin" constant="16" id="qad-Nh-HhY"/>
                                         <constraint firstItem="6K0-UP-qEM" firstAttribute="top" secondItem="e60-qM-BlD" secondAttribute="topMargin" id="uCO-jH-5Za"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -1138,7 +1156,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="LI5-SV-kFo"/>
-        <segue reference="QCg-5P-UuU"/>
         <segue reference="4qM-Px-ZAu"/>
+        <segue reference="thV-Kq-6FJ"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -10,9 +10,14 @@ import UIKit
 
 class EditGroupViewController: UIViewController {
 
+    @IBOutlet weak var descriptionField: UITextField!
+    
+    var groupName: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.descriptionField.text = groupName
+        
         // Do any additional setup after loading the view.
     }
 

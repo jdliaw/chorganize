@@ -14,9 +14,11 @@ class GroupSplitViewController: UIViewController {
     
     @IBOutlet weak var ProgressContainer: UIView!
     
+    var groupName: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationItem.title = groupName
         // Do any additional setup after loading the view.
     }
 
@@ -38,6 +40,14 @@ class GroupSplitViewController: UIViewController {
             })
         }
     
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editGroup" {
+            if let destVC = segue.destination as? EditGroupViewController {
+                destVC.groupName = self.groupName
+            }
+        }
     }
 
     /*
