@@ -55,7 +55,7 @@ def createUser():
         User.createUser(userEmail, userName, userPassword, userFirstName, userLastName)
     except IntegrityError:
         error = "Failed to create new user"
-        return error, 500
+        return error, 400
 
     return "User Successfully Created"
 
