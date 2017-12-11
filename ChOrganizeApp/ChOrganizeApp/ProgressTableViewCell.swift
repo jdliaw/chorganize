@@ -11,11 +11,9 @@ import UIKit
 class ProgressTableViewCell: UITableViewCell {
 
 
-    @IBOutlet weak var cell: UIView!
-
     @IBOutlet weak var nameLabel: UILabel!
-
     @IBOutlet weak var progressLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
