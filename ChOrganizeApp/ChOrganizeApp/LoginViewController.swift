@@ -31,10 +31,10 @@ class LoginViewController: UIViewController {
         appDelegate.window?.rootViewController = TabBarVC
     }
     
-    private func emptyLoginParamsAlert() {
+    private func loginErrorAlert(message: String) {
         let alert = UIAlertController(
             title: "Error",
-            message: "Please enter a valid email and password to Login",
+            message: message,
             preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: nil))
@@ -43,12 +43,10 @@ class LoginViewController: UIViewController {
     
     @IBAction func userLogin(_ sender: Any) {
         // TODO: validate fields
-        // TODO: make password field starred out
         
         // check required fields are entered
         if emailField.text == "" || passwordField.text == "" {
-            // popup alert
-            emptyLoginParamsAlert()
+            loginErrorAlert(message: "Please enter a valid email and password to Login")
         }
         else {
             // try to validate user
@@ -87,7 +85,6 @@ class LoginViewController: UIViewController {
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")
                 print("response = \(response)")
-                // TODO: popup alert based on response
             }
             
             // request success
@@ -105,9 +102,14 @@ class LoginViewController: UIViewController {
                         self.moveToToDo()
                     }
                 }
+                else {
+                    // login error popup (invalid credentials)
+                    DispatchQueue.main.async {
+                        self.loginErrorAlert(message: "Invalid email or password")
+                    }
+                }
             } catch let error as NSError {
                 print(error)
-                // TODO: login error popup (invalid credentials)
             }
         }
         task.resume()
