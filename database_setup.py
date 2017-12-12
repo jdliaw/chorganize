@@ -32,7 +32,7 @@ class User(db.Model):
     username = db.Column(db.String(80), nullable=False)
     password = db.Column(db.String(80), nullable=False)
     firstName = db.Column(db.String(80), nullable=False)
-    lastName = db.Column(db.String(80), nullable=False)
+    lastName = db.Column(db.String(80), nullable=True)
     chores = db.relationship('Chore', backref='user', lazy='dynamic')
     groups = db.relationship('Group', secondary=association_table, lazy='dynamic',
                              backref=db.backref('users', lazy='dynamic'))

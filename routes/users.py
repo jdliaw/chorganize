@@ -44,15 +44,18 @@ def createUser():
 
     salt = bcrypt.gensalt()
     userPassword = bcrypt.hashpw(userPassword.encode(), salt)
-
     userName = dataDict.get('username', userEmail)
-    userLastName = dataDict.get('lastName', None)
+
+    if 'lastName' in dataDict:
+        userLastName = dataDict['lastName']
+    else:
+        userLastName = None
 
     try:
         User.createUser(userEmail, userName, userPassword, userFirstName, userLastName)
     except IntegrityError:
         error = "Failed to create new user"
-        return error, 500
+        return error, 400
 
     return "User Successfully Created"
 
