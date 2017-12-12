@@ -146,6 +146,19 @@ Get all active chores for a user in a specific group
 def getChores():
 ```
 
+Validate email and password when a user log in to the app.
+
+```python
+"""
+@param str email: the email of the user
+@param str password: password of a user
+@return: Json with a result item, true/false
+@raises KeyError: if the input is not provided by the user
+"""
+@routes.route('/api/user/validate-password', methods=['POST'])
+def validatePassword():
+```
+
 ### Groups
 
 Create a group
