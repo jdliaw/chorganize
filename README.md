@@ -254,6 +254,19 @@ Get completed or incompleted chores
 def getCompletedOrIncompletedChores():
 ```
 
+Get the user's performance in the specified group
+
+```python
+"""
+@param groupID: the group's ID
+@param email: the user's email
+@return: a JSON object that contains the user's performance in the specified group.
+@raises sqlalchemy.orm.exc.NoResultFound: when the group does not exist in database
+"""
+@routes.route('/api/group/get-performance-by-group-and-email', methods=['GET'])
+def getPerformanceByGroupAndEmail():
+```
+
 ### Chores
 
 Create a chore
