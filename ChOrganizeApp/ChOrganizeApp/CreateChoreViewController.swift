@@ -14,12 +14,20 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBOutlet weak var groupPicker: UIPickerView!
     @IBOutlet weak var assigneePicker: UIPickerView!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var nameLabel: UITextField!
+    @IBOutlet weak var descriptionField: UITextField!
+    @IBOutlet weak var deadlinePicker: UIDatePicker!
     
     // Var to store data for picker
     var groupPickerData: [String] = [String]()
     var assigneePickerData: [String] = [String]()
     // default origin is the add button, optional from edit button
     var origin = ""
+    
+    // Pre-filled variables for editing
+    var choreName: String = ""
+    var choreDate: String = ""
+    var choreDescription: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +35,8 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         // Change navigation bar title based on how the user got here (using same view and logic for Create and Edit)
         if (origin == "editButton") {
             self.navigationItem.title = "Edit Chore"
+            self.nameLabel.text = choreName
+            self.descriptionField.text = choreDescription
         }
         
         // Connect data to picker
@@ -34,6 +44,7 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         self.groupPicker.dataSource = self
         self.assigneePicker.delegate = self
         self.assigneePicker.dataSource = self
+        self.deadlinePicker.datePickerMode = UIDatePickerMode.date
         
         // Input data for pickers
         groupPickerData = ["Apt 401", "Pusheen Code", "CS 130"]
@@ -74,6 +85,7 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
     }
     
+    
     // MARK: Actions
 
     @IBAction func cancelAction(_ sender: Any) {
@@ -81,6 +93,12 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     @IBAction func saveAction(_ sender: Any) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        
+        let selectedDate = dateFormatter.string(from: deadlinePicker.date)
+        print(selectedDate) //send to backend
+        
         dismiss()
     }
     

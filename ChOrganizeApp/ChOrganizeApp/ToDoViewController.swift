@@ -16,7 +16,7 @@ class ToDoViewController: UITableViewController {
     var choreDateToPass = ""
     
     private func loadToDoList(){
-        let chore1 = Chore(name: "Take out the trash", date: "tomorrow")
+        let chore1 = Chore(name: "Take out the trash", date: "tomorrow", description: "Kitchen trash")
         let chore2 = Chore(name: "Vacuum", date: "yesterday")
         chores.append([Chore]())
         chores.append([Chore]())
@@ -64,6 +64,7 @@ class ToDoViewController: UITableViewController {
                 let choresToPass = chores[tableView.indexPathForSelectedRow!.section][tableView.indexPathForSelectedRow!.row]
                 destVC.choreName = choresToPass.name
                 destVC.choreDate = choresToPass.date
+                destVC.choreDescription = choresToPass.description
             }
         }
     }

@@ -15,6 +15,7 @@ class ChoreViewController: UIViewController {
     
     var choreName: String = ""
     var choreDate: String = ""
+    var choreDescription: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,7 @@ class ChoreViewController: UIViewController {
         // Load data
         self.nameLabel.text = choreName
         self.dateLabel.text = choreDate
+        self.descriptionlabel.text = choreDescription
         
         // Put border around decription text.
         descriptionlabel.layer.borderWidth = 0.5
