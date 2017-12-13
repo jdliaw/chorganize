@@ -325,7 +325,7 @@ def deleteChore():
 
 Examples
 ```
-Creat a user
+Create a user
 POST
 .../api/user/create
 {
@@ -346,7 +346,7 @@ POST
 }
 ```
 ```
-Add a person into a group
+Add a person to a group
 PUT 
 .../api/group/add-users
 {
