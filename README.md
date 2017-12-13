@@ -321,3 +321,50 @@ Delete a chore
 @routes.route('/api/chore', methods=['DELETE'])
 def deleteChore():
 ```
+
+
+Examples
+
+Creat a user
+POST
+.../api/user/create
+{
+  "email": "abc11@gmail.com", 
+  "firstName": "Pusheen11", 
+  "lastName": "Code11",
+  "password":"123",
+  "username": "username11"
+}
+
+Create a group
+POST
+.../api/group/create
+{
+  "email": "abc11@gmail.com", 
+  "groupName": "123"
+}
+
+Add a person into a group
+PUT 
+.../api/group/add-users
+{
+  "groupID": 1, 
+  "listOfEmails" : ["abc11@gmail.com"]
+}
+
+Create a chore
+POST
+.../api/chore/create
+{
+  "name": "wash", 
+  "groupID": 1
+}
+
+Assign a chore to a person
+PUT
+.../api/chore/assign
+{
+  "id": 1, 
+  "email": "abc11@gmail.com",
+  "deadline":"07/28/2020, 18:54"
+}
