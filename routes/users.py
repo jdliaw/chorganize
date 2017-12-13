@@ -94,7 +94,7 @@ def modifyUser():
     :param oldemail: the original email of the user
     :param username: (optional) the new username of the user
     :param password: (optional) the new password of the user
-    :param firstName:(optional)the new firstName of the user
+    :param firstName: (optional)the new firstName of the user
     :param lastName: (optional) the new lastName of the user
 
     :type newemail: str
