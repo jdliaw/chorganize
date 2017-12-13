@@ -9,11 +9,19 @@
 import UIKit
 
 class CreateGroupViewController: UIViewController {
+    
+    var groupName: String = ""
+    var email: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        
+        // Email
+        let defaults = UserDefaults.standard
+        email = defaults.string(forKey: "email")!
+        
+        //createGroup()
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,6 +34,9 @@ class CreateGroupViewController: UIViewController {
     }
     
     @IBAction func save(_ sender: Any) {
+        if !email.isEmpty || !groupName.isEmpty {
+            createGroup(email: email, groupName: groupName)
+        }
         dismiss()
     }
     

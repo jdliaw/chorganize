@@ -9,14 +9,17 @@
 import UIKit
 
 class User{
-    init?(name: String, email: String) {
-        if name.isEmpty || email.isEmpty {
+    var name: String
+    var lastname: String
+    var email: String
+    
+    init?(name: String, lastname: String, email: String) {
+        
+        if name.isEmpty || lastname.isEmpty || email.isEmpty {
             return nil
         }
         self.name = name
+        self.lastname = lastname
         self.email = email
     }
-    
-    var name: String
-    var email: String
 }

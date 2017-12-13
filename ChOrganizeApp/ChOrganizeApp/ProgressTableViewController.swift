@@ -13,8 +13,8 @@ class ProgressTableViewController: UITableViewController {
     var members = [User]()
     
     private func loadProgress() {
-        let member1 = User(name: "Hana", email: "100%")
-        let member2 = User(name: "Jennifer", email: "100%")
+        let member1 = User(name: "Hana", lastname: "Kim", email: "100%")
+        let member2 = User(name: "Jennifer", lastname: "Liaw", email: "100%")
         members.insert(member1!, at: 0)
         members.insert(member2!, at: 1)
     }

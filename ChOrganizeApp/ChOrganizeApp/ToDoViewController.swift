@@ -16,7 +16,7 @@ class ToDoViewController: UITableViewController {
     var choreDateToPass = ""
     
     private func loadToDoList(){
-        let chore1 = Chore(name: "Take out the trash", date: "tomorrow", description: "Kitchen trash")
+        let chore1 = Chore(name: "Take out the trash", date: "tomorrow", desc: "Kitchen trash")
         let chore2 = Chore(name: "Vacuum", date: "yesterday")
         chores.append([Chore]())
         chores.append([Chore]())
@@ -26,6 +26,20 @@ class ToDoViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadToDoList()
+        
+        // Get Chores
+//        if let data = UserDefaults.standard.object(forKey: "activeChores") as? NSData {
+//            let tempchores = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Chore]
+//            for chore in tempchores {
+//                chores[0].append(chore)
+//            }
+//        }
+//        if let data = UserDefaults.standard.object(forKey: "completedChores") as? NSData {
+//            let tempchores = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Chore]
+//            for chore in tempchores {
+//                chores[1].append(chore)
+//            }
+//        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -64,7 +78,7 @@ class ToDoViewController: UITableViewController {
                 let choresToPass = chores[tableView.indexPathForSelectedRow!.section][tableView.indexPathForSelectedRow!.row]
                 destVC.choreName = choresToPass.name
                 destVC.choreDate = choresToPass.date
-                destVC.choreDescription = choresToPass.description
+                destVC.choreDescription = choresToPass.desc
             }
         }
     }

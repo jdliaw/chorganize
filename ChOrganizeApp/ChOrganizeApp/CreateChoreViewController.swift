@@ -32,6 +32,12 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Get email
+        let defaults = UserDefaults.standard
+        var email: String = defaults.string(forKey: "email")!
+        
+        
+        
         // Change navigation bar title based on how the user got here (using same view and logic for Create and Edit)
         if (origin == "editButton") {
             self.navigationItem.title = "Edit Chore"
@@ -45,6 +51,9 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         self.assigneePicker.delegate = self
         self.assigneePicker.dataSource = self
         self.deadlinePicker.datePickerMode = UIDatePickerMode.date
+        
+        // Get data for pickers 
+
         
         // Input data for pickers
         groupPickerData = ["Apt 401", "Pusheen Code", "CS 130"]

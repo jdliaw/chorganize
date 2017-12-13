@@ -160,6 +160,56 @@ class LoginViewController: UIViewController {
         
         let result = UserDefaults.standard.value(forKey: "email")
         print(result!)
+      
+        // Use NSUserDefaults to persist groups across app
+        getGroups(email: email) {
+            (groupslist: [Group]) in
+            UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: groupslist), forKey: "groups")
+            
+            if let data = UserDefaults.standard.object(forKey: "groups") as? NSData {
+                let groups = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Group]
+                print (groups)
+            }
+            
+            OperationQueue.main.addOperation {
+                self.moveToToDo()
+            }
+            
+            // For each group get active and completed chores
+//            let len = groupslist.count
+//            let doublelen = len + len
+//            let semaphore = DispatchSemaphore(value: doublelen)
+//            
+//            var chores = [[Chore]]()
+//            
+//            getChores(email: email, groupID: 1, completed: "true") {
+//                (choreslist: [Chore]) in
+//            }
+//            for group in groupslist {
+//                print (group.name)
+//                // Get active chores
+//                getChores(email: email, groupID: group.id, completed: "false") {
+//                    (choreslist: [Chore]) in
+//                    chores.append(choreslist)
+//                    semaphore.signal()
+//                }
+//                // Get completed chores
+//                getChores(email: email, groupID: group.id, completed: "true") {
+//                    (choreslist: [Chore]) in
+//                    chores.append(choreslist)
+//                    semaphore.signal()
+//                }
+//            }
+
+//            semaphore.wait(timeout: DispatchTime.distantFuture)
+//            
+//            defaults.set(NSKeyedArchiver.archivedData(withRootObject: chores), forKey: "activeChores")
+//            defaults.set(NSKeyedArchiver.archivedData(withRootObject: chores), forKey: "completedChores")
+//            
+//            OperationQueue.main.addOperation {
+//                self.moveToToDo()
+//            }
+        }
         
         // make request to get user's name (to show in settings)
        // var userInfo = getUserRequest(email: email)
@@ -175,7 +225,7 @@ class LoginViewController: UIViewController {
 //        let name = UserDefaults.standard.value(forKey: "firstName")
 //        print(name!)
 //        
-        moveToToDo()
+//        moveToToDo()
     }
     
     private func moveToToDo() {

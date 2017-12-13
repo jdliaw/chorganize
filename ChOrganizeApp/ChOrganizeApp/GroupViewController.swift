@@ -11,17 +11,24 @@ import UIKit
 class GroupViewController: UITableViewController {
 
     var groups = [Group]()
-    
-    private func loadGroups() {
-        let group1 = Group(name: "Pusheen Code")
-        let group2 = Group(name: "Apt 401")
-        groups.insert(group1!,at: 0)
-        groups.insert(group2!, at: 1)
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadGroups()
+        print ("in GroupViewController")
+        
+        // Get Email
+//        var email: String = defaults.string(forKey: "email")!
+        
+        // Get Groups
+        if let data = UserDefaults.standard.object(forKey: "groups") as? NSData {
+            groups = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Group]
+        } else {
+            print ("hi")
+        }
+//        
+//        for group in groups {
+//            print (group.name)
+//        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,5 +61,6 @@ class GroupViewController: UITableViewController {
             }
         }
     }
+    
 }
 

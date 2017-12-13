@@ -61,6 +61,7 @@ class ChoresByGroupTableViewController: UITableViewController {
                 let choresToPass = chores[tableView.indexPathForSelectedRow!.row]
                 destVC.choreName = choresToPass.name
                 destVC.choreDate = choresToPass.date
+                destVC.choreDescription = choresToPass.desc
             }
         }
     }
