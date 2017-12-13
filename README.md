@@ -324,7 +324,7 @@ def deleteChore():
 
 
 Examples
-
+```
 Creat a user
 POST
 .../api/user/create
@@ -335,7 +335,8 @@ POST
   "password":"123",
   "username": "username11"
 }
-
+```
+```
 Create a group
 POST
 .../api/group/create
@@ -343,7 +344,8 @@ POST
   "email": "abc11@gmail.com", 
   "groupName": "123"
 }
-
+```
+```
 Add a person into a group
 PUT 
 .../api/group/add-users
@@ -351,7 +353,8 @@ PUT
   "groupID": 1, 
   "listOfEmails" : ["abc11@gmail.com"]
 }
-
+```
+```
 Create a chore
 POST
 .../api/chore/create
@@ -359,7 +362,8 @@ POST
   "name": "wash", 
   "groupID": 1
 }
-
+```
+```
 Assign a chore to a person
 PUT
 .../api/chore/assign
@@ -368,3 +372,4 @@ PUT
   "email": "abc11@gmail.com",
   "deadline":"07/28/2020, 18:54"
 }
+```
