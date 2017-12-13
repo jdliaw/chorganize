@@ -258,8 +258,8 @@ class Chore(db.Model):
             return None
 
     @classmethod
-    def createChore(cls, name, description=None, completed=False, deadline=None):
-        chore = Chore(name=name, description=description, completed=completed, deadline=deadline)
+    def createChore(cls, name, description=None, completed=False):
+        chore = Chore(name=name, description=description, completed=completed)
         db.session.add(chore)
         db.session.commit()
         return chore
