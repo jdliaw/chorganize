@@ -146,6 +146,19 @@ Get all active chores for a user in a specific group
 def getChores():
 ```
 
+Validate email and password when a user log in to the app.
+
+```python
+"""
+@param str email: the email of the user
+@param str password: password of a user
+@return: Json with a result item, true/false
+@raises KeyError: if the input is not provided by the user
+"""
+@routes.route('/api/user/validate-password', methods=['POST'])
+def validatePassword():
+```
+
 ### Groups
 
 Create a group
@@ -241,6 +254,19 @@ Get completed or incompleted chores
 def getCompletedOrIncompletedChores():
 ```
 
+Get the user's performance in the specified group
+
+```python
+"""
+@param groupID: the group's ID
+@param email: the user's email
+@return: a JSON object that contains the user's performance in the specified group.
+@raises sqlalchemy.orm.exc.NoResultFound: when the group does not exist in database
+"""
+@routes.route('/api/group/get-performance-by-group-and-email', methods=['GET'])
+def getPerformanceByGroupAndEmail():
+```
+
 ### Chores
 
 Create a chore
@@ -294,4 +320,56 @@ Delete a chore
 """
 @routes.route('/api/chore', methods=['DELETE'])
 def deleteChore():
+```
+
+
+Examples
+```
+Create a user
+POST
+.../api/user/create
+{
+  "email": "abc11@gmail.com", 
+  "firstName": "Pusheen11", 
+  "lastName": "Code11",
+  "password":"123",
+  "username": "username11"
+}
+```
+```
+Create a group
+POST
+.../api/group/create
+{
+  "email": "abc11@gmail.com", 
+  "groupName": "123"
+}
+```
+```
+Add a person to a group
+PUT 
+.../api/group/add-users
+{
+  "groupID": 1, 
+  "listOfEmails" : ["abc11@gmail.com"]
+}
+```
+```
+Create a chore
+POST
+.../api/chore/create
+{
+  "name": "wash", 
+  "groupID": 1
+}
+```
+```
+Assign a chore to a person
+PUT
+.../api/chore/assign
+{
+  "id": 1, 
+  "email": "abc11@gmail.com",
+  "deadline":"07/28/2020, 18:54"
+}
 ```

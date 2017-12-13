@@ -1,0 +1,653 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>API Documentation &#8212; chorganize 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to chorganize’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="api-documentation">
+<h1>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="module-routes.users">
+<span id="users"></span><h1>Users<a class="headerlink" href="#module-routes.users" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="routes.users.createUser">
+<code class="descclassname">routes.users.</code><code class="descname">createUser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#routes.users.createUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new user and add to the database, use Bcrypt to hash password</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>email</strong> (<em>str</em>) – the email of the user</li>
+<li><strong>username</strong> (<em>str</em>) – (optional) the username of the user</li>
+<li><strong>password</strong> (<em>str</em>) – the password of the user</li>
+<li><strong>firstName</strong> (<em>str</em>) – the first name of the user</li>
+<li><strong>lastName</strong> (<em>str</em>) – (optional) the last name of the user</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">“User Successfully Created”, status code</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str, int</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><strong>KeyError</strong> – if the input is not provided by the user</li>
+<li><strong>sqlalchemy.exc.IntegrityError</strong> – if the user already existed in the database</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.users.deleteUser">
+<code class="descclassname">routes.users.</code><code class="descname">deleteUser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#routes.users.deleteUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a user from the database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>email</strong> (<em>str</em>) – the email of the user</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">“User Successfully Removed”, status code</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str, int</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><strong>KeyError</strong> – if the input is not provided by the user</li>
+<li><strong>sqlalchemy.orm.exc.NoResultFound</strong> – if the user is not found in the database</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.users.getChores">
+<code class="descclassname">routes.users.</code><code class="descname">getChores</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#routes.users.getChores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all active chores or completed chores for a particular user in a particular group.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>email</strong> (<em>str</em>) – the email of the user</li>
+<li><strong>groupID</strong> (<em>int</em>) – a particular groupID that the user is in</li>
+<li><strong>completed</strong> (<em>boolean</em>) – a boolean indicating whether a list of active chores or completed chores get return</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a list of JSON chore objects, status code</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">list of JSON objects, int</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ValueError</strong> – if the input of the completed parameter is neither true or false</li>
+<li><strong>sqlalchemy.orm.exc.NoResultFound</strong> – if the user is not found in the database</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.users.getUser">
+<code class="descclassname">routes.users.</code><code class="descname">getUser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#routes.users.getUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get information about a user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>email</strong> (<em>str</em>) – the email of the user</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a user JSON object, status code</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">JSON object, int</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><strong>sqlalchemy.orm.exc.NoResultFound</strong> – if the user is not found in the database</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.users.modifyUser">
+<code class="descclassname">routes.users.</code><code class="descname">modifyUser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#routes.users.modifyUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modify fields of a User object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>newemail</strong> (<em>str</em>) – (optional) the new email of the user</li>
+<li><strong>oldemail</strong> (<em>str</em>) – the original email of the user</li>
+<li><strong>username</strong> (<em>str</em>) – (optional) the new username of the user</li>
+<li><strong>password</strong> (<em>str</em>) – (optional) the new password of the user</li>
+<li><strong>firstName</strong> (<em>str</em>) – (optional)the new firstName of the user</li>
+<li><strong>lastName</strong> (<em>str</em>) – (optional) the new lastName of the user</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">“Successfully Modified”, status code</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str, int</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><strong>KeyError</strong> – if the input is not provided by the user</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.users.validatePassword">
+<code class="descclassname">routes.users.</code><code class="descname">validatePassword</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#routes.users.validatePassword" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate email and password when a user log in to the app.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>email</strong> (<em>str</em>) – the email of the user</li>
+<li><strong>password</strong> – password of a user</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Json with a result item, true/false</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">Json object</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><strong>KeyError</strong> – if the input is not provided by the user</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-routes.group">
+<span id="group"></span><h1>Group<a class="headerlink" href="#module-routes.group" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="routes.group.addUsers">
+<code class="descclassname">routes.group.</code><code class="descname">addUsers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#routes.group.addUsers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add users to a group.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>groupID</strong> (<em>int</em>) – the group’s ID</li>
+<li><strong>listOfEmails</strong> (<em>list of str</em>) – the list of user’s emails waiting to be added to the group</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a message that marks the success of adding members to the group, status code</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str, int</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><strong>KeyError</strong> – when lack of required fields of inputs</li>
+<li><strong>sqlalchemy.orm.exc.NoResultFound</strong> – when the group/user does not exist in database</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.group.create">
+<code class="descclassname">routes.group.</code><code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#routes.group.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new group and add it to the database. The user who created the group is automatically added as a member.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>email</strong> (<em>str</em>) – the user’s email</li>
+<li><strong>groupName</strong> (<em>str</em>) – the intended name for the group</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a message that marks the success of creating the group, status code</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str, int</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><strong>KeyError</strong> – when lack of required fields of inputs</li>
+<li><strong>sqlalchemy.orm.exc.NoResultFound</strong> – when the user does not exist in the database</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.group.edit">
+<code class="descclassname">routes.group.</code><code class="descname">edit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#routes.group.edit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Edit a group’s name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>groupID</strong> (<em>int</em>) – the group’s ID</li>
+<li><strong>groupName</strong> (<em>str</em>) – the intended new name for the group.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a message that marks the success of editing the group name, status code</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str, int</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><strong>KeyError</strong> – when lack of required fields of inputs</li>
+<li><strong>sqlalchemy.orm.exc.NoResultFound</strong> – when the group does not exist in database</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.group.getByEmail">
+<code class="descclassname">routes.group.</code><code class="descname">getByEmail</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#routes.group.getByEmail" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of groups that a user is in.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>email</strong> (<em>str</em>) – the user’s email</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a JSON object that contains the descriptions of a list of groups, status code</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str, int</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><strong>sqlalchemy.orm.exc.NoResultFound</strong> – when the user does not exist in database</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.group.getByID">
+<code class="descclassname">routes.group.</code><code class="descname">getByID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#routes.group.getByID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get information about a group, using the group’s ID.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>groupID</strong> (<em>int</em>) – the group’s ID</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a JSON object that describes the group, status code</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str, int</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><strong>sqlalchemy.orm.exc.NoResultFound</strong> – when the group does not exist in database</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.group.getCompletedOrIncompletedChores">
+<code class="descclassname">routes.group.</code><code class="descname">getCompletedOrIncompletedChores</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#routes.group.getCompletedOrIncompletedChores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of a group’s completed or incomplete chores.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>groupID</strong> (<em>int</em>) – the group’s ID</li>
+<li><strong>completed</strong> (<em>boolean</em>) – whether to get incompleted or completed chores</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a JSON object that contains the descriptions of a list of chores, status code</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str, int</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><strong>sqlalchemy.orm.exc.NoResultFound</strong> – when the group does not exist in database</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.group.getPerformanceByGroupAndEmail">
+<code class="descclassname">routes.group.</code><code class="descname">getPerformanceByGroupAndEmail</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#routes.group.getPerformanceByGroupAndEmail" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the user’s performance in the specified group.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>groupID</strong> (<em>int</em>) – the group’s ID</li>
+<li><strong>email</strong> (<em>str</em>) – the user’s email</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a JSON object that contains the user’s performance in the specified group.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str, int</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><strong>sqlalchemy.orm.exc.NoResultFound</strong> – when the group does not exist in database</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.group.removeUser">
+<code class="descclassname">routes.group.</code><code class="descname">removeUser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#routes.group.removeUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a user from the group.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>groupID</strong> (<em>int</em>) – the group’s ID</li>
+<li><strong>email</strong> (<em>str</em>) – the user’s email</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a message that marks the success of removing a member from the group, status code</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str, int</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><strong>KeyError</strong> – when lack of required fields of inputs</li>
+<li><strong>sqlalchemy.orm.exc.NoResultFound</strong> – when the group/user does not exist in database</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-routes.chores">
+<span id="chores"></span><h1>Chores<a class="headerlink" href="#module-routes.chores" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="routes.chores.assignUserOrDeadlineToChore">
+<code class="descclassname">routes.chores.</code><code class="descname">assignUserOrDeadlineToChore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#routes.chores.assignUserOrDeadlineToChore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign a user and/or deadline to a chore.</p>
+<p>Notes:
+For initial assignment, email and deadline are required parameters.
+For editing the deadline or assigned user later, email and deadline are optional parameters.
+Postcondition: both user and deadline must not be null.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>id</strong> (<em>int</em>) – the unique ID corresponding to the target chore</li>
+<li><strong>email</strong> (<em>str</em>) – the email of the user who will be assigned to the chore</li>
+<li><strong>deadline</strong> (<em>str</em>) – the new deadline for the chore (format: “mm/dd/yyyy, HH:MM” with 24-hour clock)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a message confirming that the user and deadline have been set, status code</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str, int</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><strong>KeyError</strong> – chore ID was not specified</li>
+<li><strong>sqlalchemy.orm.exc.NoResultFound</strong> – chore ID does not exist, or user email does not exist</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.chores.completeChore">
+<code class="descclassname">routes.chores.</code><code class="descname">completeChore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#routes.chores.completeChore" title="Permalink to this definition">¶</a></dt>
+<dd><p>User completes a chore.</p>
+<p>Precondition: chore must be assigned to a user and have a deadline.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>id</strong> (<em>int</em>) – the unique ID corresponding to the target chore</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a message confirming that the chore was successfully completed, status code</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str, int</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><strong>KeyError</strong> – chore ID was not specified</li>
+<li><strong>sqlalchemy.orm.exc.NoResultFound</strong> – chore corresponding to the specified ID does not exist</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.chores.createChore">
+<code class="descclassname">routes.chores.</code><code class="descname">createChore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#routes.chores.createChore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new Chore object and add it to the database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>str</em>) – name of the chore</li>
+<li><strong>groupID</strong> (<em>int</em>) – the unique ID of the group where the chore will be added</li>
+<li><strong>description</strong> (<em>str</em>) – (optional) more information about the chore</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a message confirming whether the chore successfully created, status code</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str, int</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><strong>KeyError</strong> – name or group ID was not specified</li>
+<li><strong>sqlalchemy.orm.exc.NoResultFound</strong> – user or group does not exist</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.chores.deleteChore">
+<code class="descclassname">routes.chores.</code><code class="descname">deleteChore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#routes.chores.deleteChore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a Chore object from the database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>id</strong> (<em>int</em>) – the unique ID corresponding to the target chore</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a message confirming whether the chore was successfully deleted, status code</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str, int</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><strong>KeyError</strong> – chore ID was not specified</li>
+<li><strong>sqlalchemy.orm.exc.NoResultFound</strong> – chore corresponding to the specified ID does not exist</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.chores.getChoreByID">
+<code class="descclassname">routes.chores.</code><code class="descname">getChoreByID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#routes.chores.getChoreByID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get information about a chore.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>id</strong> (<em>int</em>) – the unique ID corresponding to the target chore</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a JSON object that contains information about the chore, status code</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">JSON object, int</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><strong>sqlalchemy.orm.exc.NoResultFound</strong> – chore corresponding to the specified ID does not exist</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.chores.modifyChore">
+<code class="descclassname">routes.chores.</code><code class="descname">modifyChore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#routes.chores.modifyChore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modify the name and/or description of a chore.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>id</strong> (<em>int</em>) – the unique ID corresponding to the target chore</li>
+<li><strong>name</strong> (<em>str</em>) – (optional) the new name for the chore</li>
+<li><strong>description</strong> (<em>str</em>) – (optional) the new description for the chore</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a message confirming whether the chore was successfully modified, status code</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str, int</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><strong>KeyError</strong> – chore ID was not specified</li>
+<li><strong>sqlalchemy.orm.exc.NoResultFound</strong> – chore corresponding to the specified ID does not exist</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to chorganize’s documentation!</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Kaitlyne Chan.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/code.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

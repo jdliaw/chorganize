@@ -46,7 +46,7 @@ def createChore():
     else:
         choreDescription = None
         
-    chore = Chore.createChore(choreName, description=choreDescription, deadline=choreDeadline)
+    chore = Chore.createChore(choreName, description=choreDescription)
     group.addChore(chore)
         
     return "Chore successfully created"
