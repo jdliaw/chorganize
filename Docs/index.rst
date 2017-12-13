@@ -11,12 +11,3 @@ Welcome to chorganize's documentation!
    :caption: Contents:
    
    code
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
