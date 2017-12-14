@@ -17,28 +17,39 @@ class GroupViewController: UITableViewController {
         print ("in GroupViewController")
         
         // Get Email
-//        var email: String = defaults.string(forKey: "email")!
+        let defaults = UserDefaults.standard
+        let email = defaults.string(forKey: "email")!
         
         // Get Groups
-        if let data = UserDefaults.standard.object(forKey: "groups") as? NSData {
-            groups = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Group]
-        } else {
-            print ("hi")
+        getGroups(email: email) {
+            (groupslist: [Group]) in
+            self.groups = groupslist
+            
+            OperationQueue.main.addOperation {
+                self.tableView.reloadData()
+            }
         }
 
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "reloadGroupTableView"), object: nil)
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: Notification.Name("reloadGroupTableView"), object: nil)
-    }
-    
-    @objc func loadList(notification: Notification){
+    func loadList(){
+        //load data here
         self.tableView.reloadData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(GroupViewController.loadList(notification:)), name: Notification.Name("reloadGroupTableView"), object: nil)
-    }
+//    deinit {
+//        NotificationCenter.default.removeObserver(self, name: Notification.Name("reloadGroupTableView"), object: nil)
+//    }
+//    
+//    @objc func loadList(notification: Notification){
+//        self.tableView.reloadData()
+//    }
+//    
+//    override func viewWillAppear(_ animated: Bool) {
+//        NotificationCenter.default.addObserver(self, selector: #selector(GroupViewController.loadList(notification:)), name: Notification.Name("reloadGroupTableView"), object: nil)
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -74,7 +85,7 @@ class GroupViewController: UITableViewController {
                 destVC.groupID = groupToPass.id
                 
                 // Get chores for the group
-                getChores(email: email, groupID: groupToPass.id, completed: "false") {
+                getChores(email: email, groupID: groupToPass.id, completed: "true") {
                     (choreslist: [Chore]) in
                         destVC.chores = choreslist
                         let choresVC = segue.destination as? ChoresByGroupTableViewController
@@ -82,7 +93,7 @@ class GroupViewController: UITableViewController {
                 }
             }
         }
-        if segue.identifier == "profile" {
+        if segue.identifier == "groupsToProfile" {
             if let destVC = segue.destination as? ProfileViewController {
                 // Get email
                 let defaults = UserDefaults.standard

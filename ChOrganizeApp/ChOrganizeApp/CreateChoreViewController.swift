@@ -21,6 +21,10 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     // Var to store data for picker
     var groupPickerData: [String] = [String]()
     var assigneePickerData: [String] = [String]()
+    
+    // Var to store 2d array for assignees
+    var assigneeList: [[String]] = [[String]]()
+    
     // default origin is the add button, optional from edit button
     var origin = ""
     
@@ -28,13 +32,21 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var choreName: String = ""
     var choreDate: String = ""
     var choreDescription: String = ""
+    
+    // Picker values
+    var groupName: String = ""
+    var assigneeName: String = ""
+    var groupRow: Int = 0
+    
+    // Email 
+    var email: String = ""
+    var emailToPass: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Get email
         let defaults = UserDefaults.standard
-        var email: String = defaults.string(forKey: "email")!
+        email = defaults.string(forKey: "email")!
 
         // Change navigation bar title based on how the user got here (using same view and logic for Create and Edit)
         if (origin == "editButton") {
@@ -50,15 +62,44 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         self.assigneePicker.dataSource = self
         self.deadlinePicker.datePickerMode = UIDatePickerMode.date
         
-        // Get data for pickers 
-
+        // Get data for pickers
         
-        // Input data for pickers
-        groupPickerData = ["Apt 401", "Pusheen Code", "CS 130"]
-        assigneePickerData = ["Isaac", "Hana", "Jenn", "Michael", "Kaitlyne", "Yanting"]
-        
-        groupPicker.reloadAllComponents()
-        assigneePicker.reloadAllComponents()
+        // Get Groups
+        getGroups(email: email) {
+            (groupslist: [Group]) in
+            for group in groupslist {
+                self.groupPickerData.append(group.name)
+                
+                getUsersByGroup(groupID: group.id){
+                    (users: [User]) in
+                    for user in users {
+                        self.assigneePickerData.append(user.firstName)
+                    }
+                    OperationQueue.main.addOperation {
+                        self.assigneePicker.reloadAllComponents()
+                    }
+                }
+//                var index = 0
+//                self.assigneeList.append([String]())
+//                // Get Assignees
+//                getUsersByGroup(groupID: group.id){
+//                    (users: [User]) in
+//                    for user in users {
+//                        self.assigneeList[index].append(user.firstName)
+//                        print ("hi")
+//                        print (self.assigneeList[index])
+//                    }
+//                    self.assigneePickerData = self.assigneeList[0]
+//                    OperationQueue.main.addOperation {
+//                        self.assigneePicker.reloadAllComponents()
+//                    }
+//                }
+//                index = index + 1
+            }
+            OperationQueue.main.addOperation {
+                self.groupPicker.reloadAllComponents()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,6 +133,16 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
     }
     
+    // Value picked
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if (pickerView == groupPicker) {
+            groupName = groupPickerData[row]
+        }
+        else {
+            assigneeName = assigneePickerData[row]
+        }
+    }
+    
     
     // MARK: Actions
 
@@ -106,7 +157,53 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         let selectedDate = dateFormatter.string(from: deadlinePicker.date)
         print(selectedDate) //send to backend
         
-        dismiss()
+        // Get email
+        let defaults = UserDefaults.standard
+        self.email = defaults.string(forKey: "email")!
+        
+        print("groupname")
+        print(self.groupName)
+        
+        getGroups(email: self.email) {
+            (groupslist: [Group]) in
+            for group in groupslist {
+                if group.name == self.groupName {
+                    // Get Assignees
+                    getUsersByGroup(groupID: group.id){
+                        (users: [User]) in
+                        for user in users {
+                            if user.firstName == self.assigneeName {
+                                self.emailToPass = user.email
+                            }
+                        }
+                    }
+                    // Use the group id to create the chore
+                    createChore(name: self.nameLabel.text!, groupID: group.id, description: self.descriptionField.text!) {
+                        (choreID: Int) in
+                        // Get all the chores to find the chore id... call-back hell...
+                        getChores(email: self.email, groupID: group.id, completed: "true"){
+                            (choreslist: [Chore]) in
+                            // Search chores for the right chore. Compare by name and hope no two chores have the same name...
+                            for chore in choreslist {
+                                if chore.name == self.nameLabel.text {
+                                    // Assign user to the chore. Whew
+                                    assignUserToChore(id: chore.id, email: self.emailToPass, deadline: selectedDate) {
+                                        (success: Bool) in
+                                        if success == true {
+                                            // And we're done whew. Force the To-Do list to update.
+                                            OperationQueue.main.addOperation {
+                                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadToDoList"), object: nil)
+                                                self.dismiss()
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
     func dismiss() {

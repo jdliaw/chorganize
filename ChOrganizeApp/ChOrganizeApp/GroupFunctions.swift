@@ -31,7 +31,7 @@ func createGroup(email: String, groupName: String, completion: @escaping (_ succ
     
     let task = URLSession.shared.dataTask(with: request){ data, response, error in
         guard let data = data, error == nil else {
-            print("error=\(error)")
+            print("error=\(String(describing: error))")
             return
         }
         
@@ -181,4 +181,51 @@ func removeUser(groupID: Int, email: String, completion: @escaping (_ success: B
     
     task.resume()
     print("end remove user from group")
+}
+
+func getUsersByGroup(groupID: Int, completion: @escaping (_ userslist: [User]) -> Void){
+    print("in get users")
+    var users: [User] = []
+    let strGroupID = String(groupID)
+    
+    var components = URLComponents(string: "http://shea3100.pythonanywhere.com/api/group/get-users")!
+    components.queryItems = [URLQueryItem(name: "groupID", value: strGroupID)]
+    var request = URLRequest(url: components.url!)
+    request.httpMethod = "GET"
+    
+    let task = URLSession.shared.dataTask(with: request){ data, response, error in
+        guard let data = data, error == nil else {
+            print("error=\(String(describing: error))")
+            return
+        }
+        
+        if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+            print("statusCode should be 200, but is \(httpStatus.statusCode)")
+            print("response = \(String(describing: response))")
+        }
+        
+        let responseString = String(data: data, encoding: .utf8)
+        print("responseString = \(String(describing: responseString))")
+        
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
+
+            if let usersItem = json["users"] as? [[String: Any]] {
+                for user in usersItem {
+                    if let firstName = user["firstName"] as? String,
+                        let lastName = user["lastName"] as? String,
+                        let email = user["email"] as? String {
+                        users.append(User(firstName: firstName, lastName: lastName, email: email)!)
+                    }
+                }
+            }
+            completion(users)
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    task.resume()
+    print("end get users")
+    
+    //return userGroups
 }

@@ -54,8 +54,12 @@ class CreateGroupViewController: UIViewController {
                     }
                     addUsersToGroup(groupID: groupID, listOfEmails: emailsList!) {
                         (success: Bool) in
-                        DispatchQueue.main.async {
-                            NotificationCenter.default.post(name: Notification.Name("reloadGroupTableView"), object: nil)
+//                        DispatchQueue.main.async {
+//                            NotificationCenter.default.post(name: Notification.Name("reloadGroupTableView"), object: nil)
+//                            self.dismiss()
+//                        }
+                        OperationQueue.main.addOperation {
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadGroupTableView"), object: nil)
                             self.dismiss()
                         }
                     }

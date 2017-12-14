@@ -16,8 +16,8 @@ class ToDoViewController: UITableViewController {
     var choreDateToPass = ""
     
     private func loadToDoList(){
-        let chore1 = Chore(name: "Take out the trash", date: "tomorrow", desc: "Kitchen trash")
-        let chore2 = Chore(name: "Vacuum", date: "yesterday")
+        let chore1 = Chore(name: "", date: "", id: 1)
+        let chore2 = Chore(name: "", date: "", id: 1)
         chores.append([Chore]())
         chores.append([Chore]())
         chores[0].append(chore1!)
@@ -25,21 +25,55 @@ class ToDoViewController: UITableViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadToDoList()
+//        if chores.isEmpty {
+//            loadToDoList()
+//        }
+        
+        chores.append([Chore]())
+        chores.append([Chore]())
+        
+        // Get Email
+        let defaults = UserDefaults.standard
+        let email: String = defaults.string(forKey: "email")!
         
         // Get Chores
-//        if let data = UserDefaults.standard.object(forKey: "activeChores") as? NSData {
-//            let tempchores = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Chore]
-//            for chore in tempchores {
-//                chores[0].append(chore)
-//            }
-//        }
-//        if let data = UserDefaults.standard.object(forKey: "completedChores") as? NSData {
-//            let tempchores = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Chore]
-//            for chore in tempchores {
-//                chores[1].append(chore)
-//            }
-//        }
+        if let data = UserDefaults.standard.object(forKey: "groups") as? NSData {
+            let groups = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Group]
+            
+            for group in groups {
+                // Get active chores
+                getChores(email: email, groupID: group.id, completed: "false") {
+                    (choreslist: [Chore]) in
+                    if !choreslist.isEmpty {
+                        for chore in choreslist {
+                            self.chores[1].append(chore)
+                        }
+                    }
+                    OperationQueue.main.addOperation {
+                        self.tableView.reloadData()
+                    }
+                }
+                
+                // Get completed chores
+                getChores(email: email, groupID: group.id, completed: "true") {
+                    (choreslist: [Chore]) in
+                    if !choreslist.isEmpty {
+                        for chore in choreslist {
+                            self.chores[0].append(chore)
+                        }
+                    }
+                    OperationQueue.main.addOperation {
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "loadToDoList"), object: nil)
+    }
+    
+    func loadList(){
+        //load data here
+        self.tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,6 +93,9 @@ class ToDoViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if chores.isEmpty {
+            return 0
+        }
         return chores[section].count
     }
     
@@ -81,7 +118,7 @@ class ToDoViewController: UITableViewController {
                 destVC.choreDescription = choresToPass.desc
             }
         }
-        if segue.identifier == "profile" {
+        if segue.identifier == "toDoToProfile" {
             if let destVC = segue.destination as? ProfileViewController {
                 // Get email
                 let defaults = UserDefaults.standard
