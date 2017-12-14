@@ -172,16 +172,9 @@ def getUsers():
     :return: a JSON object that contains the profiles of a list of users, status code
     :rtype: json, int
 
-    :raises KeyError: when lack of required fields of inputs
     :raises sqlalchemy.orm.exc.NoResultFound: when the group/user does not exist in database
     """
-    data = request.data
-    dataDict = loads(data)
-    try:
-        groupID = dataDict['groupID']
-    except KeyError:
-        error = "Lack Input Parameters"
-        return error, 400
+    groupID = request.args.get('groupID')
 
     try:
         group = Group.getGroup(groupID)
@@ -190,7 +183,7 @@ def getUsers():
         return error, 404
 
     users = group.getUsers()
-    users = [users.serialize for user in users]
+    users = [user.serialize for user in users]
 
     return jsonify(users=users)
 
@@ -207,7 +200,7 @@ def removeUser():
     
     :return: a message that marks the success of removing a member from the group, status code
     :rtype: str, int
-    
+
     :raises KeyError: when lack of required fields of inputs
     :raises sqlalchemy.orm.exc.NoResultFound: when the group/user does not exist in database
     """

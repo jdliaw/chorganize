@@ -232,7 +232,6 @@ Get users from a group
 """
 @param groupID: the group's ID
 @return json: a JSON object that contains the profiles of a list of users, status code
-@raises KeyError: when lack of required fields of inputs
 @raises sqlalchemy.orm.exc.NoResultFound: when the group/user does not exist in database
 """
 @routes.route('/api/group/get-users', methods=['GET'])

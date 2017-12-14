@@ -1,1 +1,8 @@
 .DS_Store
+*.pyc
+.idea
+test.py
+test_sqlite.py
+sqlite.py
+add_objects.py
+.gitignore
