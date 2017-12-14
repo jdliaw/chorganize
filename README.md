@@ -179,7 +179,7 @@ Get a group's information
 ```python
 """
 @param str groupID: the group's ID.
-@return json: a json object that describes the group.
+@return json: a JSON object that describes the group.
 @raise NoResultFound: when the group does not exist in database.
 """
 @routes.route('/api/group/get-by-id', methods=['GET'])
@@ -191,7 +191,7 @@ Get the groups a user belongs to
 ```python
 """
 @param str email: the user's email.
-@return json: a json object that contains the descriptions of a list of groups.
+@return json: a JSON object that contains the descriptions of a list of groups.
 @raise NoResultFound: when the user does not exist in database.
 """
 @routes.route('/api/group/get-by-email', methods=['GET'])
@@ -226,6 +226,19 @@ Add a user to a group
 def addUsers():
 ```
 
+Get users from a group
+
+```python
+"""
+@param groupID: the group's ID
+@return json: a JSON object that contains the profiles of a list of users, status code
+@raises KeyError: when lack of required fields of inputs
+@raises sqlalchemy.orm.exc.NoResultFound: when the group/user does not exist in database
+"""
+@routes.route('/api/group/get-users', methods=['GET'])
+def getUsers():
+```
+
 Remove a user
 
 ```python
@@ -246,7 +259,7 @@ Get completed or incompleted chores
 """
 @param str groupID: the group's ID.
 @param bool completed: whether to get incompleted or completed chores.
-@return json: a json object that contains the descriptions of a list of chores.
+@return json: a JSON object that contains the descriptions of a list of chores.
 @raise KeyError: when lack of required fields of inputs.
 @raise NoResultFound: when the group does not exist in database.
 """
@@ -260,7 +273,7 @@ Get the user's performance in the specified group
 """
 @param groupID: the group's ID
 @param email: the user's email
-@return: a JSON object that contains the user's performance in the specified group.
+@return json: a JSON object that contains the user's performance in the specified group.
 @raises sqlalchemy.orm.exc.NoResultFound: when the group does not exist in database
 """
 @routes.route('/api/group/get-performance-by-group-and-email', methods=['GET'])
