@@ -10,6 +10,10 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var firstNameLabel: UILabel!
+    @IBOutlet weak var lastNameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,4 +33,15 @@ class ProfileViewController: UIViewController {
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "LoginVC") as UIViewController
         self.present(nextViewController, animated:true, completion:nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "profileEdit" {
+            if let destVC = segue.destination as? EditProfileViewController {
+                destVC.firstNameField.text = self.firstNameLabel.text
+                destVC.lastNameField.text = self.lastNameLabel.text
+                destVC.emailField.text = self.emailLabel.text
+            }
+        }
+    }
+
 }

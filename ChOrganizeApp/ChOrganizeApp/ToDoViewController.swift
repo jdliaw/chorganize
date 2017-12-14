@@ -81,6 +81,20 @@ class ToDoViewController: UITableViewController {
                 destVC.choreDescription = choresToPass.desc
             }
         }
+        if segue.identifier == "profile" {
+            if let destVC = segue.destination as? ProfileViewController {
+                // Get email
+                let defaults = UserDefaults.standard
+                let email: String = defaults.string(forKey: "email")!
+                // Get user details
+                getUser(email: email) {
+                    (user: User) in
+                    destVC.firstNameLabel.text = user.firstName
+                    destVC.lastNameLabel.text = user.lastName
+                    destVC.emailLabel.text = email
+                }
+            }
+        }
     }
     
 }

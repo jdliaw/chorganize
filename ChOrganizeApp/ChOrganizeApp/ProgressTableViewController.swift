@@ -13,8 +13,8 @@ class ProgressTableViewController: UITableViewController {
     var members = [User]()
     
     private func loadProgress() {
-        let member1 = User(name: "Hana", lastname: "Kim", email: "100%")
-        let member2 = User(name: "Jennifer", lastname: "Liaw", email: "100%")
+        let member1 = User(firstName: "Hana", lastName: "Kim", email: "100%")
+        let member2 = User(firstName: "Jennifer", lastName: "Liaw", email: "100%")
         members.insert(member1!, at: 0)
         members.insert(member2!, at: 1)
     }
@@ -50,7 +50,7 @@ class ProgressTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProgressTableViewCell", for: indexPath) as? ProgressTableViewCell
         let member = members[indexPath.row]
         
-        cell!.nameLabel.text = member.name
+        cell!.nameLabel.text = member.firstName
         cell!.progressLabel.text = member.email
         
         return cell!

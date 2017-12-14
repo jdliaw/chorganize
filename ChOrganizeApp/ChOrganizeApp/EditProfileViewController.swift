@@ -10,6 +10,11 @@ import UIKit
 
 class EditProfileViewController: UIViewController {
 
+    @IBOutlet weak var firstNameField: UITextField!
+    @IBOutlet weak var lastNameField: UITextField!
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,6 +34,7 @@ class EditProfileViewController: UIViewController {
     @IBAction func cancel(_ sender: Any) {
         dismiss()
     }
+    
     func dismiss() {
         self.navigationController?.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)

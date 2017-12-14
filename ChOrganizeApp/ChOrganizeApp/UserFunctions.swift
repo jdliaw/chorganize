@@ -8,15 +8,16 @@
 
 import UIKit
 
-func createUser(name: String, groupID: Int, description: String = "", completion: @escaping (_ success: Bool) -> Void) {
+func createUser(email: String, password: String, firstName: String, lastName: String = "", completion: @escaping (_ success: Bool) -> Void) {
     //        /api/user/create
-    print("in create chore")
+    print("in create user")
     
-    let params = ["name": name,
-                  "groupID": groupID,
-                  "description": description] as [String : Any]
+    let params = ["email": email,
+                  "password": password,
+                  "firstName": firstName,
+                  "lastName": lastName] as [String : Any]
     
-    let url = URL(string: "http://shea3100.pythonanywhere.com/api/chore/create")!
+    let url = URL(string: "http://shea3100.pythonanywhere.com/api/user/create")!
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     
@@ -48,5 +49,44 @@ func createUser(name: String, groupID: Int, description: String = "", completion
     }
     
     task.resume()
-    print("end request")
+    print("end create user")
 }
+
+func getUser(email: String, completion: @escaping (_ user: User) -> Void){
+    print("in get user details")
+    
+    var components = URLComponents(string: "http://shea3100.pythonanywhere.com/api/user/get")!
+    components.queryItems = [URLQueryItem(name: "email", value: email)]
+    var request = URLRequest(url: components.url!)
+    request.httpMethod = "GET"
+    
+    let task = URLSession.shared.dataTask(with: request){ data, response, error in
+        guard let data = data, error == nil else {
+            print("error=\(error)")
+            return
+        }
+        
+        if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+            print("statusCode should be 200, but is \(httpStatus.statusCode)")
+            print("response = \(response)")
+        }
+        
+        let responseString = String(data: data, encoding: .utf8)
+        print("responseString = \(responseString)")
+        
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
+            if let firstName = json["firstName"] as? String,
+                let lastName = json["lastName"] as? String {
+                    let user = User(firstName: firstName, lastName: lastName, email: email)!
+                    completion(user)
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    task.resume()
+    print("end get user details")
+
+}
+
