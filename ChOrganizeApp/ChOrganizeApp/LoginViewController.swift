@@ -8,18 +8,44 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     let BASE_URL = "http://shea3100.pythonanywhere.com"
     let VALIDATE_USER_URL = "/api/user/validate-password"
     let GET_USER_URL = "/api/user/get"
     
+    
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    @IBOutlet weak var ScrollView: UIScrollView!
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
+    }
+     override func viewDidLoad() {
+        super.viewDidLoad()
+        self.emailField.delegate = self
+        self.passwordField.delegate = self
+        //Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
+        
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        //tap.cancelsTouchesInView = false
+        
+        view.addGestureRecognizer(tap)
+    }
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        ScrollView.setContentOffset(CGPoint(x:0,y:100), animated: true)
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        ScrollView.setContentOffset(CGPoint(x:0,y:0), animated: true)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
