@@ -67,11 +67,13 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         // Get Groups
         getGroups(email: email) {
             (groupslist: [Group]) in
+            self.groupName = groupslist[0].name
             for group in groupslist {
                 self.groupPickerData.append(group.name)
                 
                 getUsersByGroup(groupID: group.id){
                     (users: [User]) in
+                    self.assigneeName = users[0].firstName
                     for user in users {
                         self.assigneePickerData.append(user.firstName)
                     }
