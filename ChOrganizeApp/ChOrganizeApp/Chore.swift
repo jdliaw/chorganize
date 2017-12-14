@@ -16,9 +16,10 @@ class Chore : NSObject, NSCoding {
     var id: Int
     var deadlinePassed: Bool
     var groupID: Int
+    var userEmail: String
     
-    init?(name: String, date: String, desc: String = "", id: Int, deadlinePassed: Bool = false, groupID: Int = 1) {
-        if name.isEmpty || date.isEmpty {
+    init?(name: String, date: String, desc: String = "", id: Int, deadlinePassed: Bool = false, groupID: Int = 1, userEmail: String) {
+        if name.isEmpty || date.isEmpty || userEmail.isEmpty {
             return nil
         }
         self.name = name
@@ -27,12 +28,14 @@ class Chore : NSObject, NSCoding {
         self.id = id
         self.deadlinePassed = deadlinePassed
         self.groupID = groupID
+        self.userEmail = userEmail
     }
     
     required convenience init?(coder decoder: NSCoder) {
         guard let name = decoder.decodeObject(forKey: "name") as? String,
             let date = decoder.decodeObject(forKey: "date") as? String,
-            let desc = decoder.decodeObject(forKey: "desc") as? String
+            let desc = decoder.decodeObject(forKey: "desc") as? String,
+            let userEmail = decoder.decodeObject(forKey: "userEmail") as? String
             else { return nil }
         let id = decoder.decodeInteger(forKey: "id")
         let deadlinePassed = decoder.decodeBool(forKey: "deadlinePassed")
@@ -44,7 +47,8 @@ class Chore : NSObject, NSCoding {
             desc: desc,
             id: id,
             deadlinePassed: deadlinePassed,
-            groupID: groupID
+            groupID: groupID,
+            userEmail: userEmail
         )
     }
     
@@ -55,6 +59,7 @@ class Chore : NSObject, NSCoding {
         coder.encode(self.id, forKey: "id")
         coder.encode(self.deadlinePassed, forKey: "deadlinePassed")
         coder.encode(self.groupID, forKey: "groupID")
+        coder.encode(self.userEmail, forKey: "userEmail")
     }
 
 }

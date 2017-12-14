@@ -153,11 +153,17 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     @IBAction func saveAction(_ sender: Any) {
+        if nameLabel.text == "" {
+            self.dismiss()
+        }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         
         let selectedDate = dateFormatter.string(from: deadlinePicker.date)
         print(selectedDate) //send to backend
+        
+        print ("chorename")
+        self.choreName = self.nameLabel.text ?? "failed"
         
         // Get email
         let defaults = UserDefaults.standard
@@ -180,27 +186,18 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
                         }
                     }
                     // Use the group id to create the chore
-                    createChore(name: self.nameLabel.text!, groupID: group.id, description: self.descriptionField.text!) {
+                    createChore(name: self.choreName, groupID: group.id, description: self.descriptionField.text!) {
                         (choreID: Int) in
-                        // Get all the chores to find the chore id... call-back hell...
-                        getChores(email: self.email, groupID: group.id, completed: "true"){
-                            (choreslist: [Chore]) in
-                            // Search chores for the right chore. Compare by name and hope no two chores have the same name...
-                            for chore in choreslist {
-                                if chore.name == self.nameLabel.text {
-                                    // Assign user to the chore. Whew
-                                    assignUserToChore(id: chore.id, email: self.emailToPass, deadline: selectedDate) {
-                                        (success: Bool) in
-                                        if success == true {
-                                            // And we're done whew. Force the To-Do list to update.
-                                            OperationQueue.main.addOperation {
-                                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadToDoList"), object: nil)
-                                                self.dismiss()
-                                            }
-                                        }
+                            assignUserToChore(id: choreID, email: self.emailToPass, deadline: selectedDate) {
+                                (success: Bool) in
+                                if success == true {
+                                    print ("success")
+                                    // And we're done whew. Force the To-Do list to update.
+                                    OperationQueue.main.addOperation {
+                                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadToDoList"), object: nil)
+                                        self.dismiss()
                                     }
                                 }
-                            }
                         }
                     }
                 }

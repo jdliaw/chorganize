@@ -42,9 +42,10 @@ func createChore(name: String, groupID: Int, description: String = "", completio
         }
         
         // success, save user data / session
-        let responseString = String(data: data, encoding: .utf8)
-        print("responseString = \(String(describing: responseString))")
-        completion(Int(responseString!)!)
+        if let responseString = String(data: data, encoding: .utf8) {
+            print("responseString = \(String(describing: responseString))")
+            completion(Int(responseString)!)
+        }
     }
     
     task.resume()
@@ -86,9 +87,10 @@ func getChores(email: String, groupID: Int, completed: String, completion: @esca
                                 let date = chore["deadline"] as? String,
                                 let id = chore["id"] as? Int,
                                 let deadlinePassed = chore["deadlinePassed"] as? Bool,
-                                let groupID = chore["groupID"] as? Int {
+                                let groupID = chore["groupID"] as? Int,
+                                let userEmail = chore["userEmail"] as? String {
                                     let desc = chore["description"] as? String ?? ""
-                                    userChores.append(Chore(name: name, date: date, desc: desc, id: id, deadlinePassed: deadlinePassed, groupID: groupID)!)
+                                userChores.append(Chore(name: name, date: date, desc: desc, id: id, deadlinePassed: deadlinePassed, groupID: groupID, userEmail: userEmail)!)
                             }
                         }
                     }

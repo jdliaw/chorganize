@@ -83,14 +83,6 @@ class GroupViewController: UITableViewController {
                 let groupToPass = groups[tableView.indexPathForSelectedRow!.row]
                 destVC.groupName = groupToPass.name
                 destVC.groupID = groupToPass.id
-                
-                // Get chores for the group
-                getChores(email: email, groupID: groupToPass.id, completed: "true") {
-                    (choreslist: [Chore]) in
-                        destVC.chores = choreslist
-                        let choresVC = segue.destination as? ChoresByGroupTableViewController
-                        choresVC?.chores = choreslist
-                }
             }
         }
         if segue.identifier == "groupsToProfile" {

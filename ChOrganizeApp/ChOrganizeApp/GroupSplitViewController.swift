@@ -15,8 +15,7 @@ class GroupSplitViewController: UIViewController {
     @IBOutlet weak var ProgressContainer: UIView!
     
     var groupName: String?
-    var groupID: Int = 0
-    var chores = [Chore]()
+    var groupID: Int = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()

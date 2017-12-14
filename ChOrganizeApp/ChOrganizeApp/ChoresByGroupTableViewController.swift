@@ -11,23 +11,35 @@ import UIKit
 class ChoresByGroupTableViewController: UITableViewController {
     
     var chores = [Chore]()
-//    
-//    private func loadChores() {
-//        let chore1 = Chore(name: "Do the dishes", date: "Dec 8")
-//        let chore2 = Chore(name: "Sweep the floor", date: "Dec 16")
-//        chores.insert(chore1!, at: 0)
-//        chores.insert(chore2!, at: 1)
-//    }
+    var users = [User]()
+    var groupID: Int = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
 //        loadChores()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        // Get Email
+        let defaults = UserDefaults.standard
+        let email = defaults.string(forKey: "email")!
+        
+        // TODO: change this to get chores for group!!!!! 
+        // Get chores for the group
+        getChores(email: email, groupID: self.groupID, completed: "true") {
+            (choreslist: [Chore]) in
+            self.chores = choreslist
+            
+            for chore in choreslist {
+                getUser(email: chore.userEmail) {
+                    (user: User) in
+                    print(user.email)
+                    self.users.append(user)
+                }
+            }
+            // Call to force reload
+            OperationQueue.main.addOperation {
+                self.tableView.reloadData()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,7 +63,11 @@ class ChoresByGroupTableViewController: UITableViewController {
         
         cell!.nameLabel.text = chore.name
         cell!.dateLabel.text = chore.date
-        
+        for user in users {
+            if user.email == chore.userEmail {
+                cell!.personLabel.text = user.firstName
+            }
+        }
         return cell!
     }
     

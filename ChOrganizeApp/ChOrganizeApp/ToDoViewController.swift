@@ -15,14 +15,6 @@ class ToDoViewController: UITableViewController {
     var choreNameToPass = ""
     var choreDateToPass = ""
     
-    private func loadToDoList(){
-        let chore1 = Chore(name: "", date: "", id: 1)
-        let chore2 = Chore(name: "", date: "", id: 1)
-        chores.append([Chore]())
-        chores.append([Chore]())
-        chores[0].append(chore1!)
-        chores[1].append(chore2!)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
 //        if chores.isEmpty {
