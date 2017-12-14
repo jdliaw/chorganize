@@ -50,16 +50,12 @@ class GroupSplitViewController: UIViewController {
                 destVC.groupID = self.groupID
             }
         }
+        // Pass group ID to choresByGroupTableView to load chores for appropriate group
+        if segue.identifier == "choresByGroup" {
+            if let destVC = segue.destination as? ChoresByGroupTableViewController {
+                destVC.groupID = self.groupID
+                print(destVC.groupID)
+            }
+        }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

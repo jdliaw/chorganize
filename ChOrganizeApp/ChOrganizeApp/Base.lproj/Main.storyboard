@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -434,7 +434,7 @@
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdf-Og-bDe">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="411"/>
                                         <connections>
-                                            <segue destination="Rj2-ta-SNs" kind="embed" id="1EZ-Tj-t37"/>
+                                            <segue destination="Rj2-ta-SNs" kind="embed" identifier="choresByGroup" id="1EZ-Tj-t37"/>
                                         </connections>
                                     </containerView>
                                 </subviews>
@@ -1341,8 +1341,8 @@
         <image name="trash.png" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4qM-Px-ZAu"/>
+        <segue reference="thV-Kq-6FJ"/>
         <segue reference="LI5-SV-kFo"/>
-        <segue reference="kbP-O3-bTn"/>
+        <segue reference="4qM-Px-ZAu"/>
     </inferredMetricsTieBreakers>
 </document>

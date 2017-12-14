@@ -52,6 +52,58 @@ func createChore(name: String, groupID: Int, description: String = "", completio
     print("end request")
 }
 
+func getGroupChores(groupID: Int, completion: @escaping (_ choreslist: [Chore]) -> Void) {
+    // 1 = completed, 0 = not completed
+    // always get the incompleted chores
+    print("getting chores in this group for id: \(groupID)")
+    var groupChores: [Chore] = []
+    
+    var components = URLComponents(string: "http://shea3100.pythonanywhere.com/api/group/get-completed-or-incompleted-chores")!
+    components.queryItems = [URLQueryItem(name: "groupID", value: String(groupID)), URLQueryItem(name: "completed", value: "false")]
+    var request = URLRequest(url: components.url!)
+    request.httpMethod = "GET"
+    
+    let task = URLSession.shared.dataTask(with: request){ data, response, error in
+        guard let data = data, error == nil else {
+            print("error=\(String(describing: error))")
+            return
+        }
+        
+        if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+            print("statusCode should be 200, but is \(httpStatus.statusCode)")
+            print("response = \(String(describing: response))")
+        }
+        
+        let responseString = String(data: data, encoding: .utf8)
+//        print("responseString = \(String(describing: responseString))")
+        
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
+            if let choresList = json["chores"] as? NSArray {
+                if choresList != nil {
+                    for chore in choresList {
+                        if let dict = chore as? NSDictionary {
+                                if let name = dict.value(forKey: "name") as? String,
+                                let date = dict.value(forKey: "deadline") as? String,
+                                let id = dict.value(forKey: "id") as? Int,
+                                let deadlinePassed = dict.value(forKey: "deadlinePassed") as? Bool,
+                                let groupID = dict.value(forKey: "groupID") as? Int,
+                                let userEmail = dict.value(forKey: "userEmail") as? String {
+                                let desc = dict.value(forKey: "description") as? String ?? ""
+                                groupChores.append(Chore(name: name, date: date, desc: desc, id: id, deadlinePassed: deadlinePassed, groupID: groupID, userEmail: userEmail)!)
+                            }
+                        }
+                    }
+                }
+            }
+            completion(groupChores)
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    task.resume()
+}
+
 func getChores(email: String, groupID: Int, completed: String, completion: @escaping (_ choreslist: [Chore]) -> Void){
     print("in get chores")
     var userChores: [Chore] = []
