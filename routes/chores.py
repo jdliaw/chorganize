@@ -133,7 +133,7 @@ def assignUserOrDeadlineToChore():
     
     :param id: the unique ID corresponding to the target chore
     :param email: the email of the user who will be assigned to the chore
-    :param deadline: the new deadline for the chore (format: "mm/dd/yyyy, HH:MM" with 24-hour clock)
+    :param deadline: the new deadline for the chore (format: "mm/dd/yyyy")
     
     :type id: int
     :type email: str
@@ -188,7 +188,7 @@ def assignUserOrDeadlineToChore():
         
     if deadline is not None:
         choreDeadlineStr = dataDict['deadline']
-        choreDeadline = datetime.strptime(choreDeadlineStr, "%m/%d/%Y, %H:%M")
+        choreDeadline = datetime.strptime(choreDeadlineStr, "%m/%d/%Y")
         chore.setDeadline(choreDeadline)
         
     return "User assignment and deadline set successfully"

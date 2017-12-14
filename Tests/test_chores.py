@@ -108,16 +108,16 @@ class TestChores(unittest.TestCase):
         
     def test_assign_chore(self):
         self.addChoreToDB("sweep")
-        response = requests.put('http://localhost:8080/api/chore/assign', data='{"id": 1, "email": "kchan52@ucla.edu", "deadline": "12/31/2017, 23:55"}')
+        response = requests.put('http://localhost:8080/api/chore/assign', data='{"id": 1, "email": "kchan52@ucla.edu", "deadline": "12/31/2017"}')
         self.assertEqual(response.status_code, 200)
         
         chore = Chore.getChore(1)
         userEmail = chore.getUserEmail()
-        deadline = chore.getDeadline().strftime('%m/%d/%Y, %H:%M')
+        deadline = chore.getDeadline().strftime('%m/%d/%Y')
         completed = chore.getCompleted()
         
         self.assertEqual(userEmail, "kchan52@ucla.edu")
-        self.assertEqual(deadline, "12/31/2017, 23:55")
+        self.assertEqual(deadline, "12/31/2017")
         self.assertEqual(completed, False)
         
     def test_assign_chore_missing_input(self):
@@ -135,7 +135,7 @@ class TestChores(unittest.TestCase):
         chore = Chore.getChore(1)
         user = User.getUser("kchan52@ucla.edu")
         user.addChore(chore)
-        deadline = datetime.strptime("12/12/2020, 12:12", "%m/%d/%Y, %H:%M")
+        deadline = datetime.strptime("12/12/2020", "%m/%d/%Y")
         chore.setDeadline(deadline)
         
         response = requests.put('http://localhost:8080/api/chore/complete', data='{"id": 1}')
@@ -160,7 +160,7 @@ class TestChores(unittest.TestCase):
         chore = Chore.getChore(1)
         user = User.getUser("kchan52@ucla.edu")
         user.addChore(chore)
-        deadline = datetime.strptime("11/30/2017, 23:59", "%m/%d/%Y, %H:%M")
+        deadline = datetime.strptime("11/30/2017", "%m/%d/%Y")
         chore.setDeadline(deadline)
         
         response = requests.put('http://localhost:8080/api/chore/complete', data='{"id": 1}')
@@ -185,7 +185,7 @@ class TestChores(unittest.TestCase):
         chore = Chore.getChore(1)
         user = User.getUser("kchan52@ucla.edu")
         user.addChore(chore)
-        deadline = datetime.strptime("12/12/2020, 12:12", "%m/%d/%Y, %H:%M")
+        deadline = datetime.strptime("12/12/2020", "%m/%d/%Y")
         chore.setDeadline(deadline)
         
         response = requests.put('http://localhost:8080/api/chore/complete', data='{}')
@@ -196,7 +196,7 @@ class TestChores(unittest.TestCase):
         chore = Chore.getChore(1)
         user = User.getUser("kchan52@ucla.edu")
         user.addChore(chore)
-        deadline = datetime.strptime("12/12/2020, 12:12", "%m/%d/%Y, %H:%M")
+        deadline = datetime.strptime("12/12/2020", "%m/%d/%Y")
         chore.setDeadline(deadline)
         
         response = requests.put('http://localhost:8080/api/chore/complete', data='{"id": 500}')
