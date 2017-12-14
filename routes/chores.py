@@ -19,7 +19,7 @@ def createChore():
     :type groupID: int
     :type description: str
     
-    :return: a message confirming whether the chore successfully created, status code
+    :return: chore ID, status code
     :rtype: str, int
     
     :raises KeyError: name or group ID was not specified
@@ -49,7 +49,7 @@ def createChore():
     chore = Chore.createChore(choreName, description=choreDescription)
     group.addChore(chore)
         
-    return "Chore successfully created"
+    return str(chore.id)
 
 @routes.route('/api/chore/get', methods=['GET'])
 def getChoreByID():
@@ -133,7 +133,7 @@ def assignUserOrDeadlineToChore():
     
     :param id: the unique ID corresponding to the target chore
     :param email: the email of the user who will be assigned to the chore
-    :param deadline: the new deadline for the chore (format: "mm/dd/yyyy, HH:MM" with 24-hour clock)
+    :param deadline: the new deadline for the chore (format: "mm/dd/yyyy")
     
     :type id: int
     :type email: str
@@ -188,7 +188,7 @@ def assignUserOrDeadlineToChore():
         
     if deadline is not None:
         choreDeadlineStr = dataDict['deadline']
-        choreDeadline = datetime.strptime(choreDeadlineStr, "%m/%d/%Y, %H:%M")
+        choreDeadline = datetime.strptime(choreDeadlineStr, "%m/%d/%Y")
         chore.setDeadline(choreDeadline)
         
     return "User assignment and deadline set successfully"

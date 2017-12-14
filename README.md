@@ -36,10 +36,10 @@ Primary class representing a user in our application.
 
 ```
   email: string
-  username: string
+  username:(Optional) string
   password: string
   firstName: string
-  lastName: string
+  lastName: (Optional)string
 ```
 
 ### Group
@@ -76,10 +76,10 @@ Create a user
 ```python
 """
 @param str email: The email of the user
-@param str username: The username of the username
+@param str username: (Optional)The username of the username
 @param str password: The password of the user
 @param str firstName: The firstName of the user
-@param str lastName: The lastName of the user
+@param str lastName: (Optional)The lastName of the user
 @return: str "User Successfully Created"
 @raise KeyError: If the input is not provided by the user
 @raise IntegrityError: If the user already existed in the database
@@ -167,7 +167,7 @@ Create a group
 """
 @param str email: the user's email.
 @param str groupName: the intended name for the group.
-@return str: a message that marks the success of creating the group.
+@return str: the newly created group's ID.
 @raise KeyError: when lack of required fields of inputs.
 """
 @routes.route('/api/group/create', methods=['POST'])
@@ -232,7 +232,6 @@ Get users from a group
 """
 @param groupID: the group's ID
 @return json: a JSON object that contains the profiles of a list of users, status code
-@raises KeyError: when lack of required fields of inputs
 @raises sqlalchemy.orm.exc.NoResultFound: when the group/user does not exist in database
 """
 @routes.route('/api/group/get-users', methods=['GET'])
@@ -291,7 +290,7 @@ Create a chore
 @param str deadline: the date that the chore should be completed by (m/d/yyyy)
 @param str description: more information about the chore
 @param str userEmail: the email of the user who will be assigned to the chore
-@return str: a message confirming that the chore was successfully created
+@return str: the newly created chore's ID
 @raise KeyError: name and/or groupID parameters were not specified
 @raise NoResultFound: user or group does not exist
 """
