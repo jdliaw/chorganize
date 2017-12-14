@@ -25,10 +25,19 @@ class GroupViewController: UITableViewController {
         } else {
             print ("hi")
         }
-//        
-//        for group in groups {
-//            print (group.name)
-//        }
+
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("reloadGroupTableView"), object: nil)
+    }
+    
+    @objc func loadList(notification: Notification){
+        self.tableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(GroupViewController.loadList(notification:)), name: Notification.Name("reloadGroupTableView"), object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -55,9 +64,22 @@ class GroupViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "groupToGroupName" {
+            // Get email
+            let defaults = UserDefaults.standard
+            let email: String = defaults.string(forKey: "email")!
+            
             if let destVC = segue.destination as? GroupSplitViewController {
                 let groupToPass = groups[tableView.indexPathForSelectedRow!.row]
                 destVC.groupName = groupToPass.name
+                destVC.groupID = groupToPass.id
+                
+                // Get chores for the group
+                getChores(email: email, groupID: groupToPass.id, completed: "false") {
+                    (choreslist: [Chore]) in
+                        destVC.chores = choreslist
+                        let choresVC = segue.destination as? ChoresByGroupTableViewController
+                        choresVC?.chores = choreslist
+                }
             }
         }
     }

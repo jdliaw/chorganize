@@ -11,17 +11,17 @@ import UIKit
 class ChoresByGroupTableViewController: UITableViewController {
     
     var chores = [Chore]()
-    
-    private func loadChores() {
-        let chore1 = Chore(name: "Do the dishes", date: "Dec 8")
-        let chore2 = Chore(name: "Sweep the floor", date: "Dec 16")
-        chores.insert(chore1!, at: 0)
-        chores.insert(chore2!, at: 1)
-    }
+//    
+//    private func loadChores() {
+//        let chore1 = Chore(name: "Do the dishes", date: "Dec 8")
+//        let chore2 = Chore(name: "Sweep the floor", date: "Dec 16")
+//        chores.insert(chore1!, at: 0)
+//        chores.insert(chore2!, at: 1)
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadChores()
+//        loadChores()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

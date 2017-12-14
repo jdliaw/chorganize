@@ -6,11 +6,15 @@
 //  Copyright © 2017 Pusheen Code. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class CreateGroupViewController: UIViewController {
     
-    var groupName: String = ""
+    @IBOutlet weak var groupName: UITextField!
+    
+    @IBOutlet weak var memberEmails: UITextField!
+    
     var email: String = ""
 
     override func viewDidLoad() {
@@ -34,10 +38,30 @@ class CreateGroupViewController: UIViewController {
     }
     
     @IBAction func save(_ sender: Any) {
-        if !email.isEmpty || !groupName.isEmpty {
-            createGroup(email: email, groupName: groupName)
+        if !email.isEmpty && groupName.text != "" && memberEmails.text != "" {
+            let emailsList = memberEmails.text?.components(separatedBy: " ,")
+            createGroup(email: email, groupName: groupName.text!) {
+                (success: Bool) in
+                var groupID: Int = 0
+                getGroups(email: self.email) {
+                    (groupslist: [Group]) in
+                    
+                    // Get groupID
+                    for group in groupslist {
+                        if group.name == self.groupName.text {
+                            groupID = group.id
+                        }
+                    }
+                    addUsersToGroup(groupID: groupID, listOfEmails: emailsList!) {
+                        (success: Bool) in
+                        DispatchQueue.main.async {
+                            NotificationCenter.default.post(name: Notification.Name("reloadGroupTableView"), object: nil)
+                            self.dismiss()
+                        }
+                    }
+                }
+            }
         }
-        dismiss()
     }
     
     func dismiss() {

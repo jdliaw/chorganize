@@ -13,6 +13,7 @@ class EditGroupViewController: UIViewController {
     @IBOutlet weak var descriptionField: UITextField!
     
     var groupName: String?
+    var groupID: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,12 +40,18 @@ class EditGroupViewController: UIViewController {
         let alert = UIAlertController(title: "Leave group?", message: "Are you sure you want to leave your group? Your chores will become unassigned.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Leave", comment: "Default action"), style: .`default`, handler: { _ in
             //TODO: Delete user from group
-            
-            //Transition back to TabBarController
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let TabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.window?.rootViewController = TabBarVC
+            let defaults = UserDefaults.standard
+            let email: String = defaults.string(forKey: "email")!
+            removeUser(groupID: self.groupID, email: email) {
+                (success: Bool) in
+                if success == true {
+                    //Transition back to TabBarController
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let TabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    appDelegate.window?.rootViewController = TabBarVC
+                }
+            }
         }))
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel, handler: { _ in
             NSLog("The \"Cancel\" alert occured.")

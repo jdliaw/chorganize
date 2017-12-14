@@ -8,14 +8,15 @@
 
 import UIKit
 
-func createChore(email: String, groupName: String) {
+func createChore(name: String, groupID: Int, description: String = "", completion: @escaping (_ success: Bool) -> Void) {
     //        /api/user/create
-    print("in create group")
+    print("in create chore")
     
-    let params = ["email": email,
-                  "groupName": groupName]
+    let params = ["name": name,
+                  "groupID": groupID,
+                  "description": description] as [String : Any]
     
-    let url = URL(string: "http://shea3100.pythonanywhere.com/api/group/create")!
+    let url = URL(string: "http://shea3100.pythonanywhere.com/api/chore/create")!
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     
@@ -43,12 +44,12 @@ func createChore(email: String, groupName: String) {
         // success, save user data / session
         let responseString = String(data: data, encoding: .utf8)
         print("responseString = \(responseString)")
+        completion(true)
     }
     
     task.resume()
     print("end request")
 }
-
 
 func getChores(email: String, groupID: Int, completed: String, completion: @escaping (_ choreslist: [Chore]) -> Void){
     print("in get chores")
@@ -77,13 +78,13 @@ func getChores(email: String, groupID: Int, completed: String, completion: @esca
         
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
-            print(json)
-            let choresItem = json["chores"] as? [[String: Any]]
-            for chore in choresItem! {
-                if let name = chore["name"] as? String,
-                    let date = chore["date"] as? String,
-                    let desc = chore["desc"] as? String{
-                    userChores.append(Chore(name: name, date: date, desc: desc)!)
+            if let choresItem = json["chores"] as? [[String: Any]] {
+                for chore in choresItem {
+                    if let name = chore["name"] as? String,
+                        let date = chore["date"] as? String,
+                        let desc = chore["desc"] as? String{
+                        userChores.append(Chore(name: name, date: date, desc: desc)!)
+                    }
                 }
             }
             completion(userChores)

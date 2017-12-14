@@ -35,9 +35,7 @@ class CreateChoreViewController: UIViewController, UIPickerViewDelegate, UIPicke
         // Get email
         let defaults = UserDefaults.standard
         var email: String = defaults.string(forKey: "email")!
-        
-        
-        
+
         // Change navigation bar title based on how the user got here (using same view and logic for Create and Edit)
         if (origin == "editButton") {
             self.navigationItem.title = "Edit Chore"

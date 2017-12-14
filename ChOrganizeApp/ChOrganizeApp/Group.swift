@@ -21,9 +21,9 @@ class Group : NSObject, NSCoding {
     }
     
     required convenience init?(coder decoder: NSCoder) {
-        guard let name = decoder.decodeObject(forKey: "name") as? String,
-            let id = decoder.decodeObject(forKey: "id") as? Int
+        guard let name = decoder.decodeObject(forKey: "name") as? String
             else { return nil }
+        let id = decoder.decodeInteger(forKey: "id")
         
         self.init(
             name: name,

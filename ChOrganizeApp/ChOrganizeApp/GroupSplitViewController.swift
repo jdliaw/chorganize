@@ -15,6 +15,8 @@ class GroupSplitViewController: UIViewController {
     @IBOutlet weak var ProgressContainer: UIView!
     
     var groupName: String?
+    var groupID: Int = 0
+    var chores = [Chore]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +48,7 @@ class GroupSplitViewController: UIViewController {
         if segue.identifier == "editGroup" {
             if let destVC = segue.destination as? EditGroupViewController {
                 destVC.groupName = self.groupName
+                destVC.groupID = self.groupID
             }
         }
     }
