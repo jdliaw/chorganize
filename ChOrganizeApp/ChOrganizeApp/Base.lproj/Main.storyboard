@@ -547,7 +547,7 @@
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
-                                                            <outlet property="nameLabel" destination="YWD-DX-5cp" id="Fc3-KF-2Lt"/>
+                                                            <outlet property="nameLabel" destination="YWD-DX-5cp" id="zf7-q5-r0X"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>

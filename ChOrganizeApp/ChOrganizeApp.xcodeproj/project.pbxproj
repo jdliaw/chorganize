@@ -28,6 +28,7 @@
 		339F547E1FAE8CB100346119 /* ChOrganizeAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339F547D1FAE8CB100346119 /* ChOrganizeAppUITests.swift */; };
 		33CB1A521FB78EA3006F941D /* chorgilogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CB1A511FB78EA3006F941D /* chorgilogo.png */; };
 		33CB1A541FB78EDB006F941D /* chorgibroom.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CB1A531FB78EDB006F941D /* chorgibroom.png */; };
+		FF19FC021FE346B30068CCF8 /* GroupMembersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF19FC011FE346B30068CCF8 /* GroupMembersTableViewCell.swift */; };
 		FF2E4DC01FB7C46500D3C35D /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E4DBE1FB7C46500D3C35D /* Group.swift */; };
 		FF2E4DC11FB7C46500D3C35D /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E4DBF1FB7C46500D3C35D /* GroupTableViewCell.swift */; };
 		FF48C8EC1FB7A79E00812AE7 /* CreateChoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF48C8EB1FB7A79E00812AE7 /* CreateChoreViewController.swift */; };
@@ -91,6 +92,7 @@
 		339F547F1FAE8CB100346119 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33CB1A511FB78EA3006F941D /* chorgilogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chorgilogo.png; path = ImageFiles/chorgilogo.png; sourceTree = SOURCE_ROOT; };
 		33CB1A531FB78EDB006F941D /* chorgibroom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chorgibroom.png; path = ImageFiles/chorgibroom.png; sourceTree = SOURCE_ROOT; };
+		FF19FC011FE346B30068CCF8 /* GroupMembersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMembersTableViewCell.swift; sourceTree = "<group>"; };
 		FF2E4DBE1FB7C46500D3C35D /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		FF2E4DBF1FB7C46500D3C35D /* GroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		FF48C8EB1FB7A79E00812AE7 /* CreateChoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChoreViewController.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				339D02911FDB5568002B8526 /* ProgressTableViewController.swift */,
 				339D02931FDB5594002B8526 /* ProgressTableViewCell.swift */,
 				FF62A90A1FD6578C008DE923 /* EditGroupViewController.swift */,
+				FF19FC011FE346B30068CCF8 /* GroupMembersTableViewCell.swift */,
 				FF62A90E1FD65BAB008DE923 /* ProfileViewController.swift */,
 				338DBD991FDF5AB3004EE17C /* EditProfileViewController.swift */,
 				339F54611FAE8CB000346119 /* Main.storyboard */,
@@ -359,6 +362,7 @@
 			files = (
 				FF2E4DC01FB7C46500D3C35D /* Group.swift in Sources */,
 				339D02901FDB550E002B8526 /* GroupSplitViewController.swift in Sources */,
+				FF19FC021FE346B30068CCF8 /* GroupMembersTableViewCell.swift in Sources */,
 				330680B41FE072DA0026B09D /* UserFunctions.swift in Sources */,
 				339D02941FDB5594002B8526 /* ProgressTableViewCell.swift in Sources */,
 				336A275F1FB4188700419E0E /* LoginViewController.swift in Sources */,
