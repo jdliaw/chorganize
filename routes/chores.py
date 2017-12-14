@@ -49,7 +49,7 @@ def createChore():
     chore = Chore.createChore(choreName, description=choreDescription)
     group.addChore(chore)
         
-    return "Chore successfully created"
+    return str(chore.id)
 
 @routes.route('/api/chore/get', methods=['GET'])
 def getChoreByID():

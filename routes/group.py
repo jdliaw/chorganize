@@ -39,7 +39,7 @@ def create():
     group = Group.createGroup(groupName)
     group.addUser(user)
 
-    return "Group Successfully Created"
+    return str(group.id)
 
 @routes.route('/api/group/get-by-id', methods=['GET'])
 def getByID():
