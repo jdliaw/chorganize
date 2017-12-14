@@ -115,10 +115,7 @@ func getUserProgress(email: String, groupID: Int, completion: @escaping (_ progr
         
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
-            print("JSON")
-            print(json["total"])
             if let total = json["total"] as? Int {
-                print("retrieved progress: \(total)%")
                 completion(total)
             }
         } catch let error as NSError {

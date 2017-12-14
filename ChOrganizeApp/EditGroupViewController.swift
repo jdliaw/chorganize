@@ -8,18 +8,33 @@
 
 import UIKit
 
-class EditGroupViewController: UIViewController {
+class EditGroupViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var descriptionField: UITextField!
+    @IBOutlet weak var membersTableView: UITableView!
     
     var groupName: String?
     var groupID: Int = 0
+    var members = [User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Setup TableView for member list
+        membersTableView.delegate = self
+        membersTableView.dataSource = self
+        
         self.descriptionField.text = groupName
         
-        // Do any additional setup after loading the view.
+        // Get members of group
+        getUsersByGroup(groupID: groupID) {
+            (users: [User]) in
+            self.members = users
+            // Force reload
+            OperationQueue.main.addOperation {
+                self.membersTableView.reloadData()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,6 +77,22 @@ class EditGroupViewController: UIViewController {
     func dismiss() {
         self.navigationController?.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return members.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupMembersCell", for: indexPath) as? GroupMembersTableViewCell
+        let member = members[indexPath.row]
+        cell!.nameLabel.text = member.firstName
+        
+        return cell!
     }
 
 }

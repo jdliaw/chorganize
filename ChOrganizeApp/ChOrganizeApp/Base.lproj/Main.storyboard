@@ -521,7 +521,7 @@
                                                     <constraint firstAttribute="height" constant="284" id="1cr-20-jOZ"/>
                                                 </constraints>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="bnQ-V3-iLe">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupMembersCell" id="bnQ-V3-iLe" customClass="GroupMembersTableViewCell" customModule="ChOrganizeApp" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="288" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bnQ-V3-iLe" id="VIt-cb-dq4">
@@ -546,6 +546,9 @@
                                                                 <constraint firstItem="ywk-tU-muA" firstAttribute="top" secondItem="VIt-cb-dq4" secondAttribute="topMargin" constant="1" id="TjU-3R-kzY"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="nameLabel" destination="YWD-DX-5cp" id="Fc3-KF-2Lt"/>
+                                                        </connections>
                                                     </tableViewCell>
                                                 </prototypes>
                                             </tableView>
@@ -656,11 +659,12 @@
                     <size key="freeformSize" width="320" height="887"/>
                     <connections>
                         <outlet property="descriptionField" destination="NQD-8K-5uH" id="SLK-A6-T75"/>
+                        <outlet property="membersTableView" destination="gr3-Ov-KlH" id="uQO-z0-mP0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mvS-S8-rFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3675" y="995"/>
+            <point key="canvasLocation" x="3675" y="994.54225352112678"/>
         </scene>
         <!--To-Do List-->
         <scene sceneID="FOy-oG-6b7">
@@ -1341,8 +1345,8 @@
         <image name="trash.png" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="FXi-gR-gVJ"/>
         <segue reference="thV-Kq-6FJ"/>
         <segue reference="LI5-SV-kFo"/>
-        <segue reference="4qM-Px-ZAu"/>
     </inferredMetricsTieBreakers>
 </document>
