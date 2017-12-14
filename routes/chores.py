@@ -19,7 +19,7 @@ def createChore():
     :type groupID: int
     :type description: str
     
-    :return: a message confirming whether the chore successfully created, status code
+    :return: chore ID, status code
     :rtype: str, int
     
     :raises KeyError: name or group ID was not specified

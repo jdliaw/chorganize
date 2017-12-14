@@ -15,7 +15,7 @@ def create():
     :type email: str
     :type groupName: str
     
-    :return: a message that marks the success of creating the group, status code
+    :return: group ID, status code
     :rtype: str, int
     
     :raises KeyError: when lack of required fields of inputs
