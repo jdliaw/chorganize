@@ -15,9 +15,16 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    var firstName: String = ""
+    var lastName: String = ""
+    var email: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        firstNameField.text = firstName
+        lastNameField.text = lastName
+        emailField.text = email
         // Do any additional setup after loading the view.
     }
 

@@ -75,10 +75,6 @@ class GroupViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "groupToGroupName" {
-            // Get email
-            let defaults = UserDefaults.standard
-            let email: String = defaults.string(forKey: "email")!
-            
             if let destVC = segue.destination as? GroupSplitViewController {
                 let groupToPass = groups[tableView.indexPathForSelectedRow!.row]
                 destVC.groupName = groupToPass.name

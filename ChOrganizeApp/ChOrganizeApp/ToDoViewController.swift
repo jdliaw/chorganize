@@ -33,7 +33,7 @@ class ToDoViewController: UITableViewController {
             let groups = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as! [Group]
             
             for group in groups {
-                // Get active chores
+                // Get completed chores
                 getChores(email: email, groupID: group.id, completed: "false") {
                     (choreslist: [Chore]) in
                     if !choreslist.isEmpty {
@@ -46,7 +46,7 @@ class ToDoViewController: UITableViewController {
                     }
                 }
                 
-                // Get completed chores
+                // Get active chores
                 getChores(email: email, groupID: group.id, completed: "true") {
                     (choreslist: [Chore]) in
                     if !choreslist.isEmpty {
@@ -60,6 +60,8 @@ class ToDoViewController: UITableViewController {
                 }
             }
         }
+        
+        // This is supposed to help with reloading when a chore is created but...
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "loadToDoList"), object: nil)
     }
     
@@ -108,20 +110,6 @@ class ToDoViewController: UITableViewController {
                 destVC.choreName = choresToPass.name
                 destVC.choreDate = choresToPass.date
                 destVC.choreDescription = choresToPass.desc
-            }
-        }
-        if segue.identifier == "toDoToProfile" {
-            if let destVC = segue.destination as? ProfileViewController {
-                // Get email
-                let defaults = UserDefaults.standard
-                let email: String = defaults.string(forKey: "email")!
-                // Get user details
-                getUser(email: email) {
-                    (user: User) in
-                    destVC.firstNameLabel.text = user.firstName
-                    destVC.lastNameLabel.text = user.lastName
-                    destVC.emailLabel.text = email
-                }
             }
         }
     }

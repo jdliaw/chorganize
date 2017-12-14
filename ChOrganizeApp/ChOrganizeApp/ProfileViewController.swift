@@ -14,17 +14,27 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var lastNameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     
-    var firstName = ""
-    var lastName = ""
+
     var email = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        firstName = firstNameLabel.text!
-        lastName = lastNameLabel.text!
-        email = emailLabel.text!
+        
+        // Get email
+        let defaults = UserDefaults.standard
+        let email: String = defaults.string(forKey: "email")!
+        // Get user details
+        getUser(email: email) {
+            (user: User) in
+            self.firstNameLabel.text = user.firstName
+            self.lastNameLabel.text = user.lastName
+            self.emailLabel.text = email
+            self.email = email
+            
+            OperationQueue.main.addOperation {
+                self.view.setNeedsLayout()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,9 +54,9 @@ class ProfileViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "profileEdit" {
             if let destVC = segue.destination as? EditProfileViewController {
-                destVC.firstNameField.text = self.firstName
-                destVC.lastNameField.text = self.lastName
-                destVC.emailField.text = self.email
+                destVC.firstName = self.firstNameLabel.text!
+                destVC.lastName = self.lastNameLabel.text!
+                destVC.email = self.email
             }
         }
     }

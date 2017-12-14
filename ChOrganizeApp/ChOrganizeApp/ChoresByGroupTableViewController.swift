@@ -22,7 +22,7 @@ class ChoresByGroupTableViewController: UITableViewController {
         let defaults = UserDefaults.standard
         let email = defaults.string(forKey: "email")!
         
-        // TODO: change this to get chores for group!!!!! 
+        // TODO: change this to get chores for group!!!!!
         // Get chores for the group
         getChores(email: email, groupID: self.groupID, completed: "true") {
             (choreslist: [Chore]) in
