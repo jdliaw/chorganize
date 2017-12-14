@@ -36,10 +36,10 @@ Primary class representing a user in our application.
 
 ```
   email: string
-  username: string
+  username:(Optional) string
   password: string
   firstName: string
-  lastName: string
+  lastName: (Optional)string
 ```
 
 ### Group
@@ -76,10 +76,10 @@ Create a user
 ```python
 """
 @param str email: The email of the user
-@param str username: The username of the username
+@param str username: (Optional)The username of the username
 @param str password: The password of the user
 @param str firstName: The firstName of the user
-@param str lastName: The lastName of the user
+@param str lastName: (Optional)The lastName of the user
 @return: str "User Successfully Created"
 @raise KeyError: If the input is not provided by the user
 @raise IntegrityError: If the user already existed in the database
