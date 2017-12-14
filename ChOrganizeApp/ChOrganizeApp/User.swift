@@ -8,10 +8,11 @@
 
 import UIKit
 
-class User{
+class User {
     var firstName: String
     var lastName: String
     var email: String
+    var progress: Int?
     
     init?(firstName: String, lastName: String, email: String) {
         
@@ -21,5 +22,9 @@ class User{
         self.firstName = firstName
         self.lastName = lastName
         self.email = email
+    }
+    
+    func setProgress(progress: Int) {
+        self.progress = progress
     }
 }

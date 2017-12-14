@@ -428,7 +428,7 @@
                                     <containerView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o5I-h9-zGJ">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="411"/>
                                         <connections>
-                                            <segue destination="UQn-wW-d3p" kind="embed" id="35E-2b-Ti4"/>
+                                            <segue destination="UQn-wW-d3p" kind="embed" identifier="groupProgress" id="35E-2b-Ti4"/>
                                         </connections>
                                     </containerView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdf-Og-bDe">
@@ -780,10 +780,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jPn-Ie-m5W">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="1500"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="1387"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Btv-0I-6nl">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1500"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1387"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fow-cb-qcm">
                                                 <rect key="frame" x="8" y="8" width="45" height="21"/>

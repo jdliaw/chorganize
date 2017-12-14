@@ -73,12 +73,6 @@ class GroupViewController: UITableViewController {
                 destVC.groupName = groupToPass.name
                 destVC.groupID = groupToPass.id
             }
-            if let destVC = segue.destination as? ChoresByGroupTableViewController {
-                let groupToPass = groups[tableView.indexPathForSelectedRow!.row]
-                destVC.groupID = groupToPass.id
-                print (groupToPass.id)
-                print ("hier")
-            }
         }
         if segue.identifier == "groupsToProfile" {
             if let destVC = segue.destination as? ProfileViewController {

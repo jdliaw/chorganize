@@ -72,7 +72,7 @@ func getUser(email: String, completion: @escaping (_ user: User) -> Void){
         }
         
         let responseString = String(data: data, encoding: .utf8)
-        print("responseString = \(String(describing: responseString))")
+//        print("responseString = \(String(describing: responseString))")
         
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
@@ -87,6 +87,44 @@ func getUser(email: String, completion: @escaping (_ user: User) -> Void){
     }
     task.resume()
     print("end get user details")
+}
 
+func getUserProgress(email: String, groupID: Int, completion: @escaping (_ progress: Int) -> Void) {
+    print("getting user's progress for \(email) and group \(groupID)")
+    
+    var components = URLComponents(
+        string: "http://shea3100.pythonanywhere.com/api/group/get-performance-by-group-and-email"
+        )!
+    components.queryItems = [URLQueryItem(name: "email", value: email), URLQueryItem(name: "groupID", value: String(groupID))]
+    var request = URLRequest(url: components.url!)
+    request.httpMethod = "GET"
+    
+    let task = URLSession.shared.dataTask(with: request){ data, response, error in
+        guard let data = data, error == nil else {
+            print("error=\(String(describing: error))")
+            return
+        }
+        
+        if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+            print("statusCode should be 200, but is \(httpStatus.statusCode)")
+            print("response = \(String(describing: response))")
+        }
+        
+        let responseString = String(data: data, encoding: .utf8)
+        print("responseString = \(String(describing: responseString))")
+        
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
+            print("JSON")
+            print(json["total"])
+            if let total = json["total"] as? Int {
+                print("retrieved progress: \(total)%")
+                completion(total)
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    task.resume()
 }
 

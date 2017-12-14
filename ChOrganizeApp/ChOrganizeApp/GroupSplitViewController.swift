@@ -50,11 +50,18 @@ class GroupSplitViewController: UIViewController {
                 destVC.groupID = self.groupID
             }
         }
+        
         // Pass group ID to choresByGroupTableView to load chores for appropriate group
         if segue.identifier == "choresByGroup" {
             if let destVC = segue.destination as? ChoresByGroupTableViewController {
                 destVC.groupID = self.groupID
-                print(destVC.groupID)
+            }
+        }
+        
+        // Pass group ID to ProgressView to fetch users and progress
+        if segue.identifier == "groupProgress" {
+            if let destVC = segue.destination as? ProgressTableViewController {
+                destVC.groupID = self.groupID
             }
         }
     }

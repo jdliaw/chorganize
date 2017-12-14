@@ -11,23 +11,27 @@ import UIKit
 class ProgressTableViewController: UITableViewController {
 
     var members = [User]()
-    
-    private func loadProgress() {
-        let member1 = User(firstName: "Hana", lastName: "Kim", email: "100%")
-        let member2 = User(firstName: "Jennifer", lastName: "Liaw", email: "100%")
-        members.insert(member1!, at: 0)
-        members.insert(member2!, at: 1)
-    }
+    var groupID: Int = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadProgress()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        // Load progress for all users in the group
+        getUsersByGroup(groupID: groupID){
+            (users: [User]) in
+            for user in users {
+                getUserProgress(email: user.email, groupID: self.groupID) {
+                    (progress: Int) in
+                    user.setProgress(progress: progress)
+                    self.self.members.append(user)
+                    
+                    // Force reload
+                    OperationQueue.main.addOperation {
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,66 +53,10 @@ class ProgressTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProgressTableViewCell", for: indexPath) as? ProgressTableViewCell
         let member = members[indexPath.row]
-        
+
         cell!.nameLabel.text = member.firstName
-        cell!.progressLabel.text = member.email
+        cell!.progressLabel.text = String(describing: member.progress!) + "%"
         
         return cell!
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
