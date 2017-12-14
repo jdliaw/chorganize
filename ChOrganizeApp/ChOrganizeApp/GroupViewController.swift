@@ -16,6 +16,19 @@ class GroupViewController: UITableViewController {
         super.viewDidLoad()
         print ("in GroupViewController")
         
+        fetchGroups()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "reloadGroupTableView"), object: nil)
+    }
+    
+    func loadList(){
+        groups = [Group]()
+        fetchGroups()
+        //load data here
+        self.tableView.reloadData()
+    }
+    
+    func fetchGroups(){
         // Get Email
         let defaults = UserDefaults.standard
         let email = defaults.string(forKey: "email")!
@@ -29,27 +42,7 @@ class GroupViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "reloadGroupTableView"), object: nil)
     }
-    
-    func loadList(){
-        //load data here
-        self.tableView.reloadData()
-    }
-    
-//    deinit {
-//        NotificationCenter.default.removeObserver(self, name: Notification.Name("reloadGroupTableView"), object: nil)
-//    }
-//    
-//    @objc func loadList(notification: Notification){
-//        self.tableView.reloadData()
-//    }
-//    
-//    override func viewWillAppear(_ animated: Bool) {
-//        NotificationCenter.default.addObserver(self, selector: #selector(GroupViewController.loadList(notification:)), name: Notification.Name("reloadGroupTableView"), object: nil)
-//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

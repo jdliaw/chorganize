@@ -21,10 +21,23 @@ class ToDoViewController: UITableViewController {
 //            loadToDoList()
 //        }
         
-        chores.append([Chore]())
-        chores.append([Chore]())
-        
+        fetchChores()
+        // This is supposed to help with reloading when a chore is created but...
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "loadToDoList"), object: nil)
+    }
+    
+    func loadList(){
+        chores = [[Chore]]()
+        fetchChores()
+        //load data here
+        self.tableView.reloadData()
+    }
+    
+    func fetchChores(){
         // Get Email
+        self.chores.append([Chore]())
+        self.chores.append([Chore]())
+        
         let defaults = UserDefaults.standard
         let email: String = defaults.string(forKey: "email")!
         
@@ -60,14 +73,6 @@ class ToDoViewController: UITableViewController {
                 }
             }
         }
-        
-        // This is supposed to help with reloading when a chore is created but...
-        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "loadToDoList"), object: nil)
-    }
-    
-    func loadList(){
-        //load data here
-        self.tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
