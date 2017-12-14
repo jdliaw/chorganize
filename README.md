@@ -167,7 +167,7 @@ Create a group
 """
 @param str email: the user's email.
 @param str groupName: the intended name for the group.
-@return str: a message that marks the success of creating the group.
+@return str: the newly created group's ID.
 @raise KeyError: when lack of required fields of inputs.
 """
 @routes.route('/api/group/create', methods=['POST'])
@@ -290,7 +290,7 @@ Create a chore
 @param str deadline: the date that the chore should be completed by (m/d/yyyy)
 @param str description: more information about the chore
 @param str userEmail: the email of the user who will be assigned to the chore
-@return str: a message confirming that the chore was successfully created
+@return str: the newly created chore's ID
 @raise KeyError: name and/or groupID parameters were not specified
 @raise NoResultFound: user or group does not exist
 """
