@@ -1288,16 +1288,16 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Person Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBE-6E-rsU">
                                             <rect key="frame" x="196" y="4" width="108" height="14.5"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="108" id="HNP-gf-UYw"/>
+                                                <constraint firstAttribute="width" constant="108" id="K07-qQ-Wr7"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKU-GN-0PI">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKU-GN-0PI">
                                             <rect key="frame" x="196" y="20.5" width="108" height="14.5"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="108" id="EKQ-xy-KX6"/>
+                                                <constraint firstAttribute="width" constant="108" id="qju-uL-EHa"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -1305,11 +1305,12 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="iBE-6E-rsU" secondAttribute="trailing" constant="16" id="9SR-cx-0hY"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="lKU-GN-0PI" secondAttribute="trailing" constant="8" id="EcZ-Aw-RRM"/>
+                                        <constraint firstItem="iBE-6E-rsU" firstAttribute="top" secondItem="Hn2-Tt-FQj" secondAttribute="top" constant="4" id="IqX-Rp-EDI"/>
                                         <constraint firstItem="EZH-pX-KKH" firstAttribute="top" secondItem="Hn2-Tt-FQj" secondAttribute="topMargin" id="Kis-yM-pHl"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="lKU-GN-0PI" secondAttribute="trailing" constant="8" id="MKH-Jh-hez"/>
-                                        <constraint firstItem="iBE-6E-rsU" firstAttribute="top" secondItem="Hn2-Tt-FQj" secondAttribute="top" constant="4" id="Xxy-bF-9tV"/>
                                         <constraint firstItem="EZH-pX-KKH" firstAttribute="leading" secondItem="Hn2-Tt-FQj" secondAttribute="leadingMargin" constant="16" id="c6j-9c-afc"/>
+                                        <constraint firstAttribute="trailing" secondItem="iBE-6E-rsU" secondAttribute="trailing" constant="16" id="eOO-SJ-OZe"/>
+                                        <constraint firstItem="lKU-GN-0PI" firstAttribute="top" secondItem="iBE-6E-rsU" secondAttribute="bottom" constant="2" id="qCE-eT-h2X"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
