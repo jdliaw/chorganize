@@ -21,12 +21,25 @@ class GroupSplitViewController: UIViewController {
         self.navigationItem.title = groupName
         // Do any additional setup after loading the view.
         
+        fetchDetails()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name(rawValue: "reloadGroupSplitView"), object: nil)
     }
     
     func loadData() {
-        // Implement getgroupdetailsbyid (group/get-by-id) and use it here to reset variables 
+        fetchDetails()
+        // Implement getgroupdetailsbyid (group/get-by-id) and use it here to reset variables
         self.view.setNeedsLayout()
+    }
+    
+    func fetchDetails() {
+        getGroupByID(groupID: groupID) {
+            (groupName: String) in
+            self.groupName = groupName
+            OperationQueue.main.addOperation {
+                self.view.setNeedsLayout()
+            }
+        }
     }
 
 

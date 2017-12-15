@@ -37,7 +37,7 @@ func createGroup(email: String, groupName: String, completion: @escaping (_ succ
         
         if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
             print("statusCode should be 200, but is \(httpStatus.statusCode)")
-            print("response = \(response)")
+            print("response = \(String(describing: response))")
             // pop-up
         }
         
@@ -264,4 +264,43 @@ func editGroupName(groupID: Int, groupName: String, completion: @escaping (_ suc
     }
     
     task.resume()
+}
+
+func getGroupByID(groupID: Int, completion: @escaping (_ groupName: String) -> Void){
+    print("in get users")
+    let groupName: String = ""
+    let strGroupID = String(groupID)
+    
+    var components = URLComponents(string: "http://shea3100.pythonanywhere.com/api/group/get-by-id")!
+    components.queryItems = [URLQueryItem(name: "groupID", value: strGroupID)]
+    var request = URLRequest(url: components.url!)
+    request.httpMethod = "GET"
+    
+    let task = URLSession.shared.dataTask(with: request){ data, response, error in
+        guard let data = data, error == nil else {
+            print("error=\(String(describing: error))")
+            return
+        }
+        
+        if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+            print("statusCode should be 200, but is \(httpStatus.statusCode)")
+            print("response = \(String(describing: response))")
+        }
+        
+        let responseString = String(data: data, encoding: .utf8)
+        print("responseString = \(String(describing: responseString))")
+        
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
+            
+            if let groupName = json["name"] as? String {
+                completion(groupName)
+            }
+            completion(groupName)
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    task.resume()
+    print("end get users")
 }
