@@ -121,12 +121,11 @@ def modifyUser():
     if 'newemail' in dataDict:
         user.setEmail(dataDict['newemail'])
     if 'password' in dataDict:
-        '''
-        hash_object = hashlib.md5(dataDict['password'].encode())
-        userPassword = hash_object.hexdigest()
+        userPassword = dataDict['password']
+        salt = bcrypt.gensalt()
+        userPassword = bcrypt.hashpw(userPassword.encode(), salt)
         user.setPassword(userPassword)
-        '''
-        user.setPassword(dataDict['password'])
+        
     if 'firstName' in dataDict:
         user.setFirstName(dataDict['firstName'])
     if 'lastName' in dataDict:
