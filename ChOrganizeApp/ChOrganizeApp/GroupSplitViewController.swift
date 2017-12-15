@@ -18,26 +18,25 @@ class GroupSplitViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = groupName
-        // Do any additional setup after loading the view.
         
         fetchDetails()
+        self.navigationItem.title = groupName
         
         NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name(rawValue: "reloadGroupSplitView"), object: nil)
     }
     
     func loadData() {
         fetchDetails()
-        // Implement getgroupdetailsbyid (group/get-by-id) and use it here to reset variables
-        self.view.setNeedsLayout()
     }
     
     func fetchDetails() {
         getGroupByID(groupID: groupID) {
             (groupName: String) in
             self.groupName = groupName
+            self.navigationItem.title = groupName // Update the view's label
             OperationQueue.main.addOperation {
                 self.view.setNeedsLayout()
+                self.view.layoutIfNeeded()
             }
         }
     }
@@ -75,6 +74,7 @@ class GroupSplitViewController: UIViewController {
         if segue.identifier == "choresByGroup" {
             if let destVC = segue.destination as? ChoresByGroupTableViewController {
                 destVC.groupID = self.groupID
+                
             }
         }
         

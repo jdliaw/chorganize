@@ -25,7 +25,10 @@ class EditGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         membersTableView.delegate = self
         membersTableView.dataSource = self
         
-        self.descriptionField.text = groupName
+        print("MY GROUP: \(groupName)")
+        descriptionField.text = groupName
+        print(descriptionField.text)
+        print("id: \(groupID)")
         
         // Get members of group
         fetchMembers()
@@ -53,20 +56,32 @@ class EditGroupViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     @IBAction func save(_ sender: Any) {
+        print("hello?")
         if descriptionField.text != "" || inviteMembersField.text != "" {
             let emailsList = inviteMembersField.text?.components(separatedBy: " ,")
             
             // Update group name
-            editGroupName(groupID: self.groupID, groupName: self.groupName!) {
-                (success: Bool) in
-                if success == true {
-                    print("updated group name!")
-                    // Add users to group
-                    if self.inviteMembersField.text != "" {
-                        addUsersToGroup(groupID: self.groupID, listOfEmails: emailsList!) {
-                            (success: Bool) in
-                            print("added users!")
+            if (descriptionField.text != "") {
+                editGroupName(groupID: self.groupID, groupName: self.descriptionField.text!) {
+                    (success: Bool) in
+                    if success == true {
+                        print("updated group name!")
+                        // Add users to group
+                        if self.inviteMembersField.text != "" {
+                            addUsersToGroup(groupID: self.groupID, listOfEmails: emailsList!) {
+                                (success: Bool) in
+                                print("added users!")
+                                // Reload both parent pages
+                                OperationQueue.main.addOperation {
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadGroupTableView"), object: nil)
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadGroupSplitView"), object: nil)
+                                    self.dismiss()
+                                }
+                            }
+                        }
+                        else {
                             OperationQueue.main.addOperation {
+                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadGroupTableView"), object: nil)
                                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadGroupSplitView"), object: nil)
                                 self.dismiss()
                             }
@@ -74,15 +89,10 @@ class EditGroupViewController: UIViewController, UITableViewDelegate, UITableVie
                     }
                     else {
                         OperationQueue.main.addOperation {
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadGroupTableView"), object: nil)
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadGroupSplitView"), object: nil)
                             self.dismiss()
                         }
-                    }
-                }
-                else {
-                    OperationQueue.main.addOperation {
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadGroupSplitView"), object: nil)
-                        self.dismiss()
                     }
                 }
             }

@@ -25,7 +25,6 @@ class EditProfileViewController: UIViewController {
         firstNameField.text = firstName
         lastNameField.text = lastName
         emailField.text = email
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,7 +34,36 @@ class EditProfileViewController: UIViewController {
     
     
     @IBAction func save(_ sender: Any) {
-        dismiss()
+        // Save the original user email
+        let oldemail = email
+        var dict = ["oldemail": oldemail] as [String : Any]
+        
+        if firstNameField.text != "" && firstNameField.text != firstName {
+           dict["firstName"] = firstNameField.text
+        }
+        if lastNameField.text != "" && lastNameField.text != lastName {
+            dict["lastName"] = lastNameField.text
+        }
+        if emailField.text != "" && emailField.text != oldemail {
+            dict["newemail"] = emailField.text
+        }
+        if passwordField.text != "" {
+            dict["password"] = passwordField.text
+        }
+        
+        updateUser(email: oldemail, fields: dict) {
+            (success: Bool) in
+            if success == true {
+                print("success update user")
+                OperationQueue.main.addOperation {
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadProfileView"), object: nil)
+                    self.dismiss()
+                }
+            }
+            else {
+                self.dismiss()
+            }
+        }
     }
     
     @IBAction func cancel(_ sender: Any) {
@@ -46,14 +74,4 @@ class EditProfileViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

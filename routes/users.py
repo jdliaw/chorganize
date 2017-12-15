@@ -119,14 +119,24 @@ def modifyUser():
 
     user = User.query.filter_by(email=useroldEmail).one()
     if 'newemail' in dataDict:
-        user.setEmail(dataDict['newemail'])
+        if dataDict['newemail'] != dataDict['oldemail']:
+            try:
+                user = User.getUser(dataDict['newemail'])
+            except NoResultFound:
+                user.setEmail(dataDict['newemail'])
+            else:
+                error = "Cannot change Email"
+                return error, 400
+        else:
+            error = "Cannot change Email"
+            return error, 400
+
     if 'password' in dataDict:
-        '''
-        hash_object = hashlib.md5(dataDict['password'].encode())
-        userPassword = hash_object.hexdigest()
+        userPassword = dataDict['password']
+        salt = bcrypt.gensalt()
+        userPassword = bcrypt.hashpw(userPassword.encode(), salt)
         user.setPassword(userPassword)
-        '''
-        user.setPassword(dataDict['password'])
+        
     if 'firstName' in dataDict:
         user.setFirstName(dataDict['firstName'])
     if 'lastName' in dataDict:
