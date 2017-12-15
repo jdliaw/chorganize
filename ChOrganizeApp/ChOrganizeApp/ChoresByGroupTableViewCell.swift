@@ -13,6 +13,7 @@ class ChoresByGroupTableViewCell: UITableViewCell {
     @IBOutlet weak var cell: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var personLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

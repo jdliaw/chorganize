@@ -5,18 +5,23 @@ from database_setup import createApp, db, User, Group, Chore
 import requests
 import json
 import sqlalchemy.orm.exc
+from datetime import datetime
 
 class TestChores(unittest.TestCase):
     def setUp(self):
-        app = createApp(True)
-        app.app_context().push()
         db.create_all()
         self.user = User.createUser("kchan52@ucla.edu", "kaitlyne", "hello", "Kaitlyne", "Chan")
         self.group = Group.createGroup("My Apartment")
+        self.group.addUser(self.user)
     
     def tearDown(self):
         db.session.remove()
         db.drop_all()
+    
+    @classmethod
+    def setUpClass(cls):
+        app = createApp(True)
+        app.app_context().push()
         
     def addChoreToDB(self, name):
         chore = Chore.createChore(name)
@@ -32,33 +37,29 @@ class TestChores(unittest.TestCase):
         
         self.assertEqual(choreName, "vacuum")
         self.assertEqual(groupID, 1)
-       
-    def test_create_chore_missing_input(self):
-        response = requests.post('http://localhost:8080/api/chore/create', data='{"name": "clean bathroom"}')
-        self.assertGreaterEqual(response.status_code, 400)
         
-    def test_create_chore_more_input(self):
+    def test_create_chore_optional_input(self):
         response = requests.post('http://localhost:8080/api/chore/create',
-                                 data='{"name": "sweep", "groupID": 1, "deadline": "11/20/2017", "description": "sweep bedroom and living room", "userEmail": "kchan52@ucla.edu"}'
+                                 data='{"name": "sweep", "groupID": 1, "description": "sweep bedroom and living room"}'
                                 )
         self.assertEqual(response.status_code, 200)
         
         chore = Chore.getChore(1)
         choreName = chore.getName()
         groupID = chore.getGroupID()
-        deadline = chore.getDeadline()
         description = chore.getDescription()
-        userEmail = chore.getUserEmail()
         
         self.assertEqual(choreName, "sweep")
         self.assertEqual(groupID, 1)
-        self.assertEqual(deadline.strftime('%m/%d/%Y'), "11/20/2017")
         self.assertEqual(description, "sweep bedroom and living room")
-        self.assertEqual(userEmail, "kchan52@ucla.edu")
+       
+    def test_create_chore_missing_input(self):
+        response = requests.post('http://localhost:8080/api/chore/create', data='{"name": "clean bathroom"}')
+        self.assertGreaterEqual(response.status_code, 400)
         
     def test_create_chore_invalid_input(self):
         response = requests.post('http://localhost:8080/api/chore/create',
-                                 data='{"name": "take out trash", "groupID": 1, "userEmail": "idontexist@gmail.com"}'
+                                 data='{"name": "take out trash", "groupID": 1000}'
                                 )
         self.assertGreaterEqual(response.status_code, 400)
         
@@ -73,7 +74,7 @@ class TestChores(unittest.TestCase):
         else:
             attributesPresent = False
             
-        self.assertEqual(attributesPresent, True)
+        self.assertTrue(attributesPresent)
     
     def test_get_chore_missing_input(self):
         self.addChoreToDB("clean sink")
@@ -102,7 +103,103 @@ class TestChores(unittest.TestCase):
         
     def test_modify_chore_invalid_input(self):
         self.addChoreToDB("vacuum")
-        response = requests.put('http://localhost:8080/api/chore/modify', data='{"id": 4, "deadline": "12/31/2017"}')
+        response = requests.put('http://localhost:8080/api/chore/modify', data='{"id": 4, "name": "vacuum bedroom"}')
+        self.assertGreaterEqual(response.status_code, 400)
+        
+    def test_assign_chore(self):
+        self.addChoreToDB("sweep")
+        response = requests.put('http://localhost:8080/api/chore/assign', data='{"id": 1, "email": "kchan52@ucla.edu", "deadline": "12/31/2017"}')
+        self.assertEqual(response.status_code, 200)
+        
+        chore = Chore.getChore(1)
+        userEmail = chore.getUserEmail()
+        deadline = chore.getDeadline().strftime('%m/%d/%Y')
+        completed = chore.getCompleted()
+        
+        self.assertEqual(userEmail, "kchan52@ucla.edu")
+        self.assertEqual(deadline, "12/31/2017")
+        self.assertEqual(completed, False)
+        
+    def test_assign_chore_missing_input(self):
+        self.addChoreToDB("sweep")
+        response = requests.put('http://localhost:8080/api/chore/assign', data='{"id": 1, "deadline": "12/31/2017, 23:55"}')
+        self.assertGreaterEqual(response.status_code, 400)
+        
+    def test_assign_chore_invalid_input(self):
+        self.addChoreToDB("sweep")
+        response = requests.put('http://localhost:8080/api/chore/assign', data='{"id": 100, "email": "kchan52@ucla.edu", "deadline": "12/31/2017, 23:55"}')
+        self.assertGreaterEqual(response.status_code, 400)
+        
+    def test_complete_chore_on_time(self):
+        self.addChoreToDB("sweep")
+        chore = Chore.getChore(1)
+        user = User.getUser("kchan52@ucla.edu")
+        user.addChore(chore)
+        deadline = datetime.strptime("12/12/2020", "%m/%d/%Y")
+        chore.setDeadline(deadline)
+        
+        response = requests.put('http://localhost:8080/api/chore/complete', data='{"id": 1}')
+        self.assertEqual(response.status_code, 200)
+        
+        completed = chore.getCompleted()
+        userEmail = chore.getUserEmail()
+        deadline = chore.getDeadline()
+        group = Group.getGroup(1)
+        performance = group.getPerformanceByEmail("kchan52@ucla.edu")
+        totalChores = performance["total"]
+        onTimeChores = performance["onTime"]
+        
+        self.assertTrue(completed)
+        self.assertIsNone(userEmail)
+        self.assertIsNone(deadline)
+        self.assertEqual(totalChores, 1)
+        self.assertEqual(onTimeChores, 1)
+        
+    def test_complete_chore_late(self):
+        self.addChoreToDB("sweep")
+        chore = Chore.getChore(1)
+        user = User.getUser("kchan52@ucla.edu")
+        user.addChore(chore)
+        deadline = datetime.strptime("11/30/2017", "%m/%d/%Y")
+        chore.setDeadline(deadline)
+        
+        response = requests.put('http://localhost:8080/api/chore/complete', data='{"id": 1}')
+        self.assertEqual(response.status_code, 200)
+        
+        completed = chore.getCompleted()
+        userEmail = chore.getUserEmail()
+        deadline = chore.getDeadline()
+        group = Group.getGroup(1)
+        performance = group.getPerformanceByEmail("kchan52@ucla.edu")
+        totalChores = performance["total"]
+        onTimeChores = performance["onTime"]
+        
+        self.assertTrue(completed)
+        self.assertIsNone(userEmail)
+        self.assertIsNone(deadline)
+        self.assertEqual(totalChores, 1)
+        self.assertEqual(onTimeChores, 0)
+        
+    def test_complete_chore_missing_input(self):
+        self.addChoreToDB("sweep")
+        chore = Chore.getChore(1)
+        user = User.getUser("kchan52@ucla.edu")
+        user.addChore(chore)
+        deadline = datetime.strptime("12/12/2020", "%m/%d/%Y")
+        chore.setDeadline(deadline)
+        
+        response = requests.put('http://localhost:8080/api/chore/complete', data='{}')
+        self.assertGreaterEqual(response.status_code, 400)
+        
+    def test_complete_chore_invalid_input(self):
+        self.addChoreToDB("sweep")
+        chore = Chore.getChore(1)
+        user = User.getUser("kchan52@ucla.edu")
+        user.addChore(chore)
+        deadline = datetime.strptime("12/12/2020", "%m/%d/%Y")
+        chore.setDeadline(deadline)
+        
+        response = requests.put('http://localhost:8080/api/chore/complete', data='{"id": 500}')
         self.assertGreaterEqual(response.status_code, 400)
         
     def test_delete_chore(self):

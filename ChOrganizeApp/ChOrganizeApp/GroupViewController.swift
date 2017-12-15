@@ -11,17 +11,37 @@ import UIKit
 class GroupViewController: UITableViewController {
 
     var groups = [Group]()
-    
-    private func loadGroups() {
-        let group1 = Group(name: "Pusheen Code")
-        let group2 = Group(name: "Apt 401")
-        groups.insert(group1!,at: 0)
-        groups.insert(group2!, at: 1)
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadGroups()
+        print ("in GroupViewController")
+        
+        fetchGroups()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "reloadGroupTableView"), object: nil)
+    }
+    
+    func loadList(){
+        groups = [Group]()
+        fetchGroups()
+        //load data here
+        self.tableView.reloadData()
+    }
+    
+    func fetchGroups(){
+        // Get Email
+        let defaults = UserDefaults.standard
+        let email = defaults.string(forKey: "email")!
+        
+        // Get Groups
+        getGroups(email: email) {
+            (groupslist: [Group]) in
+            self.groups = groupslist
+            
+            OperationQueue.main.addOperation {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,5 +65,30 @@ class GroupViewController: UITableViewController {
         
         return cell!
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "groupToGroupName" {
+            if let destVC = segue.destination as? GroupSplitViewController {
+                let groupToPass = groups[tableView.indexPathForSelectedRow!.row]
+                destVC.groupName = groupToPass.name
+                destVC.groupID = groupToPass.id
+            }
+        }
+        if segue.identifier == "groupsToProfile" {
+            if let destVC = segue.destination as? ProfileViewController {
+                // Get email
+                let defaults = UserDefaults.standard
+                let email: String = defaults.string(forKey: "email")!
+                // Get user details
+                getUser(email: email) {
+                    (user: User) in
+                    destVC.firstNameLabel.text = user.firstName
+                    destVC.lastNameLabel.text = user.lastName
+                    destVC.emailLabel.text = email
+                }
+            }
+        }
+    }
+    
 }
 

@@ -36,10 +36,10 @@ Primary class representing a user in our application.
 
 ```
   email: string
-  username: string
+  username:(Optional) string
   password: string
   firstName: string
-  lastName: string
+  lastName: (Optional)string
 ```
 
 ### Group
@@ -75,16 +75,27 @@ Create a user
 
 ```python
 """
-@param str email: The email of the user
-@param str username: The username of the username
-@param str password: The password of the user
-@param str firstName: The firstName of the user
-@param str lastName: The lastName of the user
-@return: str "User Successfully Created"
-@raise KeyError: If the input is not provided by the user
-@raise IntegrityError: If the user already existed in the database
+Create a new user and add to the database, use Bcrypt to hash password
+
+:param email: the email of the user
+:param username: (optional) the username of the user
+:param password: the password of the user
+:param firstName: the first name of the user
+:param lastName: (optional) the last name of the user
+
+:type email: str
+:type username: str
+:type password: str
+:type firstName: str
+:type lastName: str
+
+:return: "User Successfully Created", status code
+:rtype: str, int
+
+:raises KeyError: if the input is not provided by the user
+:raises sqlalchemy.exc.IntegrityError: if the user already existed in the database
 """
-@routes.route('/api/user', methods=['POST'])
+@routes.route('/api/user/create', methods=['POST'])
 def createUser():
 ```
 
@@ -92,12 +103,15 @@ Retriever information about a user
 
 ```python
 """
-@param str email: The email of the user
-@return: str "A user Json object"
-@return 400 if the input is not provided by the user
-@raise NoResultFound: if the user is not found in the database
+Get information about a user.
+
+:param email: the email of the user
+:type email: str
+:return: a user JSON object, status code
+:rtype: JSON object, int
+:raises sqlalchemy.orm.exc.NoResultFound: if the user is not found in the database
 """
-@routes.route('/api/user', methods=['GET'])
+@routes.route('/api/user/get', methods=['GET'])
 def getUser():
 ```
 
@@ -105,16 +119,28 @@ Modify a user's information
 
 ```python
 """
-@param str newemail: The new email of the user
-@param str oldemail: The original email of the user
-@param str username: The new username of the user
-@param str password: The new password of the user
-@param str firstName: The new firstName of the user
-@param str lastName: The new lastName of the user
-@return: "Successfully Modified"
-@raise keyError: If the input is not provided by the user
+Modify fields of a User object.
+
+:param newemail: (optional) the new email of the user
+:param oldemail: the original email of the user
+:param username: (optional) the new username of the user
+:param password: (optional) the new password of the user
+:param firstName: (optional)the new firstName of the user
+:param lastName: (optional) the new lastName of the user
+
+:type newemail: str
+:type oldemail: str
+:type username: str
+:type password: str
+:type firstName: str
+:type lastName: str
+
+:return: "Successfully Modified", status code
+:rtype: str, int
+
+:raises KeyError: if the input is not provided by the user
 """
-@routes.route('/api/user', methods=['PUT'])
+@routes.route('/api/user/edit', methods=['PUT'])
 def modifyUser():
 ```
 
@@ -122,10 +148,14 @@ Delete a user
 
 ```python
 """
-@param str email: The email of the user
-@return: "User Successfully Removed"
-@raise keyError: If the input is not provided by the user
-@raise NoResultFound: if the user is not found in the database
+Delete a user from the database.
+
+:param email: the email of the user
+:type email: str
+:return: "User Successfully Removed", status code
+:rtype: str, int
+:raises KeyError: if the input is not provided by the user
+:raises sqlalchemy.orm.exc.NoResultFound: if the user is not found in the database
 """
 @routes.route('/api/user/delete', methods=['POST'])
 def deleteUser():
@@ -135,15 +165,45 @@ Get all active chores for a user in a specific group
 
 ```python
 """
-@param str email: The email of the user
-@param str groupID: A particular groupID that the user is in
-@param str completed: A boolean indicating whether a list of active chores or completed chores get return
-@return: A list of Json chore object
-@raise ValueError: If the input of the completed parameter is neither true or false
-@raise NoResultFound: if the user is not found in the database
+Get all active chores or completed chores for a particular user in a particular group.
+
+:param email: the email of the user
+:param groupID: a particular groupID that the user is in
+:param completed: a boolean indicating whether a list of active chores or completed chores get return
+
+:type email: str
+:type groupID: int
+:type completed: boolean
+
+:return: a list of JSON chore objects, status code
+:rtype: list of JSON objects, int
+
+:raises ValueError: if the input of the completed parameter is neither true or false
+:raises sqlalchemy.orm.exc.NoResultFound: if the user is not found in the database
 """
-@routes.route('/api/user/getUnfinisihedChores', methods=['GET'])
+@routes.route('/api/user/get-unfinished-chores', methods=['GET'])
 def getChores():
+```
+
+Validate email and password when a user log in to the app.
+
+```python
+"""
+Validate email and password when a user log in to the app.
+
+:param email: the email of the user
+:param password: password of a user
+
+:type email: str
+:type groupID: password
+
+:return: Json with a result item, true/false
+:rtype: Json object
+
+:raises KeyError: if the input is not provided by the user
+"""
+@routes.route('/api/user/validate-password', methods=['POST'])
+def validatePassword():
 ```
 
 ### Groups
@@ -154,7 +214,7 @@ Create a group
 """
 @param str email: the user's email.
 @param str groupName: the intended name for the group.
-@return str: a message that marks the success of creating the group.
+@return str: the newly created group's ID.
 @raise KeyError: when lack of required fields of inputs.
 """
 @routes.route('/api/group/create', methods=['POST'])
@@ -166,7 +226,7 @@ Get a group's information
 ```python
 """
 @param str groupID: the group's ID.
-@return json: a json object that describes the group.
+@return json: a JSON object that describes the group.
 @raise NoResultFound: when the group does not exist in database.
 """
 @routes.route('/api/group/get-by-id', methods=['GET'])
@@ -178,7 +238,7 @@ Get the groups a user belongs to
 ```python
 """
 @param str email: the user's email.
-@return json: a json object that contains the descriptions of a list of groups.
+@return json: a JSON object that contains the descriptions of a list of groups.
 @raise NoResultFound: when the user does not exist in database.
 """
 @routes.route('/api/group/get-by-email', methods=['GET'])
@@ -213,6 +273,18 @@ Add a user to a group
 def addUsers():
 ```
 
+Get users from a group
+
+```python
+"""
+@param groupID: the group's ID
+@return json: a JSON object that contains the profiles of a list of users, status code
+@raises sqlalchemy.orm.exc.NoResultFound: when the group/user does not exist in database
+"""
+@routes.route('/api/group/get-users', methods=['GET'])
+def getUsers():
+```
+
 Remove a user
 
 ```python
@@ -233,12 +305,25 @@ Get completed or incompleted chores
 """
 @param str groupID: the group's ID.
 @param bool completed: whether to get incompleted or completed chores.
-@return json: a json object that contains the descriptions of a list of chores.
+@return json: a JSON object that contains the descriptions of a list of chores.
 @raise KeyError: when lack of required fields of inputs.
 @raise NoResultFound: when the group does not exist in database.
 """
 @routes.route('/api/group/get-completed-or-incompleted-chores', methods=['GET'])
 def getCompletedOrIncompletedChores():
+```
+
+Get the user's performance in the specified group
+
+```python
+"""
+@param groupID: the group's ID
+@param email: the user's email
+@return json: a JSON object that contains the user's performance in the specified group.
+@raises sqlalchemy.orm.exc.NoResultFound: when the group does not exist in database
+"""
+@routes.route('/api/group/get-performance-by-group-and-email', methods=['GET'])
+def getPerformanceByGroupAndEmail():
 ```
 
 ### Chores
@@ -252,7 +337,7 @@ Create a chore
 @param str deadline: the date that the chore should be completed by (m/d/yyyy)
 @param str description: more information about the chore
 @param str userEmail: the email of the user who will be assigned to the chore
-@return str: a message confirming that the chore was successfully created
+@return str: the newly created chore's ID
 @raise KeyError: name and/or groupID parameters were not specified
 @raise NoResultFound: user or group does not exist
 """
@@ -294,4 +379,56 @@ Delete a chore
 """
 @routes.route('/api/chore', methods=['DELETE'])
 def deleteChore():
+```
+
+
+Examples
+```
+Create a user
+POST
+.../api/user/create
+{
+  "email": "abc11@gmail.com", 
+  "firstName": "Pusheen11", 
+  "lastName": "Code11",
+  "password":"123",
+  "username": "username11"
+}
+```
+```
+Create a group
+POST
+.../api/group/create
+{
+  "email": "abc11@gmail.com", 
+  "groupName": "123"
+}
+```
+```
+Add a person to a group
+PUT 
+.../api/group/add-users
+{
+  "groupID": 1, 
+  "listOfEmails" : ["abc11@gmail.com"]
+}
+```
+```
+Create a chore
+POST
+.../api/chore/create
+{
+  "name": "wash", 
+  "groupID": 1
+}
+```
+```
+Assign a chore to a person
+PUT
+.../api/chore/assign
+{
+  "id": 1, 
+  "email": "abc11@gmail.com",
+  "deadline":"07/28/2020, 18:54"
+}
 ```

@@ -15,7 +15,7 @@ def create():
     :type email: str
     :type groupName: str
     
-    :return: a message that marks the success of creating the group, status code
+    :return: group ID, status code
     :rtype: str, int
     
     :raises KeyError: when lack of required fields of inputs
@@ -37,9 +37,9 @@ def create():
         return error, 404
 
     group = Group.createGroup(groupName)
-    user.addGroup(group)
+    group.addUser(user)
 
-    return "Group Successfully Created"
+    return str(group.id)
 
 @routes.route('/api/group/get-by-id', methods=['GET'])
 def getByID():
@@ -49,7 +49,7 @@ def getByID():
     :param groupID: the group's ID
     :type groupID: int
     :return: a JSON object that describes the group, status code
-    :rtype: str, int
+    :rtype: json, int
     :raises sqlalchemy.orm.exc.NoResultFound: when the group does not exist in database
     """
     groupID = request.args.get('groupID')
@@ -69,7 +69,7 @@ def getByEmail():
     :param email: the user's email
     :type email: str
     :return: a JSON object that contains the descriptions of a list of groups, status code
-    :rtype: str, int
+    :rtype: json, int
     :raises sqlalchemy.orm.exc.NoResultFound: when the user does not exist in database
     """
     email = request.args.get('email')
@@ -115,7 +115,7 @@ def edit():
         return error, 404
 
     group.setName(groupName)
-    return "Group Name Successfully Editted"
+    return "Group Name Successfully Edited"
 
 @routes.route('/api/group/add-users', methods=['PUT'])
 def addUsers():
@@ -160,6 +160,33 @@ def addUsers():
 
     return "Users Successfully Added To The Group"
 
+@routes.route('/api/group/get-users', methods=['GET'])
+def getUsers():
+    """
+    Get all users from the specified group.
+
+    :param groupID: the group's ID
+
+    :type groupID: int
+
+    :return: a JSON object that contains the profiles of a list of users, status code
+    :rtype: json, int
+
+    :raises sqlalchemy.orm.exc.NoResultFound: when the group/user does not exist in database
+    """
+    groupID = request.args.get('groupID')
+
+    try:
+        group = Group.getGroup(groupID)
+    except NoResultFound:
+        error = "Group Not Found"
+        return error, 404
+
+    users = group.getUsers()
+    users = [user.serialize for user in users]
+
+    return jsonify(users=users)
+
 @routes.route('/api/group/remove-user', methods=['PUT'])
 def removeUser():
     """
@@ -173,7 +200,7 @@ def removeUser():
     
     :return: a message that marks the success of removing a member from the group, status code
     :rtype: str, int
-    
+
     :raises KeyError: when lack of required fields of inputs
     :raises sqlalchemy.orm.exc.NoResultFound: when the group/user does not exist in database
     """
@@ -200,7 +227,7 @@ def removeUser():
 
     group.removeUser(user)
     if len(group.getUsers()) == 0:
-        Group.deleteGroup(group.getId())
+        Group.deleteGroup(group.getID())
 
     return "User Successfully Removed From The Group"
 
@@ -216,7 +243,7 @@ def getCompletedOrIncompletedChores():
     :type completed: boolean
     
     :return: a JSON object that contains the descriptions of a list of chores, status code
-    :rtype: str, int
+    :rtype: json, int
 
     :raises sqlalchemy.orm.exc.NoResultFound: when the group does not exist in database
     """
@@ -251,7 +278,7 @@ def getPerformanceByGroupAndEmail():
     :type email: str
 
     :return: a JSON object that contains the user's performance in the specified group.
-    :rtype: str, int
+    :rtype: json, int
 
     :raises sqlalchemy.orm.exc.NoResultFound: when the group does not exist in database
     """
@@ -259,7 +286,7 @@ def getPerformanceByGroupAndEmail():
     email = request.args.get('email')
 
     try:
-        group = Group.getGroup(groupID)
+        group = Group.getGroup(int(groupID))
     except NoResultFound:
         error = "Group Not Found"
         return error, 404

@@ -8,15 +8,23 @@
 
 import UIKit
 
-class User{
-    init?(name: String, email: String) {
-        if name.isEmpty || email.isEmpty {
+class User {
+    var firstName: String
+    var lastName: String
+    var email: String
+    var progress: Int?
+    
+    init?(firstName: String, lastName: String, email: String) {
+        
+        if firstName.isEmpty || lastName.isEmpty || email.isEmpty {
             return nil
         }
-        self.name = name
+        self.firstName = firstName
+        self.lastName = lastName
         self.email = email
     }
     
-    var name: String
-    var email: String
+    func setProgress(progress: Int) {
+        self.progress = progress
+    }
 }

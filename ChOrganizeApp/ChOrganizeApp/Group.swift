@@ -8,13 +8,31 @@
 
 import UIKit
 
-class Group{
-    init?(name: String) {
+class Group : NSObject, NSCoding {
+    var name: String
+    var id: Int
+    
+    init?(name: String, id: Int) {
         if name.isEmpty {
             return nil
         }
         self.name = name
+        self.id = id
     }
     
-    var name: String
+    required convenience init?(coder decoder: NSCoder) {
+        guard let name = decoder.decodeObject(forKey: "name") as? String
+            else { return nil }
+        let id = decoder.decodeInteger(forKey: "id")
+        
+        self.init(
+            name: name,
+            id: id
+        )
+    }
+    
+    func encode(with coder: NSCoder) {
+        coder.encode(self.name, forKey: "name")
+        coder.encode(self.id, forKey: "id")
+    }
 }

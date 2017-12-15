@@ -13,15 +13,17 @@ class ChoreViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descriptionlabel: UILabel!
     
-    var choreName = ""
-    var choreDate = ""
+    var choreName: String = ""
+    var choreDate: String = ""
+    var choreDescription: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Load data
-        nameLabel.text = choreName
-        dateLabel.text = choreDate
+        self.nameLabel.text = choreName
+        self.dateLabel.text = choreDate
+        self.descriptionlabel.text = choreDescription
         
         // Put border around decription text.
         descriptionlabel.layer.borderWidth = 0.5
@@ -40,6 +42,23 @@ class ChoreViewController: UIViewController {
             let destVC = segue.destination as! CreateChoreViewController
             destVC.origin = "editButton"
         }
+    }
+    
+    @IBAction func deleteChore(_ sender: Any) {
+        let alert = UIAlertController(title: "Delete chore?", message: "Chore will be removed from the group.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: "Default action"), style: .`default`, handler: { _ in
+            //TODO: Delete chore from group.
+            
+            //Transition back to TabBarController
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let TabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = TabBarVC
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel, handler: { _ in
+            NSLog("The \"Cancel\" alert occured.")
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func completechore(_ sender: Any) {

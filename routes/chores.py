@@ -13,17 +13,13 @@ def createChore():
     
     :param name: name of the chore
     :param groupID: the unique ID of the group where the chore will be added
-    :param deadline: (optional) the date that the chore should be completed by (format: "mm/dd/yyyy, HH:MM")
     :param description: (optional) more information about the chore
-    :param userEmail: (optional) the email of the user who will be assigned to the chore
     
     :type name: str
     :type groupID: int
-    :type deadline: str
     :type description: str
-    :type userEmail: str
     
-    :return: a message confirming whether the chore successfully created, status code
+    :return: chore ID, status code
     :rtype: str, int
     
     :raises KeyError: name or group ID was not specified
@@ -49,26 +45,11 @@ def createChore():
         choreDescription = dataDict['description']
     else:
         choreDescription = None
-    
-    if 'deadline' in dataDict:
-        choreDeadlineStr = dataDict['deadline']
-        choreDeadline = datetime.strptime(choreDeadlineStr, "%m/%d/%Y, %H:%M")
-    else:
-        choreDeadline = None
         
-    chore = Chore.createChore(choreName, description=choreDescription, deadline=choreDeadline)
+    chore = Chore.createChore(choreName, description=choreDescription)
     group.addChore(chore)
         
-    if 'userEmail' in dataDict:
-        userEmail = dataDict['userEmail']
-        try:
-            user = User.getUser(userEmail)
-        except NoResultFound:
-            error = "User not found"
-            return error, 404
-        user.addChore(chore)
-        
-    return "Chore successfully created"
+    return str(chore.id)
 
 @routes.route('/api/chore/get', methods=['GET'])
 def getChoreByID():
@@ -99,19 +80,15 @@ def getChoreByID():
 @routes.route('/api/chore/modify', methods=['PUT'])    
 def modifyChore():
     """
-    Modify fields of a Chore object.
+    Modify the name and/or description of a chore.
     
     :param id: the unique ID corresponding to the target chore
     :param name: (optional) the new name for the chore
-    :param deadline: (optional) the new deadline for the chore (format: "mm/dd/yyyy, HH:MM")
     :param description: (optional) the new description for the chore
-    :param completed: (optional) whether the chore has been completed or not
     
     :type id: int
     :type name: str
-    :type deadline: str
     :type description: str
-    :type completed: boolean
     
     :return: a message confirming whether the chore was successfully modified, status code
     :rtype: str, int
@@ -138,28 +115,137 @@ def modifyChore():
         choreName = dataDict['name']
         chore.setName(choreName)
         
-    if 'deadline' in dataDict:
-        choreDeadlineStr = dataDict['deadline']
-        choreDeadline = datetime.strptime(choreDeadlineStr, "%m/%d/%Y, %H:%M")
-        chore.setDeadline(choreDeadline)
-        
     if 'description' in dataDict:
         choreDescription = dataDict['description']
         chore.setDescription(choreDescription)
-        
-    if 'completed' in dataDict:
-        choreCompleted = dataDict['completed']
-        if not chore.getCompleted() and choreCompleted:
-            group = Group.getGroup(chore.getGroupID())
-            email = chore.getUserEmail()
-
-            group.incrementPerformanceTotalByEmail(email)
-            if not chore.deadlinePassed():
-                group.incrementPerformanceOnTimeByEmail(email)
-
-        chore.setCompleted(choreCompleted)
     
     return "Chore successfully modified"
+
+@routes.route('/api/chore/assign', methods=['PUT'])
+def assignUserOrDeadlineToChore():
+    """
+    Assign a user and/or deadline to a chore.
+    
+    Notes:
+    For initial assignment, email and deadline are required parameters.
+    For editing the deadline or assigned user later, email and deadline are optional parameters.
+    Postcondition: both user and deadline must not be null.
+    
+    :param id: the unique ID corresponding to the target chore
+    :param email: the email of the user who will be assigned to the chore
+    :param deadline: the new deadline for the chore (format: "mm/dd/yyyy")
+    
+    :type id: int
+    :type email: str
+    :type deadline: str
+    
+    :return: a message confirming that the user and deadline have been set, status code
+    :rtype: str, int
+    
+    :raises KeyError: chore ID was not specified
+    :raises sqlalchemy.orm.exc.NoResultFound: chore ID does not exist, or user email does not exist
+    """
+    data = request.data
+    dataDict = loads(data)
+    
+    try:
+        choreID = dataDict['id']
+    except KeyError:
+        error = "Chore ID not specified"
+        return error, 400
+        
+    try:
+        chore = Chore.getChore(choreID)
+    except NoResultFound:
+        error = "Chore not found"
+        return error, 404
+
+    chore.setCompleted(False)
+        
+    userEmail = None
+    deadline = None
+    
+    if chore.userEmail is None and chore.deadline is None:
+        try:
+            userEmail = dataDict['email']
+            deadline = dataDict['deadline']
+        except KeyError:
+            error = "Need to specify user email and deadline"
+            return error, 400
+    else:
+        if 'email' in dataDict:
+            userEmail = dataDict['email']
+        if 'deadline' in dataDict:
+            deadline = dataDict['deadline']
+   
+    if userEmail is not None:
+        try:
+            user = User.getUser(userEmail)
+        except NoResultFound:
+            error = "User not found"
+            return error, 404
+        user.addChore(chore)
+        
+    if deadline is not None:
+        choreDeadlineStr = dataDict['deadline']
+        choreDeadline = datetime.strptime(choreDeadlineStr, "%m/%d/%Y")
+        chore.setDeadline(choreDeadline)
+        
+    return "User assignment and deadline set successfully"
+
+@routes.route('/api/chore/complete', methods=['PUT'])
+def completeChore():
+    """
+    User completes a chore.
+    
+    Precondition: chore must be assigned to a user and have a deadline.
+    
+    :param id: the unique ID corresponding to the target chore
+    :type id: int
+    
+    :return: a message confirming that the chore was successfully completed, status code
+    :rtype: str, int
+    
+    :raises KeyError: chore ID was not specified
+    :raises sqlalchemy.orm.exc.NoResultFound: chore corresponding to the specified ID does not exist
+    """
+    data = request.data
+    dataDict = loads(data)
+    
+    try:
+        choreID = dataDict['id']
+    except KeyError:
+        error = "No ID specified"
+        return error, 400
+    
+    try:
+        chore = Chore.getChore(choreID)
+    except NoResultFound:
+        error = "Chore not found"
+        return error, 404
+    
+    userEmail = chore.getUserEmail()
+    if userEmail is None:
+        error = "Chore is not assigned to a user"
+        return error, 412
+     
+    deadline = chore.getDeadline()
+    if deadline is None:
+        error = "Chore does not have a deadline"
+        return error, 412
+      
+    group = Group.getGroup(chore.getGroupID())
+    group.incrementPerformanceTotalByEmail(userEmail)
+    if not chore.deadlinePassed():
+        group.incrementPerformanceOnTimeByEmail(userEmail)
+
+    chore.setCompleted(True)
+    chore.setDeadline(None)
+    
+    user = User.getUser(userEmail)
+    user.removeChore(chore)
+    
+    return "Chore successfully completed"
     
 @routes.route('/api/chore/delete', methods=['DELETE'])
 def deleteChore():
