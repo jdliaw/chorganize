@@ -75,14 +75,25 @@ Create a user
 
 ```python
 """
-@param str email: The email of the user
-@param str username: (Optional)The username of the username
-@param str password: The password of the user
-@param str firstName: The firstName of the user
-@param str lastName: (Optional)The lastName of the user
-@return: str "User Successfully Created"
-@raise KeyError: If the input is not provided by the user
-@raise IntegrityError: If the user already existed in the database
+Create a new user and add to the database, use Bcrypt to hash password
+
+:param email: the email of the user
+:param username: (optional) the username of the user
+:param password: the password of the user
+:param firstName: the first name of the user
+:param lastName: (optional) the last name of the user
+
+:type email: str
+:type username: str
+:type password: str
+:type firstName: str
+:type lastName: str
+
+:return: "User Successfully Created", status code
+:rtype: str, int
+
+:raises KeyError: if the input is not provided by the user
+:raises sqlalchemy.exc.IntegrityError: if the user already existed in the database
 """
 @routes.route('/api/user', methods=['POST'])
 def createUser():
