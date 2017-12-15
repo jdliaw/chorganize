@@ -95,7 +95,7 @@ Create a new user and add to the database, use Bcrypt to hash password
 :raises KeyError: if the input is not provided by the user
 :raises sqlalchemy.exc.IntegrityError: if the user already existed in the database
 """
-@routes.route('/api/user', methods=['POST'])
+@routes.route('/api/user/create', methods=['POST'])
 def createUser():
 ```
 
@@ -119,16 +119,28 @@ Modify a user's information
 
 ```python
 """
-@param str newemail: The new email of the user
-@param str oldemail: The original email of the user
-@param str username: The new username of the user
-@param str password: The new password of the user
-@param str firstName: The new firstName of the user
-@param str lastName: The new lastName of the user
-@return: "Successfully Modified"
-@raise keyError: If the input is not provided by the user
+Modify fields of a User object.
+
+:param newemail: (optional) the new email of the user
+:param oldemail: the original email of the user
+:param username: (optional) the new username of the user
+:param password: (optional) the new password of the user
+:param firstName: (optional)the new firstName of the user
+:param lastName: (optional) the new lastName of the user
+
+:type newemail: str
+:type oldemail: str
+:type username: str
+:type password: str
+:type firstName: str
+:type lastName: str
+
+:return: "Successfully Modified", status code
+:rtype: str, int
+
+:raises KeyError: if the input is not provided by the user
 """
-@routes.route('/api/user', methods=['PUT'])
+@routes.route('/api/user/edit', methods=['PUT'])
 def modifyUser():
 ```
 
@@ -136,10 +148,14 @@ Delete a user
 
 ```python
 """
-@param str email: The email of the user
-@return: "User Successfully Removed"
-@raise keyError: If the input is not provided by the user
-@raise NoResultFound: if the user is not found in the database
+Delete a user from the database.
+
+:param email: the email of the user
+:type email: str
+:return: "User Successfully Removed", status code
+:rtype: str, int
+:raises KeyError: if the input is not provided by the user
+:raises sqlalchemy.orm.exc.NoResultFound: if the user is not found in the database
 """
 @routes.route('/api/user/delete', methods=['POST'])
 def deleteUser():
@@ -149,14 +165,23 @@ Get all active chores for a user in a specific group
 
 ```python
 """
-@param str email: The email of the user
-@param str groupID: A particular groupID that the user is in
-@param str completed: A boolean indicating whether a list of active chores or completed chores get return
-@return: A list of Json chore object
-@raise ValueError: If the input of the completed parameter is neither true or false
-@raise NoResultFound: if the user is not found in the database
+Get all active chores or completed chores for a particular user in a particular group.
+
+:param email: the email of the user
+:param groupID: a particular groupID that the user is in
+:param completed: a boolean indicating whether a list of active chores or completed chores get return
+
+:type email: str
+:type groupID: int
+:type completed: boolean
+
+:return: a list of JSON chore objects, status code
+:rtype: list of JSON objects, int
+
+:raises ValueError: if the input of the completed parameter is neither true or false
+:raises sqlalchemy.orm.exc.NoResultFound: if the user is not found in the database
 """
-@routes.route('/api/user/getUnfinisihedChores', methods=['GET'])
+@routes.route('/api/user/get-unfinished-chores', methods=['GET'])
 def getChores():
 ```
 
@@ -164,10 +189,18 @@ Validate email and password when a user log in to the app.
 
 ```python
 """
-@param str email: the email of the user
-@param str password: password of a user
-@return: Json with a result item, true/false
-@raises KeyError: if the input is not provided by the user
+Validate email and password when a user log in to the app.
+
+:param email: the email of the user
+:param password: password of a user
+
+:type email: str
+:type groupID: password
+
+:return: Json with a result item, true/false
+:rtype: Json object
+
+:raises KeyError: if the input is not provided by the user
 """
 @routes.route('/api/user/validate-password', methods=['POST'])
 def validatePassword():
