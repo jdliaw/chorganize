@@ -10,6 +10,7 @@ import UIKit
 
 class EditGroupViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var inviteMembersField: UITextField!
     @IBOutlet weak var descriptionField: UITextField!
     @IBOutlet weak var membersTableView: UITableView!
     
@@ -52,10 +53,38 @@ class EditGroupViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     @IBAction func save(_ sender: Any) {
-        dismiss()
+        if descriptionField.text != "" || inviteMembersField.text != "" {
+            let emailsList = inviteMembersField.text?.components(separatedBy: " ,")
+            
+            // Update group name
+            editGroupName(groupID: self.groupID, groupName: self.groupName!) {
+                (success: Bool) in
+                if success == true {
+                    print("updated group name!")
+                    // Add users to group
+                    if self.inviteMembersField.text != "" {
+                        addUsersToGroup(groupID: self.groupID, listOfEmails: emailsList!) {
+                            (success: Bool) in
+                            print("added users!")
+                            OperationQueue.main.addOperation {
+                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadGroupTableView"), object: nil)
+                                self.dismiss()
+                            }
+                        }
+                    }
+                    else {
+                        self.dismiss()
+                    }
+                }
+                else {
+                    self.dismiss()
+                }
+            }
+        }
     }
     
     @IBAction func deleteMember(_ sender: Any) {
+        // Manually get indexPath of row the button came from
         var indexPath: IndexPath?
         if let cell = (sender as AnyObject).superview??.superview as? GroupMembersTableViewCell {
             indexPath = membersTableView.indexPath(for: cell)
@@ -70,15 +99,16 @@ class EditGroupViewController: UIViewController, UITableViewDelegate, UITableVie
             title: NSLocalizedString("Delete", comment: "Default action"),
             style: .`default`,
             handler: { _ in
-                print("do u exist")
-                print((indexPath?.row)!)
                 let member = self.members[(indexPath?.row)!]
-                print("Preparing to delete")
-                print(member.firstName)
                 removeUser(groupID: self.groupID, email: member.email) {
                     (success: Bool) in
                     if success == true {
-                        print("Delete successful")
+                        // TODO: Transition back to ChoresByGroup
+//                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                        let groupChoresVC = storyboard.instantiateViewController(withIdentifier: "GroupSplitViewController")
+//                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//                        appDelegate.window?.rootViewController = groupChoresVC
+                        
                         // Reload data
                         self.fetchMembers()
                     }

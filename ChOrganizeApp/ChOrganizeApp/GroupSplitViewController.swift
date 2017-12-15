@@ -11,7 +11,6 @@ import UIKit
 class GroupSplitViewController: UIViewController {
 
     @IBOutlet weak var ChoresContainer: UIView!
-    
     @IBOutlet weak var ProgressContainer: UIView!
     
     var groupName: String?

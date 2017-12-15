@@ -413,7 +413,7 @@
         <!--Group Name-->
         <scene sceneID="8fh-Cr-9Nv">
             <objects>
-                <viewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" id="fpi-Lh-cPN" customClass="GroupSplitViewController" customModule="ChOrganizeApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GroupSplitViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" id="fpi-Lh-cPN" customClass="GroupSplitViewController" customModule="ChOrganizeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eph-6N-sG0"/>
                         <viewControllerLayoutGuide type="bottom" id="QF5-0Y-J4q"/>
@@ -663,6 +663,7 @@
                     <size key="freeformSize" width="320" height="887"/>
                     <connections>
                         <outlet property="descriptionField" destination="NQD-8K-5uH" id="SLK-A6-T75"/>
+                        <outlet property="inviteMembersField" destination="s0Z-Nj-V8D" id="GWl-aA-Ra9"/>
                         <outlet property="membersTableView" destination="gr3-Ov-KlH" id="uQO-z0-mP0"/>
                     </connections>
                 </viewController>
@@ -1274,7 +1275,7 @@
         <!--Chores-->
         <scene sceneID="55R-Xp-5Gh">
             <objects>
-                <viewController title="Chores" automaticallyAdjustsScrollViewInsets="NO" id="Rj2-ta-SNs" customClass="ChoresByGroupTableViewController" customModule="ChOrganizeApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChoresbyGroup" title="Chores" automaticallyAdjustsScrollViewInsets="NO" id="Rj2-ta-SNs" customClass="ChoresByGroupTableViewController" customModule="ChOrganizeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="R48-gC-3po">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

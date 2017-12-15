@@ -226,6 +226,42 @@ func getUsersByGroup(groupID: Int, completion: @escaping (_ userslist: [User]) -
     }
     task.resume()
     print("end get users")
+}
+
+func editGroupName(groupID: Int, groupName: String, completion: @escaping (_ success: Bool) -> Void) {
+    print("edit group request")
+    var result = true
     
-    //return userGroups
+    let url = URL(string: "http://shea3100.pythonanywhere.com/api/group/edit")!
+    var request = URLRequest(url: url)
+    request.httpMethod = "PUT"
+    let params = ["groupID": groupID, "groupName": groupName] as [String : Any]
+    
+    do {
+        request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+    } catch let error {
+        print(error.localizedDescription)
+    }
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.addValue("application/json", forHTTPHeaderField: "Accept")
+    
+    let task = URLSession.shared.dataTask(with: request){ data, response, error in
+        guard let data = data, error == nil else {
+            print("error=\(String(describing: error))")
+            return
+        }
+        
+        if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+            print("statusCode should be 200, but is \(httpStatus.statusCode)")
+            print("response = \(String(describing: response))")
+            result = false
+        }
+        
+        let responseString = String(data: data, encoding: .utf8)
+        print("responseString = \(String(describing: responseString))")
+        
+        completion(result)
+    }
+    
+    task.resume()
 }
