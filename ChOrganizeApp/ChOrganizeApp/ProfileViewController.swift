@@ -20,16 +20,23 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(loadUser), name: NSNotification.Name(rawValue: "reloadProfileView"), object: nil)
+        
         // Get email
         let defaults = UserDefaults.standard
-        let email: String = defaults.string(forKey: "email")!
+        email = defaults.string(forKey: "email")!
+        
         // Get user details
+        loadUser()
+    }
+    
+    func loadUser() {
         getUser(email: email) {
             (user: User) in
             self.firstNameLabel.text = user.firstName
             self.lastNameLabel.text = user.lastName
-            self.emailLabel.text = email
-            self.email = email
+            self.emailLabel.text = user.email
+            self.email = user.email
             
             OperationQueue.main.addOperation {
                 self.view.setNeedsLayout()

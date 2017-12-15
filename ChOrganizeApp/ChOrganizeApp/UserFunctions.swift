@@ -125,3 +125,47 @@ func getUserProgress(email: String, groupID: Int, completion: @escaping (_ progr
     task.resume()
 }
 
+func updateUser(email: String, fields: [String: Any], completion: @escaping (_ success: Bool) -> Void) {
+    print("updating user \(email)")
+    print(fields)
+    
+    let params = ["oldemail": email,
+                  "newemail": fields["newemail"],
+                  "username": fields["username"],
+                  "password": fields["password"],
+                  "firstName": fields["firstName"],
+                  "lastName": fields["lastName"]] as [String : Any]
+    
+    let url = URL(string: "http://shea3100.pythonanywhere.com/api/user/edit")!
+    var request = URLRequest(url: url)
+    request.httpMethod = "PUT"
+    
+    do {
+        request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+    } catch let error {
+        print(error.localizedDescription)
+    }
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.addValue("application/json", forHTTPHeaderField: "Accept")
+    print(request)
+    
+    let task = URLSession.shared.dataTask(with: request){ data, response, error in
+        guard let data = data, error == nil else {
+            print("error=\(String(describing: error))")
+            return
+        }
+        
+        if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+            print("statusCode should be 200, but is \(httpStatus.statusCode)")
+            print("response = \(String(describing: response))")
+            completion(false)
+        }
+        
+        let responseString = String(data: data, encoding: .utf8)
+        print("responseString = \(String(describing: responseString))")
+        
+        completion(true)
+    }
+    task.resume()
+}
+

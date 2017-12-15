@@ -204,3 +204,81 @@ func assignUserToChore(id: Int, email: String, deadline: String, completion: @es
     print("end remove user from group")
 }
 
+func updateChore(choreID: Int, dict: [String : Any], completion: @escaping (_ success: Bool) -> Void) {
+    print("update chore api")
+    var params = dict
+    params["id"] = choreID
+    
+    let url = URL(string: "http://shea3100.pythonanywhere.com/api/chore/modify")!
+    var request = URLRequest(url: url)
+    request.httpMethod = "PUT"
+    print(request)
+    
+    do {
+        request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+    } catch let error {
+        print(error.localizedDescription)
+    }
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.addValue("application/json", forHTTPHeaderField: "Accept")
+    
+    let task = URLSession.shared.dataTask(with: request){ data, response, error in
+        guard let data = data, error == nil else {
+            print("error=\(String(describing: error))")
+            return
+        }
+        
+        if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+            print("statusCode should be 200, but is \(httpStatus.statusCode)")
+            print("response = \(String(describing: response))")
+            // pop-up
+            completion(false)
+        }
+        
+        // success, save user data / session
+        let responseString = String(data: data, encoding: .utf8)
+        print("responseString = \(String(describing: responseString))")
+        completion(true)
+    }
+
+}
+
+func deleteChore(choreID: Int, completion: @escaping (_ success: Bool) -> Void) {
+    print("delete chore api")
+    
+    let params = ["id": choreID] as [String : Any]
+    
+    let url = URL(string: "http://shea3100.pythonanywhere.com/api/chore/id")!
+    var request = URLRequest(url: url)
+    request.httpMethod = "DELETE"
+    print(request)
+    
+    do {
+        request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+    } catch let error {
+        print(error.localizedDescription)
+    }
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.addValue("application/json", forHTTPHeaderField: "Accept")
+    
+    let task = URLSession.shared.dataTask(with: request){ data, response, error in
+        guard let data = data, error == nil else {
+            print("error=\(String(describing: error))")
+            return
+        }
+        
+        if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+            print("statusCode should be 200, but is \(httpStatus.statusCode)")
+            print("response = \(String(describing: response))")
+            // pop-up
+            completion(false)
+        }
+        
+        // success, save user data / session
+        let responseString = String(data: data, encoding: .utf8)
+        print("responseString = \(String(describing: responseString))")
+        completion(true)
+    }
+    
+    task.resume()
+}
