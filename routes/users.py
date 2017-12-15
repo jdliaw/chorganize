@@ -119,7 +119,15 @@ def modifyUser():
 
     user = User.query.filter_by(email=useroldEmail).one()
     if 'newemail' in dataDict:
-        user.setEmail(dataDict['newemail'])
+        if dataDict['newemail'] != dataDict['oldemail']:
+            try:
+                user = User.getUser(dataDict['newemail'])
+            except NoResultFound:
+                user.setEmail(dataDict['newemail'])
+            else:
+                error = "Cannot change Email"
+                return error, 400
+
     if 'password' in dataDict:
         userPassword = dataDict['password']
         salt = bcrypt.gensalt()
