@@ -127,14 +127,20 @@ func getUserProgress(email: String, groupID: Int, completion: @escaping (_ progr
 
 func updateUser(email: String, fields: [String: Any], completion: @escaping (_ success: Bool) -> Void) {
     print("updating user \(email)")
-    print(fields)
     
-    let params = ["oldemail": email,
-                  "newemail": fields["newemail"],
-                  "username": fields["username"],
-                  "password": fields["password"],
-                  "firstName": fields["firstName"],
-                  "lastName": fields["lastName"]] as [String : Any]
+    var params = ["oldemail": email] as [String : Any]
+    if fields["firstName"] != nil {
+        params["firstName"] = fields["firstName"]
+    }
+    if fields["lastName"] != nil {
+        params["lastName"] = fields["lastName"]
+    }
+    if fields["password"] != nil {
+        params["password"] = fields["password"]
+    }
+    if fields["newemail"] != nil {
+        params["newemail"] = fields["newemail"]
+    }
     
     let url = URL(string: "http://shea3100.pythonanywhere.com/api/user/edit")!
     var request = URLRequest(url: url)
