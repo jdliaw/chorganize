@@ -127,7 +127,10 @@ def modifyUser():
             else:
                 error = "Cannot change Email"
                 return error, 400
-
+        else:
+            error = "Cannot change Email"
+            return error, 400
+        
     if 'password' in dataDict:
         userPassword = dataDict['password']
         salt = bcrypt.gensalt()
