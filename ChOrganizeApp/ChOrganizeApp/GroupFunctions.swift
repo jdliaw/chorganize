@@ -275,6 +275,7 @@ func getGroupByID(groupID: Int, completion: @escaping (_ groupName: String) -> V
     components.queryItems = [URLQueryItem(name: "groupID", value: strGroupID)]
     var request = URLRequest(url: components.url!)
     request.httpMethod = "GET"
+    print(request)
     
     let task = URLSession.shared.dataTask(with: request){ data, response, error in
         guard let data = data, error == nil else {
@@ -292,11 +293,9 @@ func getGroupByID(groupID: Int, completion: @escaping (_ groupName: String) -> V
         
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
-            
             if let groupName = json["name"] as? String {
                 completion(groupName)
             }
-            completion(groupName)
         } catch let error as NSError {
             print(error)
         }

@@ -62,6 +62,7 @@ func getGroupChores(groupID: Int, completion: @escaping (_ choreslist: [Chore]) 
     components.queryItems = [URLQueryItem(name: "groupID", value: String(groupID)), URLQueryItem(name: "completed", value: "false")]
     var request = URLRequest(url: components.url!)
     request.httpMethod = "GET"
+    print(request)
     
     let task = URLSession.shared.dataTask(with: request){ data, response, error in
         guard let data = data, error == nil else {
@@ -75,7 +76,7 @@ func getGroupChores(groupID: Int, completion: @escaping (_ choreslist: [Chore]) 
         }
         
         let responseString = String(data: data, encoding: .utf8)
-//        print("responseString = \(String(describing: responseString))")
+        print("responseString = \(String(describing: responseString))")
         
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
@@ -83,15 +84,15 @@ func getGroupChores(groupID: Int, completion: @escaping (_ choreslist: [Chore]) 
                 if choresList != nil {
                     for chore in choresList {
                         if let dict = chore as? NSDictionary {
-                                if let name = dict.value(forKey: "name") as? String,
-                                let date = dict.value(forKey: "deadline") as? String,
-                                let id = dict.value(forKey: "id") as? Int,
-                                let deadlinePassed = dict.value(forKey: "deadlinePassed") as? Bool,
-                                let groupID = dict.value(forKey: "groupID") as? Int,
-                                let userEmail = dict.value(forKey: "userEmail") as? String {
-                                let desc = dict.value(forKey: "description") as? String ?? ""
-                                groupChores.append(Chore(name: name, date: date, desc: desc, id: id, deadlinePassed: deadlinePassed, groupID: groupID, userEmail: userEmail)!)
-                            }
+                            let name = dict.value(forKey: "name") as? String ?? "Name"
+                            let date = dict.value(forKey: "deadline") as? String ?? "Deadline"
+                            let id = dict.value(forKey: "id") as? Int ?? 0
+                            let deadlinePassed = dict.value(forKey: "deadlinePassed") as? Bool ?? false
+                            let groupID = dict.value(forKey: "groupID") as? Int ?? 0
+                            let userEmail = dict.value(forKey: "userEmail") as? String ?? "hkim@ucla.edu"
+                            let desc = dict.value(forKey: "description") as? String ?? ""
+                            print("YOOO: \(name) \(date) \(id) \(deadlinePassed) \(groupID) \(userEmail) \(desc)")
+                            groupChores.append(Chore(name: name, date: date, desc: desc, id: id, deadlinePassed: deadlinePassed, groupID: groupID, userEmail: userEmail)!)
                         }
                     }
                 }

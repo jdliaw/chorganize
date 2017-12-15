@@ -18,10 +18,12 @@ class GroupSplitViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = groupName
-        // Do any additional setup after loading the view.
         
         fetchDetails()
+        
+        self.navigationItem.title = groupName
+        print("WTF \(groupName)")
+        // Do any additional setup after loading the view.
         
         NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name(rawValue: "reloadGroupSplitView"), object: nil)
     }
@@ -75,6 +77,7 @@ class GroupSplitViewController: UIViewController {
         if segue.identifier == "choresByGroup" {
             if let destVC = segue.destination as? ChoresByGroupTableViewController {
                 destVC.groupID = self.groupID
+                
             }
         }
         
