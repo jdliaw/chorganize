@@ -537,6 +537,9 @@
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywk-tU-muA">
                                                                     <rect key="frame" x="196" y="9" width="76" height="22"/>
                                                                     <state key="normal" title="Button" image="trash.png"/>
+                                                                    <connections>
+                                                                        <action selector="deleteMember:" destination="Bae-M7-65n" eventType="touchUpInside" id="IVE-zY-6Zr"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
@@ -547,6 +550,7 @@
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
+                                                            <outlet property="deleteButton" destination="ywk-tU-muA" id="cvl-DH-3Gv"/>
                                                             <outlet property="nameLabel" destination="YWD-DX-5cp" id="zf7-q5-r0X"/>
                                                         </connections>
                                                     </tableViewCell>

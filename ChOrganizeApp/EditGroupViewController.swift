@@ -27,6 +27,15 @@ class EditGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         self.descriptionField.text = groupName
         
         // Get members of group
+        fetchMembers()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func fetchMembers() {
         getUsersByGroup(groupID: groupID) {
             (users: [User]) in
             self.members = users
@@ -37,11 +46,6 @@ class EditGroupViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     @IBAction func cancel(_ sender: Any) {
         dismiss()
     }
@@ -49,6 +53,41 @@ class EditGroupViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func save(_ sender: Any) {
         dismiss()
+    }
+    
+    @IBAction func deleteMember(_ sender: Any) {
+        var indexPath: IndexPath?
+        if let cell = (sender as AnyObject).superview??.superview as? GroupMembersTableViewCell {
+            indexPath = membersTableView.indexPath(for: cell)
+        }
+        
+        let alert = UIAlertController(
+            title: "Delete Group Member",
+            message: "Are you sure you want to remove this member?",
+            preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(
+            title: NSLocalizedString("Delete", comment: "Default action"),
+            style: .`default`,
+            handler: { _ in
+                print("do u exist")
+                print((indexPath?.row)!)
+                let member = self.members[(indexPath?.row)!]
+                print("Preparing to delete")
+                print(member.firstName)
+                removeUser(groupID: self.groupID, email: member.email) {
+                    (success: Bool) in
+                    if success == true {
+                        print("Delete successful")
+                        // Reload data
+                        self.fetchMembers()
+                    }
+                }
+        }))
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func leaveGroup(_ sender: Any) {
