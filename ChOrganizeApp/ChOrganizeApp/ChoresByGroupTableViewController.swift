@@ -26,6 +26,9 @@ class ChoresByGroupTableViewController: UITableViewController {
                 getUser(email: chore.userEmail) {
                     (user: User) in
                     self.users.append(user)
+                    OperationQueue.main.addOperation {
+                        self.tableView.reloadData()
+                    }
                 }
             }
             // Call to force reload
