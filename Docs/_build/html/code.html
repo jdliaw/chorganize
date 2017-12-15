@@ -260,7 +260,7 @@
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a message that marks the success of creating the group, status code</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">group ID, status code</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str, int</p>
@@ -318,7 +318,7 @@
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a JSON object that contains the descriptions of a list of groups, status code</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str, int</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">json, int</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><strong>sqlalchemy.orm.exc.NoResultFound</strong> – when the user does not exist in database</td>
 </tr>
@@ -338,7 +338,7 @@
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a JSON object that describes the group, status code</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str, int</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">json, int</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><strong>sqlalchemy.orm.exc.NoResultFound</strong> – when the group does not exist in database</td>
 </tr>
@@ -363,7 +363,7 @@
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a JSON object that contains the descriptions of a list of chores, status code</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str, int</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">json, int</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><strong>sqlalchemy.orm.exc.NoResultFound</strong> – when the group does not exist in database</p>
@@ -390,11 +390,31 @@
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a JSON object that contains the user’s performance in the specified group.</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str, int</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">json, int</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><strong>sqlalchemy.orm.exc.NoResultFound</strong> – when the group does not exist in database</p>
 </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="routes.group.getUsers">
+<code class="descclassname">routes.group.</code><code class="descname">getUsers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#routes.group.getUsers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all users from the specified group.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>groupID</strong> (<em>int</em>) – the group’s ID</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a JSON object that contains the profiles of a list of users, status code</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">json, int</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><strong>sqlalchemy.orm.exc.NoResultFound</strong> – when the group/user does not exist in database</td>
 </tr>
 </tbody>
 </table>
@@ -448,7 +468,7 @@ Postcondition: both user and deadline must not be null.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>id</strong> (<em>int</em>) – the unique ID corresponding to the target chore</li>
 <li><strong>email</strong> (<em>str</em>) – the email of the user who will be assigned to the chore</li>
-<li><strong>deadline</strong> (<em>str</em>) – the new deadline for the chore (format: “mm/dd/yyyy, HH:MM” with 24-hour clock)</li>
+<li><strong>deadline</strong> (<em>str</em>) – the new deadline for the chore (format: “mm/dd/yyyy”)</li>
 </ul>
 </td>
 </tr>
@@ -511,7 +531,7 @@ Postcondition: both user and deadline must not be null.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a message confirming whether the chore successfully created, status code</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">chore ID, status code</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str, int</p>
