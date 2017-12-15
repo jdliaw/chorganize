@@ -2,7 +2,7 @@ import unittest
 import requests
 import sys
 sys.path.append('..')
-from database_setup import createApp, db, User, Group, Chore
+from database_setup import createApp, db, User, Group
 
 
 class TestUser(unittest.TestCase):
@@ -57,7 +57,7 @@ class TestUser(unittest.TestCase):
 
     def test_validate_password_fail_with_missing_input(self):
         response2 = requests.post('http://localhost:8080/api/user', data='{"password": "123"}')
-        self.assertEqual(response2.status_code, 404)
+        self.assertEqual(response2.status_code, 400)
 
     def test_validate_password_with_correct_passowrd_and_user_email(self):
         response2 = requests.post('http://localhost:8080/api/user/validate-password',data='{"email": "michael@ucla.edu","password": "123"}')
