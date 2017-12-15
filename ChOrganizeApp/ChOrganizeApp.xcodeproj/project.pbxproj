@@ -286,6 +286,7 @@
 				TargetAttributes = {
 					339F54571FAE8CB000346119 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = DHN23VUY6U;
 						ProvisioningStyle = Automatic;
 					};
 					339F546D1FAE8CB100346119 = {
@@ -538,7 +539,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = DHN23VUY6U;
 				INFOPLIST_FILE = ChOrganizeApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Pusheen.ChOrganizeApp;
@@ -551,7 +552,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = DHN23VUY6U;
 				INFOPLIST_FILE = ChOrganizeApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Pusheen.ChOrganizeApp;
