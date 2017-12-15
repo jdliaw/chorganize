@@ -71,7 +71,9 @@ class EditGroupViewController: UIViewController, UITableViewDelegate, UITableVie
                             addUsersToGroup(groupID: self.groupID, listOfEmails: emailsList!) {
                                 (success: Bool) in
                                 print("added users!")
+                                // Reload both parent pages
                                 OperationQueue.main.addOperation {
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadGroupTableView"), object: nil)
                                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadGroupSplitView"), object: nil)
                                     self.dismiss()
                                 }
@@ -79,6 +81,7 @@ class EditGroupViewController: UIViewController, UITableViewDelegate, UITableVie
                         }
                         else {
                             OperationQueue.main.addOperation {
+                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadGroupTableView"), object: nil)
                                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadGroupSplitView"), object: nil)
                                 self.dismiss()
                             }
@@ -86,6 +89,7 @@ class EditGroupViewController: UIViewController, UITableViewDelegate, UITableVie
                     }
                     else {
                         OperationQueue.main.addOperation {
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadGroupTableView"), object: nil)
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadGroupSplitView"), object: nil)
                             self.dismiss()
                         }
