@@ -103,12 +103,15 @@ Retriever information about a user
 
 ```python
 """
-@param str email: The email of the user
-@return: str "A user Json object"
-@return 400 if the input is not provided by the user
-@raise NoResultFound: if the user is not found in the database
+Get information about a user.
+
+:param email: the email of the user
+:type email: str
+:return: a user JSON object, status code
+:rtype: JSON object, int
+:raises sqlalchemy.orm.exc.NoResultFound: if the user is not found in the database
 """
-@routes.route('/api/user', methods=['GET'])
+@routes.route('/api/user/get', methods=['GET'])
 def getUser():
 ```
 
