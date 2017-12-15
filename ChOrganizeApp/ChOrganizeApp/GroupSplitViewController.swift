@@ -20,7 +20,15 @@ class GroupSplitViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.title = groupName
         // Do any additional setup after loading the view.
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name(rawValue: "reloadGroupSplitView"), object: nil)
     }
+    
+    func loadData() {
+        // Implement getgroupdetailsbyid (group/get-by-id) and use it here to reset variables 
+        self.view.setNeedsLayout()
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -67,17 +67,23 @@ class EditGroupViewController: UIViewController, UITableViewDelegate, UITableVie
                             (success: Bool) in
                             print("added users!")
                             OperationQueue.main.addOperation {
-                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadGroupTableView"), object: nil)
+                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadGroupSplitView"), object: nil)
                                 self.dismiss()
                             }
                         }
                     }
                     else {
-                        self.dismiss()
+                        OperationQueue.main.addOperation {
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadGroupSplitView"), object: nil)
+                            self.dismiss()
+                        }
                     }
                 }
                 else {
-                    self.dismiss()
+                    OperationQueue.main.addOperation {
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadGroupSplitView"), object: nil)
+                        self.dismiss()
+                    }
                 }
             }
         }
